@@ -9,7 +9,7 @@ alter table public.ideas add column if not exists expires_at timestamptz;
 alter table public.ideas drop constraint if exists ideas_terms_version_valid;
 alter table public.ideas add constraint ideas_terms_version_valid check (terms_version is null or terms_version = '0.4');
 create or replace function public.ideas_before_insert_guard()
-returns trigger language plpgsql set search_path = '' as $$
+returns trigger language plpgsql security definer set search_path = '' as $
 begin
  if auth.uid() is null or new.user_id is distinct from auth.uid() then
    raise exception 'Authentication required';
