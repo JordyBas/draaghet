@@ -48,6 +48,11 @@ Na elke bouwfase verzamelen we de tests die Jordy en het team zelf in de echte w
 - [ ] [F3-17] Log in met twee testaccounts: elk ziet alleen eigen ideeën en eigen bestanden. Meld elke onverwachte toegang onmiddellijk.
 - [ ] [F3-18] Controleer de ontvangstbevestiging en later de automatische e-mail zodra de e-mailflow is ingericht.
 
+- [ ] [F3-19] Controleer dat het dashboard de gekozen humorcategorie én de juiste teller 'x van 6 deze maand' laat zien.
+- [ ] [F3-20] Controleer dat geüploade bestanden niet toegankelijk zijn vóór veiligheidsgoedkeuring en pas na markering als veilig privé ingezien kunnen worden.
+- [ ] [F3-21] Test het gedrag wanneer de inzendfunctie centraal wordt uitgeschakeld: geen maker mag via knop of directe aanvraag alsnog inzenden.
+- [ ] [F3-22] Test een aanpassing in de definitieve voorwaardenversie: een maker moet de actuele versie actief accepteren.
+
 **Registratie van testresultaat:** zet het vakje pas op [x] na daadwerkelijk uitvoeren; noteer bij fouten datum, apparaat, test-ID, stappen en resultaat. Een codecontrole geldt niet als persoonlijke test.
 
 ### Technisch door assistent (niet doorschuiven naar Jordy)
