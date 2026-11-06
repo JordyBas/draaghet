@@ -21,3 +21,10 @@ Bij nieuwe belangrijke restpunten deze lijst uitbreiden. Afvinken alleen na cont
 - [ ] Koppel bij fase 6 alleen daadwerkelijk goedgekeurde en gepubliceerde makerproducten aan de webshop. Koppel een makersprofiel uitsluitend openbaar als de maker hiervoor expliciet kiest; toon nooit privé-inzendingen of persoonsgegevens. Zonder openbaar profiel toont de winkel een neutrale bedenkervermelding. DRAAGHET. blijft de verkoper.
 - [ ] Controleer vóór lancering hoe openbare makerprofielen omgaan met ongewenste/aanstootgevende namen, meldingen, uitschakeling en moderatie.
 - [ ] Technische integratie- en autorisatietests voor het makersprofiel, openbare zichtbaarheid en privé-omschakeling afronden vóór publieke vrijgave; de persoonlijke tests blijven bewaard tot na fase 10.
+
+## Website-overzicht en maker-aanmelding (november 2026)
+- [ ] Bevestig na de laatste gebruikersbeslissing de precieze aanvraagflow: klantaccount → aanvraag maker worden → makersprofiel → interne beoordeling → toegang tot inzenden. De bestaande profielaanmaak is nog geen echte aanvraag met goedkeuring.
+- [ ] Bouw maker-aanvraagstatussen en beheerdersgoedkeuring in Supabase met toegangsregels. Open geen inzendfunctie voor onbeoordeelde accounts.
+- [ ] Controleer in een echte browser alle belangrijke routes: homepage, Maker worden, Makers Studio, Makers Dashboard, account, gegevens, bestellingen en openbare makerspagina, inclusief mobiele menu's en accountwissels.
+- [ ] Bevestig dat de openbare makerspagina uitsluitend gepubliceerde ontwerpen toont (bij privéprofiel geen persoonsgegevens); productkoppeling volgt fase 6.
+- [ ] Controleer alle bestaande accountsubpagina's op hetzelfde vereenvoudigde menu en doorverwijzing naar het centrale Makers Dashboard; verwijder oude dubbele navigatie pas nadat de nieuwe route is gecontroleerd.
