@@ -22,6 +22,10 @@ Na elke bouwfase verzamelen we de tests die Jordy en het team zelf in de echte w
 - [ ] Alle bovenstaande acties ook op mobiel testen.
 
 ## Fase 3: Makers Studio
+- [ ] Alle zes stappen in de nieuwe, doorlopende formulierkaart doorlopen; terug/vooruit en voortgangsbalk controleren.
+- [ ] Categorie kiezen: sarcasme, flauwe humor, woordgrappen, kerst en overig; controleren of die selectie terugkomt in de samenvatting.
+- [ ] Op mobiel controleren dat de studio één geheel vormt zonder losse kaarten of horizontaal scrollen.
+- [ ] Controleren dat definitief verzenden nog geblokkeerd blijft zolang juridische en veiligheidsvoorwaarden niet zijn afgevinkt.
 - [ ] Alle stappen in het inzendproces doorlopen en controleren of voortgang correct wordt bijgehouden.
 - [ ] 18+-verklaring en voorwaarden zijn verplicht en worden niet vooraf aangevinkt.
 - [ ] Juiste bestandstypen en limieten testen; ongeldige bestanden moeten worden afgewezen.
