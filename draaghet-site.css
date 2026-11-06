@@ -77,3 +77,6 @@ body{background:var(--dh-bg);color:var(--dh-black)}
 .dh-navigation .dh-navgroup>.dh-submenu a:hover{background:#f3e72b}
 .dh-navigation .dh-mobile-only{display:none!important}
 @media(max-width:1000px){#navlinks.dh-navigation{display:none;position:absolute;top:100%;left:0;right:0;background:#f7f5ee;padding:18px;flex-direction:column;z-index:90;max-height:calc(100vh - 66px);overflow-y:auto;border-bottom:1px solid #ddd9cf}#navlinks.dh-navigation.open{display:flex}.dh-navigation .dh-navgroup{display:grid!important;grid-template-columns:1fr auto!important;width:100%;border-bottom:1px solid #e5e0d8}.dh-navigation .dh-navgroup>.dh-submenu{position:static;grid-column:1/-1;box-shadow:none;background:#efede6;border:0;width:100%}.dh-navigation .dh-mobile-only{display:block!important;padding:10px 0}}
+
+.dh-account-dropdown [hidden]{display:none!important}
+.dh-navgroup>button[aria-expanded=true]:before{transform:translateY(2px) rotate(225deg)!important}
