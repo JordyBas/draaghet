@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;800;900&display=swap');
+/* DRAAGHET. official stacked wordmark */
+.brand.draaghet-logo,.admin-logo.draaghet-logo{display:inline-flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:0!important;width:max-content!important;min-width:0!important;white-space:nowrap!important;font-family:'League Spartan',Arial,sans-serif!important;font-weight:900!important;letter-spacing:-.055em!important;line-height:.76!important;font-size:clamp(25px,3vw,36px)!important;text-transform:uppercase!important;text-decoration:none!important;vertical-align:middle!important;padding:4px 0!important;transform:none!important}
+.draaghet-logo .logo-line{display:block!important;line-height:.82!important}
+.draaghet-logo .logo-bottom{margin-left:15%!important;margin-top:2px!important}
+.draaghet-logo .logo-dot{display:inline-block!important;width:.22em!important;height:.22em!important;margin-left:.055em!important;background:#f3e72b!important;color:transparent!important;vertical-align:baseline!important;border-radius:0!important;position:relative!important;top:0!important}
+footer .draaghet-logo{font-size:29px!important}
+.admin-logo.draaghet-logo{font-size:25px!important}
+@media(max-width:600px){.brand.draaghet-logo{font-size:25px!important}.admin-logo.draaghet-logo{font-size:21px!important}}
