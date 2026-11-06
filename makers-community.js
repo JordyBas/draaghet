@@ -1,4 +1,4 @@
-/* DRAAGHET. | Public maker directory, opt-in profile, follow + like */
+/* DRAAGHET. | Eenvoudige makersprofielen: naam, bio, gepubliceerde ontwerpen */
 (function(){
  const URL='https://rjnogcommtnxalzqrsmx.supabase.co';
  const KEY='sb_publishable_msSVd8n8VZDSrDzU1y0Skw_gsqEumgc';
@@ -12,17 +12,15 @@
   const result=await db.auth.getUser();
   return result.error?null:result.data.user;
  }
- const niceCount=n=>new Intl.NumberFormat('nl-NL').format(Number(n)||0);
  function card(m){
   const box=el('article','community-card');box.append(avatar(m.display_name));
   box.append(el('h3','',m.display_name),el('p','',m.bio||'Deze maker brengt binnenkort zijn of haar creativiteit tot leven.'));
-  const meta=el('div','community-meta');meta.append(el('span','',niceCount(m.follower_count)+' volgers'),el('span','',niceCount(m.like_count)+' likes'));box.append(meta);
   const a=el('a','','BEKIJK PROFIEL →');a.href='maker.html?id='+encodeURIComponent(m.user_id);box.append(a);return box;
  }
  async function directory(){
   const root=$('community-list');if(!root)return;
   if(!db){root.textContent='De makers konden niet worden geladen.';return;}
-  const r=await db.from('maker_public_profiles').select('user_id,display_name,bio,follower_count,like_count').eq('is_public',true).order('follower_count',{ascending:false}).limit(90);
+  const r=await db.from('maker_public_profiles').select('user_id,display_name,bio').eq('is_public',true).order('created_at',{ascending:false}).limit(90);
   root.replaceChildren();
   if(r.error){root.className='community-empty';root.textContent='De makers konden niet worden geladen. Probeer het later opnieuw.';return;}
   if(!r.data?.length){root.className='community-empty';root.textContent='De eerste makersprofielen verschijnen hier zodra makers ervoor kiezen hun profiel openbaar te maken.';return;}
@@ -34,45 +32,20 @@
   const id=new URLSearchParams(location.search).get('id');
   if(!id||!/^[a-f0-9-]{36}$/i.test(id)){root.textContent='Geen geldig makersprofiel gevonden.';return;}
   if(!db){root.textContent='De verbinding is niet beschikbaar.';return;}
-  const r=await db.from('maker_public_profiles').select('user_id,display_name,handle,bio,is_public,follower_count,like_count').eq('user_id',id).eq('is_public',true).maybeSingle();
+  const r=await db.from('maker_public_profiles').select('user_id,display_name,handle,bio,is_public').eq('user_id',id).eq('is_public',true).maybeSingle();
   if(r.error||!r.data){root.className='community-empty';root.textContent='Dit profiel bestaat niet of is niet openbaar.';return;}
   const m=r.data;document.title=m.display_name+' | Maker bij DRAAGHET.';
   root.className='community-profile';root.replaceChildren();
   const head=el('div','community-profile-header');head.append(avatar(m.display_name));
   const h=el('div','');h.append(el('h1','',m.display_name),el('div','community-handle','@'+m.handle));head.append(h);root.append(head);
   root.append(el('p','community-profile-bio',m.bio||'Deze maker heeft nog geen verhaal toegevoegd.'));
-  const stats=el('div','community-stats'),fStat=el('div',''),lStat=el('div','');
-  const fNum=el('strong','',niceCount(m.follower_count)),lNum=el('strong','',niceCount(m.like_count));
-  fStat.append(fNum,el('span','','Volgers'));lStat.append(lNum,el('span','','Likes'));stats.append(fStat,lStat);
-  const actions=el('div','community-profile-actions');
-  const follow=el('button','community-btn yellow','VOLGEN');const like=el('button','community-btn light','♡ LIKE');
-  follow.type=like.type='button';actions.append(follow,like);root.append(actions,stats);
-  const status=el('p','community-status','');status.setAttribute('role','status');root.append(status);
   const user=await signedIn();
-  if(!user){status.textContent='Log in om makers te volgen of een like te geven.';const login=el('a','community-btn light','INLOGGEN');login.href='account.html?next=makers.html';actions.append(login);follow.hidden=like.hidden=true;return;}
-  if(user.id===m.user_id){follow.hidden=like.hidden=true;status.textContent='Dit is jouw openbare makersprofiel.';const own=el('a','community-btn light','BEWERK MIJN PROFIEL');own.href='mijn-makerprofiel.html';actions.append(own);return;}
-  const [fr,lr]=await Promise.all([
-   db.from('maker_follows').select('maker_id').eq('follower_id',user.id).eq('maker_id',m.user_id).maybeSingle(),
-   db.from('maker_profile_likes').select('maker_id').eq('user_id',user.id).eq('maker_id',m.user_id).maybeSingle()
-  ]);
-  let isFollowing=!!fr.data,isLiked=!!lr.data;
-  function renderActions(){follow.textContent=isFollowing?'VOLGEND ✓':'VOLGEN';like.textContent=isLiked?'♥ GELIKET':'♡ LIKE';}
-  renderActions();
-  async function change(kind){
-   const button=kind==='follow'?follow:like;button.disabled=true;status.textContent='';
-   const table=kind==='follow'?'maker_follows':'maker_profile_likes';
-   const currently=kind==='follow'?isFollowing:isLiked;
-   const payload=kind==='follow'?{follower_id:user.id,maker_id:m.user_id}:{user_id:user.id,maker_id:m.user_id};
-   const result=currently?await db.from(table).delete().match(payload):await db.from(table).insert(payload);
-   if(result.error){status.textContent='Opslaan is niet gelukt. Probeer het opnieuw.';}
-   else{
-    if(kind==='follow'){isFollowing=!isFollowing;fNum.textContent=niceCount(Number(fNum.textContent.replace(/\D/g,''))+(isFollowing?1:-1));}
-    else{isLiked=!isLiked;lNum.textContent=niceCount(Number(lNum.textContent.replace(/\D/g,''))+(isLiked?1:-1));}
-    renderActions();
-   }
-   button.disabled=false;
+  if(user?.id===m.user_id){
+    const actions=el('div','community-profile-actions');
+    const edit=el('a','community-btn light','BEWERK MIJN PROFIEL');
+    edit.href='mijn-makerprofiel.html';actions.append(edit);root.append(actions);
   }
-  follow.onclick=()=>void change('follow');like.onclick=()=>void change('like');
+
  }
  async function editor(){
   const form=$('maker-profile-form');if(!form)return;
