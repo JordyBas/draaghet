@@ -17,6 +17,7 @@ Deze punten verzamelen we tijdens alle tien bouwfases. Na fase 10 krijgt Jordy d
 Bij nieuwe belangrijke restpunten deze lijst uitbreiden. Afvinken alleen na controle.
 
 ## Fase 4: makersprofielen en community
-- [ ] Koppel bij fase 6 uitsluitend daadwerkelijk goedgekeurde en gepubliceerde makerproducten aan het openbare makersprofiel; toon nooit privé-inzendingen.
+- [ ] Bewaak dat aanmelden als maker niet gelijkstaat aan optreden als verkoper. Maak de commerciële toestemming, rol van DRAAGHET. als verkoper en vrijwillige openbare naamsvermelding duidelijk in de definitieve voorwaarden. Leg vast hoe bij privéprofielen een anonieme bedenkervermelding werkt.
+- [ ] Koppel bij fase 6 alleen daadwerkelijk goedgekeurde en gepubliceerde makerproducten aan de webshop. Koppel een makersprofiel uitsluitend openbaar als de maker hiervoor expliciet kiest; toon nooit privé-inzendingen of persoonsgegevens. Zonder openbaar profiel toont de winkel een neutrale bedenkervermelding. DRAAGHET. blijft de verkoper.
 - [ ] Controleer vóór lancering hoe openbare makerprofielen omgaan met ongewenste/aanstootgevende namen, meldingen, uitschakeling en moderatie.
 - [ ] Technische integratie- en autorisatietests voor volgen/liken/privé-omschakeling afronden vóór publieke vrijgave; de persoonlijke tests blijven bewaard tot na fase 10.
