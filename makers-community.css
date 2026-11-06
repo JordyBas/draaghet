@@ -43,3 +43,6 @@
 .community-shell :focus-visible{outline:3px solid #b0a100;outline-offset:3px}
 @media(max-width:850px){.community-hero{grid-template-columns:1fr}.community-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:580px){.community-shell{padding-top:34px}.community-grid{grid-template-columns:1fr}.community-profile-header{align-items:flex-start;gap:16px}.community-profile-header .community-avatar{width:67px;height:67px;font-size:24px}}
+
+/* Respect hidden on action links and restricted forms */
+.community-shell [hidden]{display:none!important}
