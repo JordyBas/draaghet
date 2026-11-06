@@ -8,7 +8,7 @@ const auth=await db.auth.getUser();
 if(auth.error||!auth.data?.user){status.hidden=true;loggedOut.hidden=false;return;}
 const user=auth.data.user;
 const [profile,ideas,usage]=await Promise.all([
- db.from('maker_public_profiles').select('user_id,display_name,handle,is_public,follower_count').eq('user_id',user.id).maybeSingle(),
+ db.from('maker_public_profiles').select('user_id,display_name,handle,is_public').eq('user_id',user.id).maybeSingle(),
  db.from('ideas').select('title,status,category,created_at').eq('user_id',user.id).order('created_at',{ascending:false}).limit(100),
  db.rpc('maker_monthly_usage')
 ]);
@@ -21,9 +21,8 @@ const publicLink=document.getElementById('hub-public-link');
 if(p){
  name.textContent=p.display_name;
  document.getElementById('hub-avatar').textContent=p.display_name.slice(0,2).toUpperCase();
- visibility.textContent=p.is_public?'Openbaar makersprofiel. Anderen kunnen jou volgen en liken.':'Je makersprofiel is privé. DRAAGHET. kan jouw geselecteerde ontwerpen verkopen zonder je openbare identiteit te tonen.';
+ visibility.textContent=p.is_public?'Openbaar makersprofiel. Bezoekers kunnen jouw verhaal en gepubliceerde ontwerpen bekijken.':'Je makersprofiel is privé. DRAAGHET. kan jouw geselecteerde ontwerpen verkopen zonder je openbare identiteit te tonen.';
  if(p.is_public){publicLink.href='maker.html?id='+encodeURIComponent(user.id);publicLink.hidden=false;}
- document.getElementById('hub-followers').textContent=new Intl.NumberFormat('nl-NL').format(p.follower_count||0);
 }else{
  name.textContent='Maak jouw makersprofiel aan';
  visibility.textContent='Je bent ingelogd, maar hebt nog geen makersprofiel. Maak dit eerst aan in de Makers Studio.';
