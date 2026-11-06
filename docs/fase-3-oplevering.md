@@ -17,7 +17,7 @@ Bijgewerkt op 6 november 2026.
 - Eigen ideeën en categorieën zichtbaar in accountoverzicht en 'Mijn inzendingen'.
 - Privéopslag. Uploadmetadata staat op `pending` en bestanden blijven ontoegankelijk tot een veilige beoordeling.
 - Maximaal 6 inzendingen per maand; database controleert kalendermaand in Europe/Amsterdam.
-- Publicatie-einddatum voor geselecteerde ontwerpen: 1 jaar na publicatie.
+- Publicatie-einddatum voor geselecteerde ontwerpen: 6 maanden na publicatie.
 - GitHub-opslag van bijbehorende frontend en servercode; syntaxiscontroles van alle aangepaste inline- en externe browserscripts geslaagd.
 - De nieuw ontstane security-definer-waarschuwing verholpen; resterende Supabase waarschuwing betreft bestaande instelling voor bescherming tegen gelekte wachtwoorden.
 
