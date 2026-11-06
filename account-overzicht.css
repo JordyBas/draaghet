@@ -1,0 +1,20 @@
+/* DRAAGHET. | Eenvoudige accountnavigatie */
+.account-shell{max-width:1120px!important;margin:35px auto 85px!important}
+.account-layout{grid-template-columns:225px minmax(0,1fr)!important;gap:23px!important}
+.account-sidebar{display:flex!important;flex-direction:column!important;gap:3px!important;position:sticky;top:94px;border-radius:13px!important;padding:15px 11px!important}
+.account-nav-caption{display:block;color:#838076;font:900 10px Inter,Arial,sans-serif;letter-spacing:.11em;padding:11px 11px 7px}
+.account-nav-caption-sep{border-top:1px solid #e8e5dc;margin-top:15px;padding-top:19px}
+.account-sidebar>a{display:flex;align-items:center;min-height:42px!important;box-sizing:border-box;border-radius:7px!important;font-size:13px!important;font-weight:750!important;padding:10px 12px!important;line-height:1.35}
+.account-sidebar>a:hover{background:#f3f0e7!important}
+.account-sidebar>a[aria-current=page]{background:#f3e72b!important;color:#171717!important}
+.account-sidebar>a.account-nav-makers{background:#faf9f0;border:1px solid #eeead3}
+.account-panel{border-radius:14px!important;padding:clamp(22px,3vw,36px)!important}
+.account-panel h2:first-child{margin-top:0}
+.account-panel .account-links-simple{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:25px}
+.account-panel .account-links-simple a{border:1px solid #e8e3d8;border-radius:11px;min-height:111px;box-sizing:border-box;padding:21px;display:flex;flex-direction:column;justify-content:center;gap:7px;background:#faf9f6;transition:border-color .16s,transform .16s}
+.account-panel .account-links-simple a:hover{border-color:#171717;transform:translateY(-2px)}
+.account-panel .account-links-simple a.dh-account-maker-link{background:#f3e72b;border-color:#f3e72b}
+.account-panel .account-links-simple strong{font-size:15px;font-weight:900;letter-spacing:-.015em}
+.account-panel .account-links-simple small{font-size:12px;line-height:1.6;color:#67635b;margin:0}
+.account-customer-number{font-size:12px;color:#74716a;margin-top:17px;border-top:1px solid #ece9e0;padding-top:15px}
+@media(max-width:750px){.account-layout{grid-template-columns:1fr!important;gap:18px!important}.account-sidebar{position:static;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px!important}.account-nav-caption{grid-column:1/-1}.account-nav-caption-sep{margin-top:8px}.account-sidebar>a{font-size:12px!important}.account-panel .account-links-simple{grid-template-columns:1fr}.account-panel .account-links-simple a{min-height:85px}.account-shell{margin-top:25px!important}}
