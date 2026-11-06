@@ -124,3 +124,15 @@ Let op: e-mails die wettelijk of functioneel noodzakelijk zijn voor accountaanma
 
 ## Menubalk
 Gekozen: Shop, Bestsellers, Beste Makers, Over ons, Contact, gevolgd door winkelwagen en Mijn account. Uitklapcategorieën zijn in opbouw. Controleer op de uiteindelijke website of alle links werken en de categorieën correct worden gefilterd.
+
+## Website-overzicht en navigatie (aanvullende eindtests na fase 10)
+- [ ] [UX-01] Op desktop en mobiel toont de hoofdmenubalk alleen de logische ingangen: Shop, Bestsellers, Makers, Over ons en Contact, plus account en winkelwagen.
+- [ ] [UX-02] Open via Makers de pagina 'Hoe werkt het?'; controleer dat de zes stappen begrijpelijk zijn en DRAAGHET. de verkoper blijft.
+- [ ] [UX-03] Klik vanaf homepage op 'Verdien met jouw idee'; controleer dat je op de uitleg voor makers komt.
+- [ ] [UX-04] Log in: Mijn account biedt heldere routes voor account/bestellingen en voor het Makers Dashboard, zonder dubbele makersoverzichten.
+- [ ] [UX-05] Open Mijn overzicht en controleer dat je persoonsgegevens/bestellingen gemakkelijk vindt en het Makers Dashboard één klik verder ligt.
+- [ ] [UX-06] Open Makers Studio, controleer uitleg van zes inzendingen en drie selecties, navigatie naar Makers Dashboard en het serverzijdige vrijgaveslot.
+- [ ] [UX-07] Open Makers Dashboard; controleer de eigen profielkaart, teller voor zes inzendingen, teller voor drie geselecteerde ideeën en laatste ideeën.
+- [ ] [UX-08] Controleer dat oude volg- en likeknoppen nergens aanwezig zijn en dat openbare profielen geen privégegevens tonen.
+- [ ] [UX-09] Doorloop alle routes bij een ingelogde klant zonder makersprofiel en bij een account met makersprofiel; noteer eventueel ontbrekende aanvraag-/goedkeuringsstappen.
+- [ ] [UX-10] Controleer op smalle mobielbreedte dat menu, kaarten, knoppen, formulieren en foutmeldingen leesbaar blijven zonder horizontaal scrollen.
