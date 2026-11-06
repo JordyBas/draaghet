@@ -2,6 +2,8 @@
 Bijgewerkt: 6 november 2026
 
 ## Werkafspraak
+**Definitieve afspraak (6 november 2026):** Jordy voert de verzamelde persoonlijke tests pas na afronding van de bouw van alle 10 fases uit. Tijdens het bouwen verzamelt en bewaart de assistent de persoonlijke testgevallen per fase, maar vraagt Jordy niet om deze tussentijds uit te voeren. Na fase 10 levert de assistent één complete, geordende en afvinkbare eindtestlijst voor alle fases, met concrete stappen en ruimte voor de resultaten. Technische en veiligheidscontroles blijven verplicht vóór het activeren van risicovolle functies en worden niet uitgesteld tot de eindtestronde.
+
 Na elke bouwfase verzamelen we de tests die Jordy en het team zelf in de echte website met eigen testaccounts en testbestellingen moeten uitvoeren. Technische controles door de assistent zijn geen vervanging voor deze tests. Een fase krijgt pas de status 'persoonlijk getest' zodra het team de resultaten heeft bevestigd. Noteer elke mislukte test met stappen om het probleem te reproduceren. Los problemen eerst op en test opnieuw.
 
 ## Fase 1: technische basis en beveiliging
@@ -24,7 +26,7 @@ Na elke bouwfase verzamelen we de tests die Jordy en het team zelf in de echte w
 ## Fase 3: Makers Studio
 **Status:** bouw in ontwikkeling. Persoonlijke tests open. Test met fictieve gegevens en testbestanden; stuur nog geen echte ontwerpen in zolang de inzendfunctie niet officieel is vrijgegeven.
 
-### Handmatig door Jordy: nu al te testen (voorvertoning)
+### Handmatig door Jordy: tijdens de eindtestronde na fase 10 (voorvertoningsfuncties)
 - [ ] [F3-01] Open Makers Studio op een computer; controleer dat de vormgeving één geheel is en geen losstaande kaarten bevat.
 - [ ] [F3-02] Doorloop alle 6 stappen met volgende/vorige; controleer dat de voortgangsbalk en stapnummer telkens kloppen.
 - [ ] [F3-03] Test lege naam, lege categorie en lege omschrijving; volgende stap mag dan niet doorgaan en moet een duidelijke foutmelding geven.
@@ -36,7 +38,7 @@ Na elke bouwfase verzamelen we de tests die Jordy en het team zelf in de echte w
 - [ ] [F3-09] Herhaal de stappen op een telefoon; controleer leesbaarheid, geen horizontaal scrollen, invoervelden, knoppen en uitklapnavigatie.
 - [ ] [F3-10] Test of de Makers Studio bereikbaar is vanuit menu 'Beste Makers' > 'Word maker' en of inloggen vanuit de Studio terugleidt naar de juiste pagina.
 
-### Handmatig door Jordy: pas na vrijgave van echte inzendingen
+### Handmatig door Jordy: tijdens de eindtestronde na fase 10 (na veilige vrijgave van inzendingen)
 - [ ] [F3-11] Maak met een bevestigd testaccount een complete testinzending en controleer de ontvangstbevestiging op het scherm.
 - [ ] [F3-12] Controleer in Mijn inzendingen / Makers Dashboard of titel, omschrijving, categorie, datum en status correct zijn opgeslagen.
 - [ ] [F3-13] Upload een toegelaten PNG/JPG/PDF-testbestand en controleer dat het privé beschikbaar is voor het juiste account; test overige bestandsformaten pas na expliciete ondersteuning.
