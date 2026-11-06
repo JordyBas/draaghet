@@ -54,7 +54,7 @@ function init(){
   const bio=make('textarea','');bio.id='new-maker-bio';bio.maxLength=360;bio.rows=3;bio.placeholder='Vertel kort iets over jouw humor en ideeën (optioneel)';
   const publicChoice=make('label','maker-onboarding-public');
   const checkbox=make('input','');checkbox.type='checkbox';checkbox.id='new-maker-public';
-  const explain=make('span','','Maak mijn makersprofiel openbaar. Andere bezoekers kunnen dan mijn makersnaam en beschrijving zien, mij volgen en een like geven. Ik kan dit later aanpassen zolang ik geen actieve producten heb.');
+  const explain=make('span','','Maak mijn makersprofiel openbaar. Bezoekers kunnen mijn gekozen makersnaam, bio en later mijn gepubliceerde ontwerpen bekijken. Dit kan ik later weer aanpassen.');
   publicChoice.append(checkbox,explain);
   const info=make('p','maker-onboarding-help','Jij stuurt vrijwillig ideeën in. DRAAGHET. beslist over selectie, productie en verkoop. Je bent geen verkoper. Openbaar maken van jouw profiel blijft jouw keuze; bij een privéprofiel tonen we geen persoonlijke makersgegevens. Voor commerciële toepassing gelden de afzonderlijk vast te stellen inzendvoorwaarden.');
   const error=make('p','maker-onboarding-error','');error.setAttribute('role','alert');
