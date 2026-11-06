@@ -1,0 +1,33 @@
+/* Makers Studio: een doorlopende zesstappen-ervaring */
+.studio-grid{display:block!important;margin:28px 0!important}
+.studio-form{max-width:880px;margin:auto;background:#fff!important;border:1px solid #dedbd2!important;border-radius:16px!important;padding:clamp(22px,5vw,52px)!important;box-shadow:0 18px 50px #1717170a}
+.studio-aside{display:none!important}
+.studio-form-top{margin-bottom:18px}
+.studio-form h3{font-size:clamp(28px,4.5vw,44px)!important}
+.studio-form>p{max-width:630px}
+.dh-wizard-progress{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0 12px;margin-top:26px;border-top:1px solid #e3e0d7}
+.dh-wizard-progress strong{font-size:14px;font-weight:850}
+.dh-wizard-progress span{color:#6b685e;font-size:12px;font-weight:700}
+.dh-wizard-track{height:7px;border-radius:50px;background:#e7e4dc;overflow:hidden;margin-bottom:26px}
+.dh-wizard-track>div{height:100%;background:#f3e72b;border-radius:50px;transition:width .25s}
+.dh-step h4{font-size:clamp(22px,3vw,30px);letter-spacing:-.045em;margin:0 0 8px}
+.dh-step>p{font-size:14px;color:#66645e;margin:0 0 22px}
+.dh-step label{margin:18px 0 8px!important}
+.dh-step input:not([type=checkbox]),.dh-step textarea,.dh-step select{width:100%;border:1px solid #c7c4ba;background:#fbfaf7;border-radius:8px;padding:14px;font:inherit;color:#171717}
+.dh-step textarea{resize:vertical;min-height:150px}
+.dh-step input:focus-visible,.dh-step textarea:focus-visible,.dh-step select:focus-visible{outline:3px solid #eee23a;outline-offset:2px}
+.dh-step .studio-consent{display:flex!important;gap:12px;align-items:flex-start;margin:18px 0!important;line-height:1.6}
+.dh-step .studio-consent input{width:20px;height:20px;margin:3px 0 0;flex-shrink:0}
+.dh-wizard-actions{display:flex;align-items:center;gap:12px;justify-content:space-between;margin-top:29px;padding-top:23px;border-top:1px solid #e7e4dc}
+.dh-wizard-actions button{border:1px solid #171717;border-radius:6px;padding:13px 22px;font-weight:850;font-size:13px;cursor:pointer;min-height:47px}
+.dh-back{background:white;color:#171717}
+.dh-next{background:#f3e72b;color:#171717}
+.dh-wizard-actions button[disabled]{opacity:.35;cursor:not-allowed}
+.dh-review{background:#f8f7f3;border-radius:10px;border:1px solid #dedbd2;padding:20px}
+.dh-review dl{margin:0;display:grid;gap:14px}.dh-review dt{font-weight:800;font-size:12px;text-transform:uppercase;color:#6e6b62}.dh-review dd{margin:3px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.dh-warning{font-size:13px;line-height:1.6;color:#594b17;background:#fff9da;padding:14px 16px;border-radius:7px;margin:18px 0}
+.dh-form-error{color:#a22f2f;font-size:13px;font-weight:700;min-height:22px;margin-top:12px}
+.dh-step[hidden],.dh-wizard-actions button[hidden]{display:none!important}
+#maker-auth-gate{border-radius:10px;margin:0 0 26px!important}
+#maker-submit-form .studio-note{margin-top:12px}
+@media(max-width:600px){.studio-form{border-radius:10px!important}.dh-wizard-actions{gap:8px}.dh-wizard-actions button{padding:12px 14px}}
