@@ -70,7 +70,7 @@ Deno.serve(async (req: Request) => {
   if(!age||!termsConfirmed||terms!==configuration.terms_version)return answer(origin,400,'CONSENT','Bevestig je leeftijd en de actuele inzendvoorwaarden.');
   const uploads=form.getAll('files');
   if(uploads.length>MAX_FILES||uploads.some(f=>!(f instanceof File)))return answer(origin,400,'FILES','Voeg maximaal 3 geldige bestanden toe.');
-  const checked: Array<{name:string,bytes:Uint8Array,mime:string,ext:string}>=[];
+  const checked: Array<{name:string,bytes:Uint8Array,mime:string,ext:string,sha256:string}>=[];
   let bytesTotal=0;
   for(const item of uploads){
     const file=item as File;
@@ -80,7 +80,9 @@ Deno.serve(async (req: Request) => {
     const bytes=new Uint8Array(await file.arrayBuffer());
     const type=detectType(bytes,file.name);
     if(!type||file.type!==type.mime)return answer(origin,415,'FILE_TYPE','Alleen veilige PNG-, JPG- en PDF-testbestanden worden voorlopig ondersteund.');
-    checked.push({name:file.name.slice(0,180),bytes,mime:type.mime,ext:type.ext});
+    const digest=await crypto.subtle.digest('SHA-256',bytes);
+    const sha256=Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('');
+    checked.push({name:file.name.slice(0,180),bytes,mime:type.mime,ext:type.ext,sha256});
   }
   const {data:prior,error:priorError}=await admin.from('ideas').select('id,user_id').eq('submission_key',requestKey).maybeSingle();
   if(priorError)return answer(origin,503,'LOOKUP','De inzending kan niet worden gecontroleerd.');
@@ -106,7 +108,7 @@ Deno.serve(async (req: Request) => {
       written.push(path);
       const {error:metadataError}=await admin.from('idea_files').insert({
         idea_id:ideaId,user_id:user.id,storage_path:path,filename:upload.name,
-        byte_size:upload.bytes.byteLength,mime_type:upload.mime,scan_status:'pending'
+        byte_size:upload.bytes.byteLength,mime_type:upload.mime,scan_status:'pending',file_sha256:upload.sha256
       });
       if(metadataError)throw new Error('metadata');
     }
