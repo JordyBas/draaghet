@@ -64,9 +64,24 @@ Na elke bouwfase verzamelen we de tests die Jordy en het team zelf in de echte w
 
 
 ## Fase 4: auteursprofielen en community
-- [ ] Profielweergave, zichtbare naam en privacyinstellingen controleren.
-- [ ] Publicatie alleen na selectie/toestemming controleren.
-- [ ] Publieke makerinformatie mag geen persoonlijke contact- of adresgegevens onthullen.
+**Status:** basis gebouwd, persoonlijke tests pas na fase 10 uitvoeren.
+- [ ] [F4-01] Log in met testaccount en open 'Mijn makersprofiel' via het accountoverzicht en menu Beste Makers.
+- [ ] [F4-02] Maak een openbaar alias, gebruikersnaam en beschrijving aan; sla eerst privé op.
+- [ ] [F4-03] Controleer dat een privé makersprofiel NIET zichtbaar is in 'Beste Makers' of via een directe link voor bezoekers.
+- [ ] [F4-04] Vink zelf openbaar maken aan en sla op; controleer dat het profiel direct in makersoverzicht verschijnt.
+- [ ] [F4-05] Controleer of het openbare profiel uitsluitend de gekozen makersnaam, gebruikersnaam, bio en openbare statistieken toont, nooit e-mail, echte naam, telefoon, adres of privé-inzendingen.
+- [ ] [F4-06] Bewerk makersnaam, gebruikersnaam en beschrijving en verifieer dat de gewijzigde gegevens correct zichtbaar zijn.
+- [ ] [F4-07] Probeer een al gebruikte gebruikersnaam, een te korte gebruikersnaam en een te lange bio; controleer begrijpelijke foutmeldingen.
+- [ ] [F4-08] Log in met testaccount B en volg maker A; controleer dat volgstatus en volgeraantal kloppen.
+- [ ] [F4-09] Ontvolg maker A; controleer dat de volgstatus en teller weer teruggaan.
+- [ ] [F4-10] Like maker A, verwijder de like en controleer de teller en het opnieuw geladen profiel.
+- [ ] [F4-11] Controleer dat je je eigen profiel niet kunt volgen of liken.
+- [ ] [F4-12] Controleer dat niet-ingelogde bezoekers wel openbare makers kunnen zien, maar niet kunnen volgen of liken.
+- [ ] [F4-13] Maak profiel A weer privé; controleer dat profiel A niet meer openbaar zichtbaar of nieuw te volgen/liken is.
+- [ ] [F4-14] Controleer dat gebruikers de privégegevens en volg-/likehistorie van andere accounts niet kunnen opvragen.
+- [ ] [F4-15] Controleer op mobiel en desktop: makerskaarten, afzonderlijk profiel, knoppen, formulieren en menu.
+- [ ] [F4-16] Controleer wanneer gepubliceerde makerproducten bestaan, dat uitsluitend geselecteerde en daadwerkelijk gepubliceerde ontwerpen op publieke makersprofielen verschijnen; deze productkoppeling wordt in fase 6 gebouwd.
+
 
 ## Fase 5: royalty's en uitbetalingen
 - [ ] Verdiensten per shirt/sweater/hoodie controleren aan de hand van testverkopen.
