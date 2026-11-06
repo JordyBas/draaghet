@@ -1,0 +1,27 @@
+/* DRAAGHET. Maker Hub */
+.maker-hub h2{font:900 clamp(23px,3vw,31px)/1.15 Inter,Arial,sans-serif;letter-spacing:-.045em;margin:0 0 23px}
+.maker-hub [hidden]{display:none!important}
+.maker-hub-profile,.maker-hub-summary,.maker-hub-steps,.maker-hub-ideas{background:#fff;border:1px solid #e5e0d7;border-radius:16px;padding:clamp(22px,3.4vw,35px);margin:0 0 23px}
+.maker-hub-profile{border-top:6px solid #f3e72b}
+.maker-hub-profile-row{display:flex;align-items:center;gap:24px}
+.maker-hub-profile-details{flex:1;min-width:0}
+.maker-hub-profile-details h2{margin:8px 0;font-size:clamp(24px,3vw,36px);overflow-wrap:anywhere}
+.maker-hub-profile-details p{color:#676259;font-size:13px;line-height:1.6;margin:0}
+.maker-hub-actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:21px}
+.maker-hub-step-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.maker-hub-step-grid>div{border:1px solid #eee9df;background:#faf9f6;border-radius:11px;padding:20px}
+.maker-hub-step-grid strong{font-size:23px;font-weight:900;color:#928600}
+.maker-hub-step-grid h3{font-size:14px;font-weight:900;letter-spacing:-.025em;margin:16px 0 8px}
+.maker-hub-step-grid p{font-size:12px;line-height:1.65;color:#6b675d;margin:0}
+.maker-hub-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.maker-hub-stats>div{background:#faf9f4;border:1px solid #ebe7dc;padding:18px;border-radius:10px}
+.maker-hub-stats span{display:block;color:#77736b;font-size:12px;font-weight:750}
+.maker-hub-stats strong{display:block;font-size:35px;letter-spacing:-.055em;margin-top:9px}
+.maker-hub-ideas-title{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.maker-hub-ideas-title a{font-size:11px;font-weight:900}
+.maker-hub-idea{display:flex;justify-content:space-between;gap:15px;align-items:center;padding:15px 0;border-top:1px solid #ebe8e0}
+.maker-hub-idea strong{font-size:14px}
+.maker-hub-idea span{font-size:12px;color:#6c685f}
+.maker-hub-warning{font-size:12px;line-height:1.7;color:#625e56;max-width:850px}
+@media(max-width:800px){.maker-hub-step-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.maker-hub-step-grid{grid-template-columns:1fr}.maker-hub-profile-row{align-items:flex-start;gap:14px}.maker-hub-profile .community-avatar{width:57px;height:57px;font-size:22px}.maker-hub-stats{grid-template-columns:1fr}.maker-hub-idea{flex-direction:column;align-items:flex-start}}
