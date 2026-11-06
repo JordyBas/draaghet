@@ -70,3 +70,28 @@
 #send-idea[hidden],#maker-submit-form .studio-note[hidden]{display:none!important}
 @media(max-width:650px){.studio-form{padding:24px 19px!important;border-radius:13px!important}.dh-categories{grid-template-columns:1fr;gap:9px}.dh-category{min-height:82px;padding:14px 16px}.dh-step{min-height:220px!important}.dh-review-row{grid-template-columns:1fr;gap:5px}.dh-wizard-actions button{padding:12px 14px!important;font-size:11px!important}.dh-wizard-track{margin-bottom:25px!important}}
 @media(prefers-reduced-motion:reduce){.dh-wizard-track-fill{transition:none}}
+
+/* One unified maker onboarding inside Makers Studio */
+#maker-submit-form[hidden]{display:none!important}
+.maker-onboarding{border:1px solid #e7e1ce;background:#fcfbf6;border-radius:13px;padding:clamp(19px,3vw,33px);margin:25px 0}
+.maker-onboarding-kicker{font-size:11px;font-weight:900;letter-spacing:.13em;color:#8a7800}
+.maker-onboarding h4{font-family:Inter,Arial,sans-serif;font-size:clamp(25px,3.8vw,38px);line-height:1.1;letter-spacing:-.055em;font-weight:900;margin:13px 0}
+.maker-onboarding>p{font-size:14px;color:#69655b;line-height:1.65}
+.maker-onboarding-form{display:grid;gap:12px;margin-top:24px}
+.maker-onboarding-form label:not(.maker-onboarding-public){font-size:11px;font-weight:900;letter-spacing:.065em;margin-top:12px}
+.maker-onboarding-form>input,.maker-onboarding-form>textarea{width:100%;box-sizing:border-box;border:1px solid #cec9ba!important;border-radius:8px!important;background:white!important;padding:15px 17px!important;font:500 15px Inter,Arial,sans-serif!important}
+.maker-onboarding-form>textarea{resize:vertical;min-height:105px}
+.maker-onboarding-public{display:flex;align-items:flex-start;gap:12px;background:#fff;padding:17px;border:1px solid #e4dfd3;border-radius:9px;margin-top:12px;font-size:13px;font-weight:700;line-height:1.6}
+.maker-onboarding-public input{width:20px!important;height:20px!important;margin:2px 0 0;flex-shrink:0;accent-color:#171717}
+.maker-onboarding-help{font-size:12px!important;line-height:1.7;color:#706b5f;margin:0}
+.maker-onboarding-error{font-size:13px;color:#a33232;font-weight:750;line-height:1.6}
+.maker-onboarding .community-btn{min-height:48px;justify-self:start;padding:15px 20px;border:0;border-radius:6px;font-size:12px;font-weight:900;text-decoration:none;background:#f3e72b;color:#171717;cursor:pointer}
+.maker-onboarding .community-btn:disabled{opacity:.5;cursor:not-allowed}
+.maker-onboarding-done{background:#f8f7f2;border-color:#e4e0d6;padding:20px 23px;margin:25px 0}
+.maker-onboarding-ready{display:flex;align-items:flex-start;gap:14px}
+.maker-ready-icon{display:grid;place-items:center;background:#f3e72b;color:#171717;border-radius:50%;width:32px;height:32px;flex-shrink:0;font-size:18px;font-weight:900}
+.maker-onboarding-ready-text strong{font-size:12px;font-weight:900;letter-spacing:.055em}
+.maker-onboarding-ready-text p{font-size:13px;line-height:1.6;color:#6b675f;margin:7px 0 0}
+.maker-onboarding-links{display:flex;gap:17px;flex-wrap:wrap;margin:17px 0 0 46px}
+.maker-onboarding-link{font-size:11px;font-weight:900;letter-spacing:.025em;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:620px){.maker-onboarding{padding:19px}.maker-onboarding-links{margin-left:0}}
