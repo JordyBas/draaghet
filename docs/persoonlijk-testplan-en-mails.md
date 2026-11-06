@@ -136,3 +136,11 @@ Gekozen: Shop, Bestsellers, Beste Makers, Over ons, Contact, gevolgd door winkel
 - [ ] [UX-08] Controleer dat oude volg- en likeknoppen nergens aanwezig zijn en dat openbare profielen geen privégegevens tonen.
 - [ ] [UX-09] Doorloop alle routes bij een ingelogde klant zonder makersprofiel en bij een account met makersprofiel; noteer eventueel ontbrekende aanvraag-/goedkeuringsstappen.
 - [ ] [UX-10] Controleer op smalle mobielbreedte dat menu, kaarten, knoppen, formulieren en foutmeldingen leesbaar blijven zonder horizontaal scrollen.
+
+## Accountindeling vereenvoudigd (eindtests na fase 10)
+- [ ] [ACC-01] Log in en open Mijn account: er zijn duidelijke ingangen naar Overzicht, Bestellingen, Mijn gegevens en Makers Dashboard, zonder dubbele menu-items.
+- [ ] [ACC-02] Controleer dezelfde vier menuopties op desktop, mobiel en in de account-dropdown rechtsboven.
+- [ ] [ACC-03] Open Bestellingen en Mijn gegevens en controleer de bestaande gegevens en formulieren.
+- [ ] [ACC-04] Open het Makers Dashboard vanuit Mijn account; ideeën, profiel en verdiensten blijven daar bereikbaar zonder als aparte accountcategorieën te verschijnen.
+- [ ] [ACC-05] Controleer dat de nog niet actieve loyaliteitspunten niet afleiden in Mijn overzicht.
+- [ ] [ACC-06] Controleer oude directe links naar Mijn inzendingen en Mijn verdiensten; deze moeten blijven functioneren en geen gegevens verliezen.
