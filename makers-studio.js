@@ -1,104 +1,256 @@
-/* DRAAGHET Makers Studio | veilige preview zes stappen.
- * Inzenden blijft gesloten totdat voorwaarden, uploadvalidatie en praktijktests zijn afgerond.
+/* DRAAGHET. | Makers Studio fase 3
+ * Eén veilige wizard, gekoppeld aan de serverfunctie submit-maker-idea.
+ * Productie-inzendingen worden pas vrijgegeven met de serverinstelling.
  */
-(function(){
+(function () {
+  const SUPABASE_URL='https://rjnogcommtnxalzqrsmx.supabase.co';
+  const PUBLISHABLE_KEY='sb_publishable_msSVd8n8VZDSrDzU1y0Skw_gsqEumgc';
+  const CATEGORIES=[
+    {id:'sarcasme',title:'Sarcasme',desc:'Droge opmerkingen met een knipoog.'},
+    {id:'flauwe-humor',title:'Flauwe humor',desc:'Zo slecht dat het juist goed is.'},
+    {id:'woordgrappen',title:'Woordgrappen',desc:'Taal met een dubbele bodem.'},
+    {id:'kerst',title:'Kerst',desc:'Voor de mooiste en ongemakkelijkste feestdagen.'},
+    {id:'overig',title:'Iets anders',desc:'Past jouw grap nergens tussen?'}
+  ];
+  function elem(tag,cls,text){
+    const n=document.createElement(tag);
+    if(cls)n.className=cls;
+    if(text!==undefined)n.textContent=text;
+    return n;
+  }
   function init(){
     const form=document.getElementById('maker-submit-form');
-    if(!form||form.dataset.wizardReady)return;
-    form.dataset.wizardReady='true';
-    const title=form.querySelector('#idea-title');
-    const description=form.querySelector('#idea-description');
-    const files=form.querySelector('#idea-file');
+    if(!form||form.dataset.phase3Ready)return;
+    form.dataset.phase3Ready='true';
+    const gate=document.getElementById('maker-auth-gate');
+    const originalSubmit=document.getElementById('send-idea');
+    const originalNote=form.querySelector('.studio-note');
+    const title=document.getElementById('idea-title');
+    const description=document.getElementById('idea-description');
+    const fileInput=document.getElementById('idea-file');
     const age=form.querySelector('input[aria-label="Ik ben 18 jaar of ouder"]');
-    const terms=form.querySelector('input[aria-label="Akkoord met inzendvoorwaarden"]');
-    const submit=form.querySelector('#send-idea');
-    const note=form.querySelector('.studio-note');
-    // Niet via een Enter-toets of programmatische submit toch een concept-inzending opslaan.
-    form.addEventListener('submit',e=>{e.preventDefault();e.stopImmediatePropagation();},true);
-    submit.type='button';submit.disabled=true;submit.hidden=true;
-    if(note)note.textContent='Voorvertoning: insturen gaat open zodra alle veiligheids- en voorwaardencontroles klaar zijn.';
-    const category=document.createElement('select');
-    category.id='idea-category';category.name='category';category.required=true;
-    for(const [value,label] of [['','Selecteer een categorie'],['sarcasme','Sarcasme'],['flauwe-humor','Flauwe humor'],['woordgrappen','Woordgrappen'],['kerst','Kerst'],['overig','Overig']]){
-      const option=document.createElement('option');option.value=value;option.textContent=label;category.add(option);
+    const consent=form.querySelector('input[aria-label="Akkoord met inzendvoorwaarden"]');
+    if(!title||!description||!fileInput||!age||!consent)return;
+    originalSubmit.hidden=true;originalSubmit.disabled=true;originalSubmit.type='button';
+    originalNote.hidden=true;
+    form.addEventListener('submit',e=>e.preventDefault(),true);
+    const titleLabel=title.previousElementSibling;
+    const descriptionLabel=description.previousElementSibling;
+    const fileWrapper=fileInput.closest('.studio-upload');
+    const fileLabel=fileWrapper.previousElementSibling;
+    const consentLabels=Array.from(form.querySelectorAll('.studio-consent'));
+    const categoryChoice=elem('div','dh-categories');
+    categoryChoice.setAttribute('role','group');
+    categoryChoice.setAttribute('aria-label','Soort humor');
+    let selectedCategory='';
+    const categoryButtons=[];
+    for(const category of CATEGORIES){
+      const button=elem('button','dh-category');
+      button.type='button';button.setAttribute('aria-pressed','false');
+      button.append(elem('strong','',category.title),elem('span','',category.desc));
+      button.onclick=()=>{
+        selectedCategory=category.id;
+        categoryButtons.forEach((b,i)=>{
+          const active=CATEGORIES[i].id===selectedCategory;
+          b.classList.toggle('selected',active);
+          b.setAttribute('aria-pressed',String(active));
+        });
+        error.textContent='';
+      };
+      categoryButtons.push(button);categoryChoice.append(button);
     }
-    const categoryLabel=document.createElement('label');categoryLabel.htmlFor='idea-category';categoryLabel.textContent='KIES JE CATEGORIE';
-    const fileGroup=files.closest('.studio-upload');
-    const fileLabel=fileGroup.previousElementSibling;
-    const titleLabel=title.previousElementSibling, descriptionLabel=description.previousElementSibling;
-    const consents=Array.from(form.querySelectorAll('.studio-consent'));
+    const fileInfo=elem('div','dh-file-list','Nog geen bestand gekozen. Een ontwerp toevoegen is optioneel.');
+    fileInput.addEventListener('change',()=>{
+      const names=Array.from(fileInput.files||[]).map(f=>f.name);
+      fileInfo.textContent=names.length?names.join(' · '):'Nog geen bestand gekozen. Een ontwerp toevoegen is optioneel.';
+      error.textContent='';
+    });
+    const legal=elem('p','dh-legal-note',
+      'Je behoudt eventuele rechten op je eigen werk. De definitieve gebruiksrechten en uitbetalingsafspraken worden vóór opening van inzendingen vrijgegeven.');
+    const review=elem('div','dh-review');
     const stages=[
-      {name:'Naam',heading:'Geef je idee een naam',help:'Kort, opvallend en herkenbaar.',fields:[titleLabel,title]},
-      {name:'Categorie',heading:'Welke soort humor is het?',help:'Jij kiest de categorie. DRAAGHET. controleert de indeling bij publicatie.',fields:[categoryLabel,category]},
-      {name:'Omschrijving',heading:'Vertel ons je idee',help:'Beschrijf wat er op het kledingstuk komt en wat het idee bijzonder maakt.',fields:[descriptionLabel,description]},
-      {name:'Ontwerp',heading:'Voeg eventueel je ontwerp toe',help:'Maximaal drie PNG-, JPG- of PDF-bestanden van 10 MB. Bestandstypen worden later technisch gevalideerd.',fields:[fileLabel,fileGroup]},
-      {name:'Akkoord',heading:'Verklaringen en voorwaarden',help:'Deze verklaringen zijn verplicht wanneer insturen wordt geopend.',fields:consents},
-      {name:'Controle',heading:'Alles nog even nalopen',help:'Bekijk je ingevulde gegevens voordat je straks kunt inzenden.',fields:[]}
+      {name:'Jouw idee',heading:'Geef je idee een naam.',help:'De leukste ideeën beginnen met een goede zin.',fields:[titleLabel,title]},
+      {name:'Categorie',heading:'Welke humor past erbij?',help:'Kies één categorie. Wij controleren later of die goed past.',fields:[categoryChoice]},
+      {name:'Het verhaal',heading:'Vertel ons het idee.',help:'Wat komt op de kleding? Wat maakt dit ontwerp grappig?',fields:[descriptionLabel,description]},
+      {name:'Ontwerp',heading:'Heb je al een ontwerp?',help:'Bestanden zijn optioneel. PNG, JPG en PDF tot 10 MB, maximaal drie per inzending.',fields:[fileLabel,fileWrapper,fileInfo]},
+      {name:'Akkoord',heading:'Nog twee belangrijke checks.',help:'Je moet minimaal 18 zijn en de actuele voorwaarden accepteren.',fields:[...consentLabels,legal]},
+      {name:'Controleren',heading:'Check. Klaar. Draagbaar.',help:'Dit is het overzicht van je idee.',fields:[review]}
     ];
-    const progress=document.createElement('div');progress.className='dh-wizard-progress';progress.setAttribute('aria-live','polite');
-    const track=document.createElement('div');track.className='dh-wizard-track';const fill=document.createElement('div');track.append(fill);
-    const stageBox=document.createElement('div');stageBox.className='dh-wizard-steps';
-    const review=document.createElement('div');review.className='dh-review';
-    for(const stage of stages){
-      const section=document.createElement('section');section.className='dh-step';section.hidden=true;
-      const h=document.createElement('h4');h.textContent=stage.heading;
-      const help=document.createElement('p');help.textContent=stage.help;
-      section.append(h,help);
-      if(stage.fields.length)for(const field of stage.fields){if(field)section.append(field);}
-      else section.append(review);
-      stage.section=section;stageBox.append(section);
+    const header=elem('div','dh-wizard-progress');
+    header.setAttribute('aria-live','polite');
+    const progress=elem('div','dh-wizard-track');
+    progress.setAttribute('role','progressbar');
+    progress.setAttribute('aria-valuemin','1');progress.setAttribute('aria-valuemax','6');
+    progress.setAttribute('aria-label','Voortgang van jouw inzending');
+    const fill=elem('div','dh-wizard-track-fill');
+    progress.append(fill);
+    const steps=elem('div','dh-steps');
+    for(let i=0;i<stages.length;i++){
+      const stage=stages[i],section=elem('section','dh-step');
+      section.hidden=true;section.setAttribute('aria-label','Stap '+(i+1)+': '+stage.name);
+      section.append(elem('h4','',stage.heading),elem('p','dh-help',stage.help));
+      for(const field of stage.fields)section.append(field);
+      stage.section=section;
+      steps.append(section);
     }
-    const error=document.createElement('p');error.className='dh-form-error';error.setAttribute('role','alert');
-    const actions=document.createElement('div');actions.className='dh-wizard-actions';
-    const back=document.createElement('button');back.type='button';back.className='dh-back';back.textContent='VORIGE';
-    const next=document.createElement('button');next.type='button';next.className='dh-next';next.textContent='VOLGENDE';
-    actions.append(back,next);
-    form.prepend(progress,track,stageBox,error,actions);
-    let position=0;
-    function reviewContent(){
-      const data=[
-        ['Naam',title.value.trim()||'Nog niet ingevuld'],
-        ['Categorie',category.selectedOptions[0]?.textContent||'Nog niet gekozen'],
-        ['Omschrijving',description.value.trim()||'Nog niet ingevuld'],
-        ['Bestanden',files.files?.length?[...files.files].map(f=>f.name).join(', '):'Geen bestand'],
-        ['18+-verklaring',age.checked?'Aangevinkt':'Niet aangevinkt'],
-        ['Inzendvoorwaarden',terms.checked?'Aangevinkt':'Niet aangevinkt']
-      ];
+    const error=elem('p','dh-form-error');
+    error.setAttribute('role','alert');
+    const actions=elem('div','dh-wizard-actions');
+    const back=elem('button','dh-back','VORIGE');
+    const next=elem('button','dh-next','VOLGENDE');
+    back.type=next.type='button';actions.append(back,next);
+    const under=elem('div','dh-under');
+    const status=elem('p','dh-wizard-status','We controleren of inzenden al geopend is.');
+    status.setAttribute('role','status');status.setAttribute('aria-live','polite');
+    under.append(status);
+    form.replaceChildren(header,progress,steps,error,actions,under);
+    let step=0,submitting=false,release={submissions_enabled:false,terms_version:'0.4'},user=null,used=0;
+    const client=window.supabase?.createClient(SUPABASE_URL,PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+    let submissionKey=crypto.randomUUID();
+    function describeFiles(){
+      return Array.from(fileInput.files||[]).map(f=>f.name).join(' · ')||'Geen bestand toegevoegd';
+    }
+    function reviewData(){
       review.replaceChildren();
-      const dl=document.createElement('dl');
-      for(const [term,value] of data){const pair=document.createElement('div'),dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=term;dd.textContent=value;pair.append(dt,dd);dl.append(pair);}
-      review.append(dl);
-      const warning=document.createElement('p');warning.className='dh-warning';warning.textContent='Dit is een voorvertoning. Je inzending is nog niet verzonden of opgeslagen. We openen inzendingen pas zodra de voorwaarden en technische controles zijn afgerond.';review.append(warning);
+      const list=elem('dl','dh-review-list');
+      const category=CATEGORIES.find(c=>c.id===selectedCategory);
+      for(const [label,value] of [
+        ['Jouw idee',title.value.trim()||'Nog niet ingevuld'],
+        ['Categorie',category?.title||'Nog niet gekozen'],
+        ['Omschrijving',description.value.trim()||'Nog niet ingevuld'],
+        ['Bestanden',describeFiles()],
+        ['Leeftijd',age.checked?'18+ bevestigd':'Niet bevestigd'],
+        ['Voorwaarden',consent.checked?'Akkoord aangevinkt':'Niet bevestigd']
+      ]){
+        const item=elem('div','dh-review-row');
+        item.append(elem('dt','',label),elem('dd','',value));list.append(item);
+      }
+      review.append(list);
+      const notice=elem('p','dh-final-notice',
+        release.submissions_enabled?'Door te verzenden verklaar je dat de gegevens correct zijn. Je ontvangt direct een bevestiging in je account.':'Voorvertoning: insturen is nog gesloten. Je kunt het volledige formulier alvast bekijken.');
+      review.append(notice);
     }
     function render(){
-      progress.replaceChildren();
-      const name=document.createElement('strong');name.textContent=stages[position].name;
-      const fraction=document.createElement('span');fraction.textContent='STAP '+(position+1)+' VAN '+stages.length;
-      progress.append(name,fraction);
-      fill.style.width=((position+1)/stages.length*100)+'%';
-      stages.forEach((stage,i)=>stage.section.hidden=i!==position);
-      back.hidden=position===0;
-      next.textContent=position===stages.length-1?'INZENDEN NOG GESLOTEN':'VOLGENDE';
-      next.disabled=position===stages.length-1;
-      error.textContent='';
-      if(position===stages.length-1)reviewContent();
+      header.replaceChildren(elem('strong','dh-progress-label',stages[step].name),elem('span','dh-progress-count','STAP '+(step+1)+' VAN 6'));
+      progress.setAttribute('aria-valuenow',String(step+1));
+      fill.style.width=((step+1)*100/6)+'%';
+      stages.forEach((s,i)=>{s.section.hidden=i!==step;});
+      back.hidden=step===0||submitting;
+      if(step===5)reviewData();
+      next.textContent=step===5?'IDEE INSTUREN':'VOLGENDE STAP';
+      next.disabled=submitting||(step===5&&(!release.submissions_enabled||!user||used>=6));
+      status.textContent=!release.submissions_enabled
+        ?'We ronden de laatste veiligheids- en voorwaardencontroles af. Je kunt het formulier alvast bekijken.'
+        :!user?'Log in met een bevestigd e-mailadres om je idee te versturen.'
+        :used>=6?'Je hebt deze maand de limiet van 6 inzendingen bereikt.'
+        :'Je hebt deze maand '+Math.max(0,6-used)+' van je 6 inzendingen over.';
     }
-    function valid(){
-      if(position===0&&!title.value.trim()){error.textContent='Vul eerst een naam in.';title.focus();return false;}
-      if(position===1&&!category.value){error.textContent='Kies eerst een categorie.';category.focus();return false;}
-      if(position===2&&!description.value.trim()){error.textContent='Omschrijf eerst je idee.';description.focus();return false;}
-      if(position===3){
-        const selected=[...files.files];
-        if(selected.length>3||selected.some(f=>f.size>10485760||f.size<1||!['image/png','image/jpeg','application/pdf'].includes(f.type))){
-          error.textContent='Maximaal 3 PNG-, JPG- of PDF-bestanden, ieder maximaal 10 MB.';files.focus();return false;
+    function invalid(){
+      error.textContent='';
+      if(step===0){
+        if(!title.value.trim()||title.value.trim().length>120){error.textContent='Vul een naam in van maximaal 120 tekens.';title.focus();return true;}
+      }
+      if(step===1&&!selectedCategory){error.textContent='Selecteer eerst een categorie.';categoryButtons[0].focus();return true;}
+      if(step===2){
+        if(!description.value.trim()||description.value.trim().length>5000){error.textContent='Omschrijf je idee in maximaal 5000 tekens.';description.focus();return true;}
+      }
+      if(step===3){
+        const files=Array.from(fileInput.files||[]);
+        if(files.length>3||files.some(f=>f.size<1||f.size>10485760||!['image/png','image/jpeg','application/pdf'].includes(f.type))){
+          error.textContent='Kies maximaal 3 PNG-, JPG- of PDF-bestanden tot 10 MB per stuk.';fileInput.focus();return true;
         }
       }
-      if(position===4&&(!age.checked||!terms.checked)){error.textContent='Bevestig je leeftijd en de inzendvoorwaarden.';return false;}
-      return true;
+      if(step===4&&(!age.checked||!consent.checked)){
+        error.textContent='Vink de 18+-verklaring en de voorwaarden aan om verder te gaan.';
+        (age.checked?consent:age).focus();return true;
+      }
+      return false;
     }
-    back.addEventListener('click',()=>{if(position>0){position--;render();}});
-    next.addEventListener('click',()=>{if(position<stages.length-1&&valid()){position++;render();}});
-    render();
+    async function submitIdea(){
+      if(submitting||!release.submissions_enabled||!user||used>=6)return;
+      if(!age.checked||!consent.checked||!selectedCategory||!title.value.trim()||!description.value.trim()){
+        error.textContent='Controleer alle verplichte velden en verklaringen.';return;
+      }
+      submitting=true;render();
+      status.textContent='Je idee wordt beveiligd verwerkt. Sluit deze pagina niet.';
+      const data=new FormData();
+      data.set('submission_key',submissionKey);
+      data.set('title',title.value.trim());
+      data.set('description',description.value.trim());
+      data.set('category',selectedCategory);
+      data.set('terms_version',release.terms_version);
+      data.set('adult_confirmed',String(age.checked));
+      data.set('terms_confirmed',String(consent.checked));
+      for(const file of Array.from(fileInput.files||[]))data.append('files',file,file.name);
+      try{
+        const result=await client.functions.invoke('submit-maker-idea',{body:data});
+        if(result.error){
+          let message='De inzending is niet gelukt. Probeer het opnieuw.';
+          if(result.error.context && typeof result.error.context.json==='function'){
+            try{const body=await result.error.context.json();if(body?.message)message=body.message;}catch{}
+          }
+          throw new Error(message);
+        }
+        const body=result.data;
+        if(!body?.ok)throw new Error(body?.message||'De verwerking is niet bevestigd.');
+        used+=1;submissionKey=crypto.randomUUID();
+        form.replaceChildren();
+        const complete=elem('div','dh-complete');
+        const check=elem('div','dh-complete-symbol','✓');
+        const h=elem('h3','', 'JOUW IDEE IS BINNEN.');
+        const p=elem('p','','Ontvangen! Je vindt het idee en de status nu terug in je account.');
+        const link=elem('a','dh-finish-link','BEKIJK MIJN INZENDINGEN');
+        link.href='mijn-inzendingen.html';
+        complete.append(check,h,p,link);
+        form.append(complete);
+        gate.hidden=true;
+      }catch(e){error.textContent=e.message||'Er is iets misgegaan.';submitting=false;render();error.textContent=e.message||'Er is iets misgegaan.';}
+    }
+    back.onclick=()=>{
+      if(step<=0||submitting)return;
+      step--;render();
+    };
+    next.onclick=()=>{
+      if(submitting)return;
+      if(step===5){void submitIdea();return;}
+      if(invalid())return;
+      step++;render();
+    };
+    async function refreshAccess(){
+      if(!client){
+        gate.querySelector('strong').textContent='VERBINDING NIET BESCHIKBAAR';
+        gate.querySelector('p').textContent='De beveiligde verbinding kon niet worden geladen.';
+        render();return;
+      }
+      try{
+        const [{data:settings,error:settingsError},{data:auth,error:authError}]=await Promise.all([
+          client.from('maker_studio_settings').select('submissions_enabled,terms_version').eq('singleton',true).single(),
+          client.auth.getUser()
+        ]);
+        if(settingsError)throw settingsError;
+        release=settings;
+        user=authError?null:auth.user;
+        if(user){
+          const quota=await client.rpc('maker_monthly_usage');
+          if(quota.error)throw quota.error;
+          used=Number(quota.data)||0;
+        }else used=0;
+        gate.querySelector('strong').textContent=release.submissions_enabled?'JOUW MAKERS ACCOUNT':'MAKERS STUDIO IN ONTWIKKELING';
+        gate.querySelector('p').textContent=release.submissions_enabled
+          ?user?'Je bent ingelogd. Vul hieronder je idee in.':'Log in met een bevestigd e-mailadres om in te sturen.'
+          :'Het volledige formulier staat klaar. Inzenden openen we pas na onze laatste veiligheids- en voorwaardencontroles.';
+        const login=gate.querySelector('a');
+        if(login)login.hidden=!!user;
+        render();
+      }catch(e){
+        release.submissions_enabled=false;
+        gate.querySelector('strong').textContent='CONTROLE NOG NIET BESCHIKBAAR';
+        gate.querySelector('p').textContent='De inzendstatus kan niet worden gecontroleerd. Verzenden is daarom tijdelijk uitgeschakeld.';
+        render();
+      }
+    }
+    render();void refreshAccess();
+    if(client)client.auth.onAuthStateChange(()=>{void refreshAccess();});
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
