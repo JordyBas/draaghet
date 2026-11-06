@@ -30,8 +30,8 @@
     document.head.append(style);
     const groups = [
       {label:'SHOP',href:'shirts.html',items:[['Alle kleding','shirts.html'],['Sarcasme','categorie.html?categorie=sarcasme'],['Flauwe humor','categorie.html?categorie=flauwe-humor'],['Woordgrappen','categorie.html?categorie=woordgrappen'],['Kerst','categorie.html?categorie=kerst']]},
-      {label:'BESTSELLERS',href:'categorie.html?lijst=bestsellers',items:[['Alle bestsellers','categorie.html?lijst=bestsellers'],['Kerst','categorie.html?lijst=bestsellers&categorie=kerst'],['Sarcasme','categorie.html?lijst=bestsellers&categorie=sarcasme'],['Flauwe humor','categorie.html?lijst=bestsellers&categorie=flauwe-humor'],['Woordgrappen','categorie.html?lijst=bestsellers&categorie=woordgrappen']]},
-      {label:'BESTE MAKERS',href:'makers.html',items:[['Ontdek makers','makers.html'],['Mijn makersprofiel','mijn-makerprofiel.html'],['Word maker','idee.html'],['Mijn inzendingen','mijn-inzendingen.html']]},
+      {label:'BESTSELLERS',href:'categorie.html?lijst=bestsellers'},
+      {label:'MAKERS',href:'makers.html',items:[['Hoe werkt het?','maker-worden.html'],['Ontdek de makers','makers.html'],['Makers Studio','idee.html'],['Mijn Makers Dashboard','makers-dashboard.html']]},
       {label:'OVER ONS',href:'verhaal.html'},
       {label:'CONTACT',href:'mailto:info@custom-m8.com?subject=DRAAGHET.%20vraag'}
     ];
