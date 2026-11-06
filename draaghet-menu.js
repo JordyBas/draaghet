@@ -35,7 +35,7 @@
   document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
  }
  function buildFooter(){
-  const old=document.querySelector('footer');if(!old)return;
+  const old=document.querySelector('footer');
   const footer=elem('footer','dh-footer');footer.setAttribute('aria-label','Website-informatie');
   const inner=elem('div','dh-footer-inner'),top=elem('div','dh-footer-top');
   const brand=elem('div'),h=elem('h2');
@@ -56,7 +56,7 @@
   const contact=elem('a','','info@custom-m8.com');contact.href='mailto:info@custom-m8.com';small.append(contact);
   const help=elem('a','','Contact');help.href='contact.html';small.append(help);
   bottom.append(small);
-  inner.append(top,bottom);footer.append(inner);old.replaceWith(footer);
+  inner.append(top,bottom);footer.append(inner);if(old)old.replaceWith(footer);else document.body.append(footer);
  }
  async function buildAccount(){
   const nav=document.querySelector('.navright');if(!nav)return;
