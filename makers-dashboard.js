@@ -7,12 +7,11 @@ const db=window.supabase.createClient('https://rjnogcommtnxalzqrsmx.supabase.co'
 const auth=await db.auth.getUser();
 if(auth.error||!auth.data?.user){status.hidden=true;loggedOut.hidden=false;return;}
 const user=auth.data.user;
-const [profile,ideas,usage]=await Promise.all([
+const [profile,ideas]=await Promise.all([
  db.from('maker_public_profiles').select('user_id,display_name,handle,is_public').eq('user_id',user.id).maybeSingle(),
- db.from('ideas').select('title,status,category,created_at').eq('user_id',user.id).order('created_at',{ascending:false}).limit(100),
- db.rpc('maker_monthly_usage')
+ db.from('ideas').select('title,status,category,created_at').eq('user_id',user.id).order('created_at',{ascending:false}).limit(100)
 ]);
-if(profile.error||ideas.error||usage.error){status.textContent='Je dashboard kon niet volledig worden geladen. Probeer het later opnieuw.';return;}
+if(profile.error||ideas.error){status.textContent='Je dashboard kon niet volledig worden geladen. Probeer het later opnieuw.';return;}
 root.hidden=false;status.hidden=true;
 const p=profile.data;
 const name=document.getElementById('hub-name');
@@ -29,7 +28,12 @@ if(p){
  const btn=document.querySelector('.maker-hub-profile .community-btn.yellow');if(btn){btn.href='idee.html';btn.textContent='START ALS MAKER';}
 }
 document.getElementById('hub-ideas').textContent=(ideas.data||[]).length;
-document.getElementById('hub-remaining').textContent=String(Math.max(0,6-(Number(usage.data)||0)))+' / 6';
+const monthKey=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Amsterdam',year:'numeric',month:'2-digit'});
+const currentMonth=monthKey.format(new Date());
+const thisMonth=(ideas.data||[]).filter(x=>monthKey.format(new Date(x.created_at))===currentMonth);
+document.getElementById('hub-remaining').textContent=String(Math.max(0,6-thisMonth.length))+' / 6';
+const selected=document.getElementById('hub-selected');
+if(selected)selected.textContent=String(thisMonth.filter(x=>x.status==='selected').length)+' / 3';
 const list=document.getElementById('hub-recent');list.replaceChildren();
 const statuses={received:'Ontvangen',reviewing:'In beoordeling',selected:'Geselecteerd',rejected:'Niet geselecteerd'};
 const recent=(ideas.data||[]).slice(0,5);
