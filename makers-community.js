@@ -81,7 +81,7 @@
   if(!user){msg('Log eerst in om je openbare makersprofiel te beheren.');form.hidden=true;const a=$('maker-login');if(a)a.hidden=false;return;}
   const existing=await db.from('maker_public_profiles').select('handle,display_name,bio,is_public').eq('user_id',user.id).maybeSingle();
   if(existing.error){msg('Je makerprofiel kon niet worden geladen.');form.hidden=true;return;}
-  const profile=existing.data||{};
+  const profile=existing.data||{};let profileExists=!!existing.data;
   $('maker-name').value=profile.display_name||'';
   $('maker-handle').value=profile.handle||'';
   $('maker-bio').value=profile.bio||'';
@@ -97,9 +97,12 @@
    const is_public=$('maker-public').checked;
    if(display_name.length<2||display_name.length>60||!/^[a-z0-9][a-z0-9_-]{2,29}$/.test(handle)||bio.length>360){msg('Controleer de naam, gebruikersnaam (3-30 tekens) en beschrijving (max. 360 tekens).');return;}
    const submit=form.querySelector('button[type=submit]');submit.disabled=true;msg('Je makersprofiel wordt opgeslagen...');
-   const result=await db.from('maker_public_profiles').upsert({user_id:user.id,handle,display_name,bio,is_public},{onConflict:'user_id'});
+   const result=profileExists
+     ?await db.from('maker_public_profiles').update({handle,display_name,bio,is_public}).eq('user_id',user.id)
+     :await db.from('maker_public_profiles').insert({user_id:user.id,handle,display_name,bio,is_public});
    submit.disabled=false;
    if(result.error){msg(result.error.code==='23505'?'Deze gebruikersnaam is al in gebruik. Kies een andere.':'Opslaan is niet gelukt. Controleer je gegevens.');return;}
+   profileExists=true;
    msg(is_public?'Je profiel is opgeslagen en openbaar.':'Je profiel is veilig opgeslagen en privé.');
    link.hidden=!is_public;if(is_public)link.href='maker.html?id='+encodeURIComponent(user.id);
   };
