@@ -1,0 +1,35 @@
+/* DRAAGHET. | Consistent, clear interface across public and maker pages */
+:root{--dh-paper:#f7f5ee;--dh-ink:#171717;--dh-yellow:#f3e72b;--dh-line:#e1ddd3;--dh-muted:#6a665e}
+*{scroll-margin-top:90px}
+.dh-clarity{font-family:Inter,Arial,sans-serif;color:var(--dh-ink);line-height:1.6}
+.dh-clarity h1,.dh-clarity h2,.dh-clarity h3{font-family:Inter,Arial,sans-serif;letter-spacing:-.05em;font-weight:900}
+.dh-clarity a{text-decoration:none}
+.dh-clarity .dh-eyebrow{font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#766d55}
+.dh-clarity .dh-intro{max-width:740px;font-size:clamp(15px,1.6vw,18px);line-height:1.75;color:#5d5951}
+.dh-clarity .dh-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.dh-clarity .dh-pill{display:inline-flex;align-items:center;justify-content:center;padding:13px 19px;min-height:47px;background:#171717;color:#fff!important;border-radius:7px;font-size:12px;font-weight:850;transition:transform .17s,box-shadow .17s}
+.dh-clarity .dh-pill:hover{transform:translateY(-2px);box-shadow:0 10px 25px #0002}
+.dh-clarity .dh-pill.yellow{background:var(--dh-yellow);color:#171717!important}
+.dh-clarity .dh-pill.outline{background:#fff;color:#171717!important;border:1px solid var(--dh-line)}
+.dh-clarity .dh-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px;margin:25px 0}
+.dh-clarity .dh-tile{display:flex;flex-direction:column;gap:10px;align-items:flex-start;background:#fff;border:1px solid var(--dh-line);border-radius:15px;padding:clamp(22px,3vw,33px);min-width:0}
+.dh-clarity .dh-tile.primary{background:#f4e82d;border-color:#f4e82d}
+.dh-clarity .dh-tile .dh-icon{display:grid;place-items:center;background:#171717;color:#fff;width:45px;height:45px;border-radius:12px;font-size:22px}
+.dh-clarity .dh-tile h2,.dh-clarity .dh-tile h3{font-size:clamp(21px,2.5vw,28px);margin:0;line-height:1.14}
+.dh-clarity .dh-tile p{font-size:14px;color:#5e5a51;line-height:1.7;max-width:480px;margin:0;flex:1}
+.dh-clarity .dh-tile.primary p{color:#46432c}
+.dh-clarity .dh-tile>a:last-child{margin-top:12px}
+.dh-clarity .dh-note{font-size:13px;line-height:1.8;color:#615c51;background:#fff;border-left:4px solid var(--dh-yellow);padding:15px 20px;border-radius:0 8px 8px 0}
+.dh-clarity .dh-steps-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:28px 0}
+.dh-clarity .dh-step-card{padding:24px;border:1px solid var(--dh-line);border-radius:13px;background:#fff}
+.dh-clarity .dh-step-card strong{font-size:30px;font-weight:900;color:#b5a600}
+.dh-clarity .dh-step-card h3{font-size:18px;margin:10px 0 5px}
+.dh-clarity .dh-step-card p{font-size:13px;color:#646159;margin:0}
+.dh-clarity .dh-breadcrumb{font-size:12px;font-weight:750;color:#757068;margin:0 0 20px}
+.dh-clarity .dh-breadcrumb a{color:inherit}
+.dh-clarity .dh-breadcrumb a:hover{text-decoration:underline}
+.dh-clarity :focus-visible{outline:3px solid #ac9e00;outline-offset:3px}
+.dh-clarity [hidden]{display:none!important}
+@media(max-width:750px){.dh-clarity .dh-tiles{grid-template-columns:1fr}.dh-clarity .dh-steps-cards{grid-template-columns:1fr}}
+/* Make major calls to action consistent */
+.dh-clarity .dh-pill,.dh-clarity .community-btn{white-space:normal;text-align:center}
