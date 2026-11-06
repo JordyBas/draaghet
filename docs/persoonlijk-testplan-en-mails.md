@@ -22,15 +22,39 @@ Na elke bouwfase verzamelen we de tests die Jordy en het team zelf in de echte w
 - [ ] Alle bovenstaande acties ook op mobiel testen.
 
 ## Fase 3: Makers Studio
-- [ ] Alle zes stappen in de nieuwe, doorlopende formulierkaart doorlopen; terug/vooruit en voortgangsbalk controleren.
-- [ ] Categorie kiezen: sarcasme, flauwe humor, woordgrappen, kerst en overig; controleren of die selectie terugkomt in de samenvatting.
-- [ ] Op mobiel controleren dat de studio één geheel vormt zonder losse kaarten of horizontaal scrollen.
-- [ ] Controleren dat definitief verzenden nog geblokkeerd blijft zolang juridische en veiligheidsvoorwaarden niet zijn afgevinkt.
-- [ ] Alle stappen in het inzendproces doorlopen en controleren of voortgang correct wordt bijgehouden.
-- [ ] 18+-verklaring en voorwaarden zijn verplicht en worden niet vooraf aangevinkt.
-- [ ] Juiste bestandstypen en limieten testen; ongeldige bestanden moeten worden afgewezen.
-- [ ] Inzending terugvinden in eigen dashboard en status controleren.
-- [ ] Dubbelklikken, opnieuw laden en verbroken verbinding testen.
+**Status:** bouw in ontwikkeling. Persoonlijke tests open. Test met fictieve gegevens en testbestanden; stuur nog geen echte ontwerpen in zolang de inzendfunctie niet officieel is vrijgegeven.
+
+### Handmatig door Jordy: nu al te testen (voorvertoning)
+- [ ] [F3-01] Open Makers Studio op een computer; controleer dat de vormgeving één geheel is en geen losstaande kaarten bevat.
+- [ ] [F3-02] Doorloop alle 6 stappen met volgende/vorige; controleer dat de voortgangsbalk en stapnummer telkens kloppen.
+- [ ] [F3-03] Test lege naam, lege categorie en lege omschrijving; volgende stap mag dan niet doorgaan en moet een duidelijke foutmelding geven.
+- [ ] [F3-04] Selecteer elk van de categorieën (Sarcasme, Flauwe humor, Woordgrappen, Kerst, Overig) en controleer of de gekozen categorie correct in het eindoverzicht staat.
+- [ ] [F3-05] Vul naam en omschrijving in, keer terug naar eerdere stappen en controleer of de invoer bewaard blijft.
+- [ ] [F3-06] Kies een geldig testbestand en controleer de bestandsnaam in de samenvatting. Test ook 4 bestanden en een bestand boven 10 MB; doorlopen moet worden geweigerd.
+- [ ] [F3-07] Controleer dat de 18+-verklaring en voorwaarden niet vooraf zijn aangevinkt en dat je zonder beide niet naar de laatste stap kunt.
+- [ ] [F3-08] Controleer de laatste stap: correcte samenvatting en geen werkende verzendknop zolang de studio in preview staat.
+- [ ] [F3-09] Herhaal de stappen op een telefoon; controleer leesbaarheid, geen horizontaal scrollen, invoervelden, knoppen en uitklapnavigatie.
+- [ ] [F3-10] Test of de Makers Studio bereikbaar is vanuit menu 'Beste Makers' > 'Word maker' en of inloggen vanuit de Studio terugleidt naar de juiste pagina.
+
+### Handmatig door Jordy: pas na vrijgave van echte inzendingen
+- [ ] [F3-11] Maak met een bevestigd testaccount een complete testinzending en controleer de ontvangstbevestiging op het scherm.
+- [ ] [F3-12] Controleer in Mijn inzendingen / Makers Dashboard of titel, omschrijving, categorie, datum en status correct zijn opgeslagen.
+- [ ] [F3-13] Upload een toegelaten PNG/JPG/PDF-testbestand en controleer dat het privé beschikbaar is voor het juiste account; test overige bestandsformaten pas na expliciete ondersteuning.
+- [ ] [F3-14] Controleer dat ongeoorloofde bestanden (verkeerd bestandstype, >10 MB, te veel bestanden) worden afgewezen met begrijpelijke foutmeldingen.
+- [ ] [F3-15] Probeer direct twee keer te versturen, de pagina opnieuw te laden en de verbinding te verbreken; controleer dat geen ongewenste dubbele of halve inzending ontstaat.
+- [ ] [F3-16] Controleer dat maximaal 6 ideeën per kalendermaand kunnen worden ingezonden en dat de zevende wordt geweigerd.
+- [ ] [F3-17] Log in met twee testaccounts: elk ziet alleen eigen ideeën en eigen bestanden. Meld elke onverwachte toegang onmiddellijk.
+- [ ] [F3-18] Controleer de ontvangstbevestiging en later de automatische e-mail zodra de e-mailflow is ingericht.
+
+**Registratie van testresultaat:** zet het vakje pas op [x] na daadwerkelijk uitvoeren; noteer bij fouten datum, apparaat, test-ID, stappen en resultaat. Een codecontrole geldt niet als persoonlijke test.
+
+### Technisch door assistent (niet doorschuiven naar Jordy)
+- Database- en Storage-RLS controleren, inclusief anonieme toegang, accountisolatie en statusrechten.
+- Server-side bestandstype-/magic-bytevalidatie, scanprocedure, foutafhandeling en opruimen bij gedeeltelijk mislukte uploads inrichten en testen.
+- 18+- en voorwaardenregistratie, quota, eigenaarschap en dubbele inzendingen afdwingen op server/database.
+- Verificatie van beveiligingswaarschuwingen en gecontroleerde vrijgave van echte inzendingen.
+- Code-/syntaxiscontroles, integratiecontroles en herstel van aangetroffen fouten.
+
 
 ## Fase 4: auteursprofielen en community
 - [ ] Profielweergave, zichtbare naam en privacyinstellingen controleren.
@@ -82,4 +106,4 @@ Later samen teksten ontwerpen, instellen en persoonlijk testen voor:
 Let op: e-mails die wettelijk of functioneel noodzakelijk zijn voor accountaanmaak (zoals e-mailbevestiging en wachtwoordherstel) blijven tijdens fase 2 actief. De definitieve branding en inhoud komen later.
 
 ## Menubalk
-Nieuwe kopjes nog niet definitief. Eerst samen tekstkeuze bevestigen; daarna pas bestaande site aanpassen.
+Gekozen: Shop, Bestsellers, Beste Makers, Over ons, Contact, gevolgd door winkelwagen en Mijn account. Uitklapcategorieën zijn in opbouw. Controleer op de uiteindelijke website of alle links werken en de categorieën correct worden gefilterd.
