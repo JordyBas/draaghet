@@ -80,3 +80,9 @@ body{background:var(--dh-bg);color:var(--dh-black)}
 
 .dh-account-dropdown [hidden]{display:none!important}
 .dh-navgroup>button[aria-expanded=true]:before{transform:translateY(2px) rotate(225deg)!important}
+
+.dh-best-art{aspect-ratio:4/4.4;background:#e9e5da;display:grid;place-items:center;position:relative;overflow:hidden}
+.dh-best-art img{display:block;width:100%;height:100%;object-fit:cover}
+.dh-best-placeholder{font:900 36px/1 Inter,Arial,sans-serif;letter-spacing:-.085em;color:#171717;transform:rotate(-4deg)}
+.dh-best-card:hover .dh-best-art img{transform:scale(1.035);transition:transform .35s}
+.dh-best-single .dh-best-track{animation:none!important}
