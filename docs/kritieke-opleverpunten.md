@@ -15,3 +15,8 @@ Deze punten verzamelen we tijdens alle tien bouwfases. Na fase 10 krijgt Jordy d
 - [ ] Eerder bekende waarschuwing rondom gelekte-wachtwoordbescherming opnieuw beoordelen voor lancering.
 
 Bij nieuwe belangrijke restpunten deze lijst uitbreiden. Afvinken alleen na controle.
+
+## Fase 4: makersprofielen en community
+- [ ] Koppel bij fase 6 uitsluitend daadwerkelijk goedgekeurde en gepubliceerde makerproducten aan het openbare makersprofiel; toon nooit privé-inzendingen.
+- [ ] Controleer vóór lancering hoe openbare makerprofielen omgaan met ongewenste/aanstootgevende namen, meldingen, uitschakeling en moderatie.
+- [ ] Technische integratie- en autorisatietests voor volgen/liken/privé-omschakeling afronden vóór publieke vrijgave; de persoonlijke tests blijven bewaard tot na fase 10.
