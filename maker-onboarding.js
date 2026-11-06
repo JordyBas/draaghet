@@ -1,5 +1,5 @@
 /* DRAAGHET. Makers onboarding | Step zero of the Makers Studio.
-   Every maker creates a public alias before their first idea can be submitted.
+   Every maker chooses an alias for recognition. Public visibility is optional; DRAAGHET is the seller.
    Profiles may stay private during setup; active products always need a public profile.
 */
 (function(){
@@ -37,7 +37,7 @@ function init(){
     const top=make('div','maker-onboarding-ready');
     top.append(make('span','maker-ready-icon','✓'));
     const details=make('div','maker-onboarding-ready-text');
-    details.append(make('strong','','JOUW MAKERSPROFIEL IS KLAAR'),make('p','','Je gaat verder als '+r.data.display_name+'. '+(r.data.is_public?'Je makersprofiel is openbaar.':'Je makersprofiel is nog privé. Voor verkoop van geselecteerde kleding moet het openbaar zijn.')));
+    details.append(make('strong','','JOUW MAKERSPROFIEL IS KLAAR'),make('p','','Je gaat verder als '+r.data.display_name+'. '+(r.data.is_public?'Je makersprofiel is openbaar.':'Je makersprofiel is privé. DRAAGHET. kan geselecteerde kleding verkopen zonder jouw profiel openbaar te maken.')));
     top.append(details);intro.append(top);
     const links=make('div','maker-onboarding-links');
     const dashboard=make('a','maker-onboarding-link','MIJN MAKERS DASHBOARD');dashboard.href='makers-dashboard.html';
@@ -56,7 +56,7 @@ function init(){
   const checkbox=make('input','');checkbox.type='checkbox';checkbox.id='new-maker-public';
   const explain=make('span','','Maak mijn makersprofiel openbaar. Andere bezoekers kunnen dan mijn makersnaam en beschrijving zien, mij volgen en een like geven. Ik kan dit later aanpassen zolang ik geen actieve producten heb.');
   publicChoice.append(checkbox,explain);
-  const info=make('p','maker-onboarding-help','Je kunt ook privé beginnen. Zodra een ontwerp van jou in de shop komt, moet jouw makersprofiel openbaar zijn zodat klanten de bedenker kunnen zien. Jij gebruikt daarvoor je gekozen makersnaam.');
+  const info=make('p','maker-onboarding-help','Jij stuurt vrijwillig ideeën in. DRAAGHET. beslist over selectie, productie en verkoop. Je bent geen verkoper. Openbaar maken van jouw profiel blijft jouw keuze; bij een privéprofiel tonen we geen persoonlijke makersgegevens. Voor commerciële toepassing gelden de afzonderlijk vast te stellen inzendvoorwaarden.');
   const error=make('p','maker-onboarding-error','');error.setAttribute('role','alert');
   const save=make('button','community-btn yellow','MAAK MIJN MAKERSPROFIEL');save.type='submit';
   editor.append(label(name.id,'JOUW OPENBARE MAKERSNAAM'),name,label(handle.id,'UNIEKE GEBRUIKERSNAAM'),handle,label(bio.id,'OVER JOUW HUMOR'),bio,publicChoice,info,error,save);
