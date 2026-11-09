@@ -67,7 +67,7 @@ function photo(item,priority=false){
  media.style.setProperty('--print-height',zone.height+'%');
  const image=make('img');
  image.src=item.image;
- image.alt=item.name+' op '+item.model+' in '+item.colorNL+' (digitale conceptmockup)';
+ image.alt=item.name+' op een DRAAGHET '+item.type.toLowerCase()+' in '+item.colorNL+' (digitale conceptmockup)';
  image.loading=priority?'eager':'lazy';
  image.decoding='async';
  if(priority)image.fetchPriority='high';
@@ -104,7 +104,7 @@ function installList(){
   grid.classList.add('dh-capsule-grid');
   grid.replaceChildren(...items.map(card));
   const note=grid.closest('section')?.querySelector('.preview-note');
-  if(note)note.textContent='* Voorbeeldprijzen, niet definitief. Digitale kledingmockups. Bedrukking, maten, voorraad en prijzen worden vóór verkoop vastgesteld.';
+  if(note)note.textContent='* Voorbeeldprijzen, niet definitief. Digitale DRAAGHET-mockups. Bedrukking, maten, voorraad en prijzen worden vóór verkoop vastgesteld.';
   const filters=document.getElementById('filters');
   if(filters){
    let sweater=filters.querySelector('[data-filter="Sweater"]');
@@ -127,7 +127,7 @@ function installDetail(){
  name.textContent=item.name;
  const crumb=document.getElementById('crumb');if(crumb)crumb.textContent=item.name;
  const price=document.getElementById('preview-price');if(price){price.replaceChildren(document.createTextNode(examplePrice(item.type)));const small=make('small','','Voorbeeldprijs, niet definitief · Nog niet te bestellen');price.append(small);}
- const desc=document.getElementById('desc');if(desc)desc.textContent='Een '+item.type.toLowerCase()+' met humor. Basis: '+item.model+'. Bekijk de digitale preview in '+item.colorNL+'.';
+ const desc=document.getElementById('desc');if(desc)desc.textContent='Een DRAAGHET '+item.type.toLowerCase()+' met humor. Bekijk de digitale preview in '+item.colorNL+'.';
  const color=document.getElementById('colorLabel');if(color)color.textContent=item.colorNL;
  const choices=document.getElementById('colors');
  if(choices){choices.replaceChildren();const btn=make('button','choice active',item.colorNL);btn.type='button';btn.setAttribute('aria-pressed','true');btn.disabled=true;choices.append(btn);}
@@ -140,7 +140,7 @@ function installDetail(){
  const spec=document.querySelector('.spec');
  if(spec){
   const p=spec.querySelector('p');
-  if(p)p.textContent='Basisartikel: '+item.model+' ('+item.article+'), kleur '+item.colorNL+'. Productfoto van de leverancier; bedrukking is een indicatieve digitale weergave.';
+  if(p)p.textContent='DRAAGHET '+item.type.toLowerCase()+' in '+item.colorNL+'. De stof, pasvorm en definitieve bedrukking worden vóór verkoop gecontroleerd.';
  }
 }
 window.DRAAGHET_MOCKUPS=Object.freeze({photo,examplePrice});
