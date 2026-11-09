@@ -17,7 +17,7 @@ function init(){
  const revealForm=()=>{form.hidden=false;form.removeAttribute('aria-hidden')};
  hideForm();
  async function begin(){
-  intro.replaceChildren(make('div','maker-onboarding-kicker','EERST JE MAKERSPROFIEL'),make('h4','','Maak jouw makersnaam aan.'),make('p','','Hier begint jouw plek bij DRAAGHET. Maak een makersnaam aan om je ideeën te beheren.'));
+  intro.replaceChildren(make('div','maker-onboarding-kicker','EERST JE MAKERSPROFIEL'),make('h4','','Maak jouw makersnaam aan.'),make('p','','Hier begint jouw plek bij DRAAGHET: maak een makersnaam aan om je ideeën te beheren.'));
   const auth=await db.auth.getUser();
   if(auth.error||!auth.data?.user){
    const note=make('p','maker-onboarding-note','Log in of registreer je eerst. Na het inloggen kom je weer terug in de Makers Studio.');
