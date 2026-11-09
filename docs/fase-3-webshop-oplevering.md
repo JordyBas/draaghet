@@ -42,3 +42,14 @@ LET OP: het bestaande docs/fase-3-oplevering.md is een historisch verslag van ee
 ## Status
 **Fase 3 voorbereid en technisch geïmplementeerd tot een veilige, niet-betalende proefwinkel. Niet volledig afgerond.**
 Het daadwerkelijk kunnen betalen en uitbrengen van bestellingen kan niet betrouwbaar worden opgeleverd zonder de hierboven genoemde besluiten en gegevens.
+
+## Aanvullende verificatie: eigen merk en interne inkoop
+- 16 centrale publieke HTML-/JavaScriptbestanden steekproefsgewijs gecontroleerd op namen van blanco-kledingmerken: geen treffers op de gecontroleerde leveranciersnamen.
+- De zes technische leveranciers-/inkoopreferenties zijn veilig ondergebracht in Supabase schema `internal.shop_blank_sources`, niet in de publiek te downloaden productcatalogus.
+- Verificatie SQL: zes bronartikelen aanwezig; zowel `anon` als `authenticated` hebben géén USAGE op `internal` en géén SELECT op die tabel. De historische artikelcodes en inkoopbron blijven dus beschikbaar voor intern beheer.
+- Dit maakt de zichtbare DRAAGHET-branding los van de technische inkoopadministratie. Let op: de huidige externe foto-URLs verraden technisch de beeldhost als iemand een netwerkverzoek inspecteert; definitieve eigen studio-assets nog te regelen.
+
+## Voorlopige betaalprovidervergelijking (9 november 2026)
+- Stripe: iDEAL | Wero €0,29 per transactie bij EUR zonder conversie, volgens https://stripe.com/nl/pricing/local-payment-methods
+- Mollie: iDEAL | Wero €0,32 per transactie, volgens https://www.mollie.com/nl/pricing
+- Bedragen zijn momentopnames; definitieve kosten en providerkeuze vóór lancering bevestigen. Geen provider gekoppeld, gecontracteerd of geconfigureerd.
