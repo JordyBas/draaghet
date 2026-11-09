@@ -46,3 +46,9 @@ Fase 4: Makers Studio, makersprofielen, accountaanvragen en publieke presentatie
 **Fase 4: technische uitvoering en geautomatiseerde beveiligingspoorten zover mogelijk afgerond. Niet volledig live-/juridisch getest en niet vrijgegeven voor echte inzendingen.**
 
 Verander releasevlaggen pas na expliciete goedkeuring en onafhankelijke verificatie. Geen ongeverifieerde claim van volledig afgeronde productie.
+
+## Extra publicatieveiligheid
+Een latere aanvulling `phase4_unpublish_maker_designs_when_idea_revoked` sluit live makerdesigns automatisch wanneer het bronidee de status selected verliest of geen publicatiedatum meer heeft. Dit voorkomt dat eerder gepubliceerd werk zichtbaar blijft na afkeuring of intrekking. De RLS-check op het opt-in publieke makersprofiel blijft daarnaast actief.
+
+## Afsluitende voortgang
+Bronbestanden zijn naar GitHub gepusht en nieuwe URL-versies voor de Makers Studio, onboarding, dashboard en algemene navigatie zijn bijgewerkt. De automatische GitHub Pages-controles zijn uitgebreid, maar een aantoonbare succesvolle productie-deployment en echte visuele browsertest zijn nog open.
