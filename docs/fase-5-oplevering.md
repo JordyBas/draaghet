@@ -37,3 +37,6 @@ Status: beveiligde basis geïmplementeerd, NIET vrijgegeven voor echte orders of
 
 ## Algemene status
 Fase 5 is een technische, uitgeschakelde beloningsbasis. Nog geen volwaardige live uitbetalingsfunctie of financieel vrijgegeven proces.
+
+## Aanvulling: hard afgedwongen ontwerpquotum
+Een database-trigger `maker_showcase_quota_before_publish` controleert vóór publicatie onder een makerbrede transactielock het aantal actieve publieke ontwerpen. Minder dan 25 geldige makerbrede verkopen betekent maximaal **3** actieve ontwerpen; vanaf 25 maximaal **6**. De teller gebruikt het afgeschermde royaltygrootboek, niet de browser. De triggerfunctie is niet rechtstreeks beschikbaar voor normale accounts. SQL-validatie bevestigt aanwezigheid van de trigger, geen frontend-uitvoerrechten en nul echte beloningseenheden.
