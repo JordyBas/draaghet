@@ -17,7 +17,7 @@ function init(){
  const revealForm=()=>{form.hidden=false;form.removeAttribute('aria-hidden')};
  hideForm();
  async function begin(){
-  intro.replaceChildren(make('div','maker-onboarding-kicker','EERST JE MAKERSPROFIEL'),make('h4','','Maak jouw makersnaam aan.'),make('p','','Hier begint jouw plek bij DRAAGHET. Je maakt één profiel aan voor je ideeën, ontwerpen en toekomstige verdiensten.'));
+  intro.replaceChildren(make('div','maker-onboarding-kicker','EERST JE MAKERSPROFIEL'),make('h4','','Maak jouw makersnaam aan.'),make('p','','Hier begint jouw plek bij DRAAGHET. Maak een makersnaam aan om je ideeën te beheren.'));
   const auth=await db.auth.getUser();
   if(auth.error||!auth.data?.user){
    const note=make('p','maker-onboarding-note','Log in of registreer je eerst. Na het inloggen kom je weer terug in de Makers Studio.');
@@ -37,7 +37,7 @@ function init(){
     const top=make('div','maker-onboarding-ready');
     top.append(make('span','maker-ready-icon','✓'));
     const details=make('div','maker-onboarding-ready-text');
-    details.append(make('strong','','JOUW MAKERSPROFIEL IS KLAAR'),make('p','','Je gaat verder als '+r.data.display_name+'. '+(r.data.is_public?'Je makersprofiel is openbaar.':'Je makersprofiel is privé. DRAAGHET. kan geselecteerde kleding verkopen zonder jouw profiel openbaar te maken.')));
+    details.append(make('strong','','JOUW MAKERSPROFIEL IS KLAAR'),make('p','','Je gaat verder als '+r.data.display_name+'. '+(r.data.is_public?'Je makersprofiel is openbaar.':'Je makersprofiel is privé. DRAAGHET kan geselecteerde kleding verkopen zonder jouw profiel openbaar te maken.')));
     top.append(details);intro.append(top);
     const links=make('div','maker-onboarding-links');
     const dashboard=make('a','maker-onboarding-link','MIJN MAKERS DASHBOARD');dashboard.href='makers-dashboard.html';
@@ -56,7 +56,7 @@ function init(){
   const checkbox=make('input','');checkbox.type='checkbox';checkbox.id='new-maker-public';
   const explain=make('span','','Maak mijn makersprofiel openbaar. Bezoekers kunnen mijn gekozen makersnaam, bio en later mijn gepubliceerde ontwerpen bekijken. Dit kan ik later weer aanpassen.');
   publicChoice.append(checkbox,explain);
-  const info=make('p','maker-onboarding-help','Jij stuurt vrijwillig ideeën in. DRAAGHET. beslist over selectie, productie en verkoop. Je bent geen verkoper. Openbaar maken van jouw profiel blijft jouw keuze; bij een privéprofiel tonen we geen persoonlijke makersgegevens. Voor commerciële toepassing gelden de afzonderlijk vast te stellen inzendvoorwaarden.');
+  const info=make('p','maker-onboarding-help','Jij stuurt vrijwillig ideeën in. DRAAGHET beslist over selectie, productie en verkoop. Je bent geen verkoper. Openbaar maken van jouw profiel blijft jouw keuze; bij een privéprofiel tonen we geen persoonlijke makersgegevens. Voor commerciële toepassing gelden de afzonderlijk vast te stellen inzendvoorwaarden.');
   const error=make('p','maker-onboarding-error','');error.setAttribute('role','alert');
   const save=make('button','community-btn yellow','MAAK MIJN MAKERSPROFIEL');save.type='submit';
   editor.append(label(name.id,'JOUW OPENBARE MAKERSNAAM'),name,label(handle.id,'UNIEKE GEBRUIKERSNAAM'),handle,label(bio.id,'OVER JOUW HUMOR'),bio,publicChoice,info,error,save);
