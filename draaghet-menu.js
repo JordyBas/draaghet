@@ -1,4 +1,4 @@
-/* DRAAGHET. | Global navigation, account entry and common footer */
+/* DRAAGHET | Global navigation, account entry and common footer */
 (function(){
  const URL='https://rjnogcommtnxalzqrsmx.supabase.co';
  const KEY='sb_publishable_msSVd8n8VZDSrDzU1y0Skw_gsqEumgc';
