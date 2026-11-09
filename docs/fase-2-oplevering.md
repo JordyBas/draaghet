@@ -36,3 +36,17 @@ Bronplan: DRAAGHET-MASTERPLAN.md (V2.0)
 
 ## Volgende
 Fase 3: winkelwagen, veilige checkout, betaalprovider, verzendtarieven en betaal-/orderbevestiging. Start niet met live betalingen voordat prijzen, varianten en productspecificaties definitief gecontroleerd zijn.
+
+## Aanvulling 9 november 2026: indeling B en indicatieve prijzen
+Definitieve ontwerpkeuze:
+- Algemene shop: gevarieerd productraster, drie kaarten per rij op desktop; geen verplichte drie kledingvarianten van hetzelfde ontwerp in elke rij.
+- Openbaar makersprofiel: één ontwerpblok met dezelfde bedrukking naast elkaar op T-shirt, sweater en hoodie.
+- Voorlopige voorbeelddisplayprijzen: T-shirt **€24,95**, sweater **€39,95**, hoodie **€44,95**. Deze prijzen zijn **indicatief**, er is geen aankoopmogelijkheid.
+- In het bestaande capsulesysteem staan nu deze indicatieve prijzen op algemene productkaarten en detailpagina's met expliciete waarschuwingen.
+- Op de openbare makersprofielpagina is een drie-kaarten-demonstratie ingebouwd met dezelfde digitale tekstprint op de drie kledingtypes. Dit wordt uitdrukkelijk als **demo die niet van die maker is** aangeduid, niet als gepubliceerd makerproduct.
+- Een veilige server-side/publicatiebron voor goedgekeurde makersontwerpen is nog niet beschikbaar. Koppel daarom **geen privé-ideeën** aan openbare makerprofielen; vervang de demo pas wanneer geautoriseerde gepubliceerde catalogusproducten werkelijk beschikbaar zijn.
+- Scripts, stylesheets, controleasserties en GitHub Pages preflight aangepast.
+
+**Nog open:** de échte drie varianten per daadwerkelijk gepubliceerd makerontwerp, vrijgegeven originele foto's per kledingtype, live browsercontrole, definitieve prijzen en echte betaalbaarheid.
+
+**Status:** visuele en technische demo van keuze B geïmplementeerd. Niet ten onrechte als volledige commerciële fase-2-oplevering markeren.
