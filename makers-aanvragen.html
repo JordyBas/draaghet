@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f7f5ee"><meta name="robots" content="noindex,nofollow">
+<title>Maker-aanvragen | Beheer DRAAGHET</title>
+<link rel="stylesheet" href="draaghet-logo.css?v=1">
+<link rel="stylesheet" href="draaghet-site.css?v=1">
+<style>
+:root{font-family:Inter,Arial,sans-serif;color:#171717;background:#f7f5ee}
+*{box-sizing:border-box}body{margin:0}a{color:inherit}
+.admin-shell{width:min(100% - 36px,1100px);margin:0 auto;padding:40px 0 110px}
+.admin-shell h1{font-size:clamp(34px,5vw,55px);letter-spacing:-.055em;line-height:1.05;margin:18px 0}
+.admin-lead{font-size:16px;line-height:1.65;color:#646056;max-width:700px}
+.admin-back{display:inline-block;font-size:13px;font-weight:900;margin-bottom:10px}
+.admin-note{background:#fffbe5;border-left:4px solid #f3e72b;padding:18px;margin:25px 0;font-size:13px;line-height:1.65}
+.admin-status{font-size:14px;line-height:1.6;margin:20px 0;color:#625e54}
+.admin-requests{display:grid;gap:13px}
+.admin-request{background:#fff;border:1px solid #e4e0d6;padding:22px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:15px;align-items:center}
+.admin-request h2{font-size:19px;margin:0 0 6px;letter-spacing:-.03em}
+.admin-request p{font-size:12px;color:#6b665e;margin:4px 0;overflow-wrap:anywhere}
+.admin-request-status{font-size:11px;text-transform:uppercase;font-weight:900;letter-spacing:.05em}
+.admin-actions{display:flex;gap:7px;flex-wrap:wrap}
+.admin-actions button{border:1px solid #171717;background:#fff;color:#171717;min-height:41px;padding:10px 13px;font-size:11px;font-weight:850;cursor:pointer}
+.admin-actions button[data-decision=approved]{background:#f3e72b}
+.admin-actions button:disabled{opacity:.4;cursor:not-allowed}
+.admin-requests [hidden],.admin-shell [hidden]{display:none!important}
+@media(max-width:680px){.admin-request{grid-template-columns:1fr}.admin-shell{padding-top:26px}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+</head>
+<body><main class="admin-shell">
+<a class="admin-back" href="beheer.html">← TERUG NAAR BEHEER</a>
+<h1>MAKER-AANVRAGEN.</h1>
+<p class="admin-lead">Hier beheer je welke accountgebruikers als maker mogen insturen. Een makersprofiel aanmaken geeft niet automatisch goedkeuring.</p>
+<div class="admin-note">Alleen een beheerder kan iemand goedkeuren. De Makers Studio blijft ook na een goedkeuring gesloten zolang de algemene veiligheids- en voorwaardenpoort niet is vrijgegeven.</div>
+<p id="admin-requests-status" class="admin-status" role="status">Beheerdersrechten controleren...</p>
+<div id="admin-requests" class="admin-requests" hidden aria-live="polite"></div>
+</main>
+<script defer src="maker-approval-admin.js?v=1"></script>
+</body></html>
