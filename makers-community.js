@@ -27,6 +27,40 @@
   root.className='community-grid';
   for(const m of r.data)root.append(card(m));
  }
+ function showMakerDesigns(root,m){
+  // Alleen openbare en expliciet gepubliceerde ontwerpen mogen hier later
+  // aan een maker gekoppeld worden. De demo hieronder heeft geen maker-attributie.
+  const section=el('section','dh-maker-designs');
+  section.setAttribute('aria-label','Ontwerpen op kleding');
+  section.append(el('h2','','ONTWERPEN OP DRIE MANIEREN.'));
+  section.append(el('p','dh-maker-desc','Per goedgekeurd ontwerp verschijnen hier straks drie kledingvarianten naast elkaar: een T-shirt, sweater en hoodie.'));
+  const catalog=window.DRAAGHET_CAPSULE;
+  const mockups=window.DRAAGHET_MOCKUPS;
+  if(!catalog||!mockups){root.append(section);return;}
+  const demoText='SOCIALE BATTERIJ';
+  const variants=[
+    ['T-shirt','3410020','Black'],
+    ['Sweater','3430020','Charcoal'],
+    ['Hoodie','3440020','Black']
+  ];
+  const template=variants.map(([type,article,color])=>catalog.find(item=>item.type===type&&item.article===article&&item.color===color));
+  if(template.some(x=>!x)){root.append(section);return;}
+  const example=el('div','dh-maker-demo');
+  example.append(el('strong','dh-maker-demo-label','VOORBEELDWEERGAVE · GEEN ONTWERP VAN DEZE MAKER'));
+  example.append(el('h3','',demoText));
+  const grid=el('div','dh-maker-variant-grid');
+  for(const item of template){
+   // Zelfde tekst wordt exact op drie verschillende kledingtypes gerenderd.
+   const concept={...item,name:demoText,line1:'SOCIALE',line2:'BATTERIJ',small:''};
+   const card=el('article','dh-maker-variant');
+   card.append(mockups.photo(concept));
+   const info=el('div','dh-maker-variant-info');
+   info.append(el('strong','',item.type),el('span','',mockups.examplePrice(item.type)));
+   card.append(info);grid.append(card);
+  }
+  example.append(grid,el('p','dh-maker-pricenote','* Indicatieve voorbeeldprijzen. Geen aanbod of definitieve verkoopprijzen. De getoonde ontwerpen zijn uitsluitend een demonstratie van de weergave.'));
+  section.append(example);root.append(section);
+ }
  async function view(){
   const root=$('community-profile');if(!root)return;
   const id=new URLSearchParams(location.search).get('id');
@@ -39,6 +73,7 @@
   const head=el('div','community-profile-header');head.append(avatar(m.display_name));
   const h=el('div','');h.append(el('h1','',m.display_name),el('div','community-handle','@'+m.handle));head.append(h);root.append(head);
   root.append(el('p','community-profile-bio',m.bio||'Deze maker heeft nog geen verhaal toegevoegd.'));
+  showMakerDesigns(root,m);
   const user=await signedIn();
   if(user?.id===m.user_id){
     const actions=el('div','community-profile-actions');
