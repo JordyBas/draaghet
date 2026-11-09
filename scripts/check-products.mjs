@@ -20,7 +20,8 @@ for(const item of items){
  assert.ok(!slugs.has(item.slug),'Duplicate slug');
  slugs.add(item.slug);
  assert.ok(allowed.has(item.type),'Unknown garment type');
- assert.ok(item.name&&item.article&&item.model&&item.colorNL,'Incomplete item');
+ assert.ok(item.name&&item.colorNL,'Incomplete item');
+ assert.ok(!('model' in item)&&!('article' in item),'Supplier identifiers must not be exposed in public catalog');
  assert.ok(item.line1&&item.line2,'Missing design lines');
  assert.match(item.image,/^https:\/\/images\.nwgmedia\.com\/highres\/[^\s]+\.jpg$/,'Unexpected supplier image URL');
 }
