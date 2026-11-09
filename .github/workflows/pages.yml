@@ -27,7 +27,9 @@ jobs:
       - name: Checkout website
         uses: actions/checkout@v4
       - name: Validate homepage before publishing
-        run: |\n          node scripts/check-homepage.mjs\n          node scripts/check-products.mjs
+        run: |
+          node scripts/check-homepage.mjs
+          node scripts/check-products.mjs
           node scripts/check-checkout.mjs
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
