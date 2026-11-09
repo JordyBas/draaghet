@@ -42,7 +42,7 @@ const community=read('makers-community.js');
 const makerPage=read('maker.html');
 const makerCss=read('makers-community.css');
 new vm.Script(community,{filename:'makers-community.js'});
-assert.ok(makerPage.includes('makers-community.js?v=2'),'Maker profile community script stale');
+assert.ok(makerPage.includes('makers-community.js?v=3'),'Maker profile community script stale');
 assert.ok(makerPage.includes('draaghet-capsule-render.js?v=3'),'Maker profile renderer missing');
 assert.ok(makerPage.includes('draaghet-capsule.js?v=3'),'Maker profile public catalog must be current');
 assert.ok(community.includes('dh-maker-variant-grid'),'Maker triptych presentation missing');
