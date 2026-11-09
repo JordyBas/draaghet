@@ -142,4 +142,4 @@ function init(){
  };count();w.addEventListener('draaghet:cart-change',count);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
-})();
+})(window);
