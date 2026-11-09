@@ -248,6 +248,8 @@
         ]);
         if(settingsError)throw settingsError;
         release=settings;
+        const releaseNotice=document.querySelector('.dh-maker-release');
+        if(releaseNotice)releaseNotice.hidden=!!release.submissions_enabled;
         user=authError?null:auth.user;
         if(user){
           const quota=await client.rpc('maker_monthly_usage');
