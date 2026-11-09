@@ -150,7 +150,7 @@ function setupPreview(){
  button.disabled=!items.some(item=>item.slug===slug);
  button.addEventListener('click',()=>{
   const status=document.getElementById('dh-cart-status');
-  if(window.DRAAGHET_CART?.add(slug)){if(status)status.replaceChildren(document.createTextNode('Concept toegevoegd. '),(()=>{const a=make('a','','Bekijk de proefwinkelwagen');a.href='winkelwagen.html';return a})());}
+  if(window.DRAAGHET_CART?.add(slug)){window.DRAAGHET_CART.open();if(status)status.replaceChildren(document.createTextNode('Concept toegevoegd. '),(()=>{const a=make('a','','Bekijk de proefwinkelwagen');a.href='winkelwagen.html';return a})());}
   else if(status)status.textContent='Het toevoegen van het concept is niet gelukt.';
  });
 }
