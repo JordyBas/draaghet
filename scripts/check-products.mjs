@@ -32,10 +32,24 @@ assert.match(css,/League\+Spartan/,'Webfont missing');
 assert.match(css,/aspect-ratio:4\/5/,'Studio proportions missing');
 assert.match(css,/@media\(max-width:850px\)/,'Responsive product grid missing');
 for(const html of pages){
- assert.match(html,/draaghet-capsule\.js\?v=2/);
- assert.match(html,/draaghet-capsule-render\.js\?v=2/);
- assert.match(html,/draaghet-capsule\.css\?v=2/);
+ assert.match(html,/draaghet-capsule\.js\?v=3/);
+ assert.match(html,/draaghet-capsule-render\.js\?v=3/);
+ assert.match(html,/draaghet-capsule\.css\?v=3/);
 }
 assert.doesNotMatch(pages[2],/id="sizes"/,'Unverified size options visible');
+const community=read('makers-community.js');
+const makerPage=read('maker.html');
+const makerCss=read('makers-community.css');
+new vm.Script(community,{filename:'makers-community.js'});
+assert.match(makerPage,/makers-community\\.js\\?v=2/,'Maker profile community script stale');
+assert.match(makerPage,/draaghet-capsule-render\\.js\\?v=3/,'Maker profile renderer missing');
+assert.match(community,/dh-maker-variant-grid/,'Maker triptych presentation missing');
+assert.match(community,/VOORBEELDWEERGAVE/,'Demo disclosure missing');
+assert.match(makerCss,/grid-template-columns:repeat\\(3,minmax\\(0,1fr\\)\\)/,'Maker triptych columns missing');
+assert.match(renderer,/€24,95/);
+assert.match(renderer,/€39,95/);
+assert.match(renderer,/€44,95/);
+assert.match(renderer,/Voorbeeldprijs/);
+assert.doesNotMatch(makerPage,/Verkoopprijs: €24,95/,'Do not publish actual prices');
 assert.match(pages[2],/NOG NIET TE KOOP/,'Unapproved concepts must not be sold');
 console.log('Phase 2 source checks passed: '+items.length+' concepts, unique slugs, fixed zones, responsive studio mockups.');
