@@ -36,10 +36,10 @@ async function show(){
       btn.addEventListener('click',async()=>{
        actions.querySelectorAll('button').forEach(x=>x.disabled=true);
        status('Makerstatus bijwerken...');
-       const {error}=await db.from('maker_applications')
+       const {data:updatedRows,error}=await db.from('maker_applications')
          .update({status:value,reviewed_at:new Date().toISOString(),reviewed_by:adminId})
-         .eq('user_id',application.user_id);
-       if(error){status('Bijwerken is niet gelukt. Probeer opnieuw.');actions.querySelectorAll('button').forEach(x=>x.disabled=false);return}
+         .eq('user_id',application.user_id).select('user_id');
+       if(error||updatedRows?.length!==1){status('Bijwerken is niet bevestigd. Probeer opnieuw.');actions.querySelectorAll('button').forEach(x=>x.disabled=false);return}
        await show();
       });
       actions.append(btn);
