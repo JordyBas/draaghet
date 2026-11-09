@@ -103,3 +103,16 @@ Bij nieuwe belangrijke restpunten deze lijst uitbreiden. Afvinken alleen na cont
 - [ ] **P0** De makers-releasevlag gesloten houden tot alle checks zijn afgerond; momenteel staat `submissions_enabled=false`.
 
 In het actuele plan is dit de **vierde fase**. Oude documenten waarin Makers Studio als "fase 3" wordt aangeduid zijn historisch en niet leidend.
+
+## Aanvulling 9 november 2026: fase 5 en mobiele kleuren
+- [x] **P1** Gedeelde DRAAGHET-stylesheet aangepast: geen standaardblauwe hoofdmenu-/accountlinks op mobiel; filters zwart, actief geel; donkere secties behouden witte tekst.
+- [x] **P1** Blauwe uitzondering in de Makers Studio verwijderd. Geversioneerde CSS via vernieuwd navigatiescript naar websitepagina's gebracht.
+- [x] **P1** Alle nieuwe persoonlijke testen opgeslagen in `docs/persoonlijk-testplan-en-mails.md`, waaronder iPhone/Android, filtertoestanden, makersaanvragen, saldi en uitbetalingen.
+- [x] **P1** Private fase-5-database met per-eenheid royalty's, 25/26-tariefmijlpaal, idempotentie, retourcorrectie en makerbreed ontwerpquotum gebouwd.
+- [x] **P1** Inkomstenpagina met alleen-lezen bedragen, tarieven en €50-uitbetalingsdrempel opgebouwd. Uitbetalingen staan uit.
+- [ ] **P0** Volledige server-side koppeling tussen echte betaalde winkelbestellingen en beloningsledger, incl. gesigneerde webhooks en concurrerende verwerking testen.
+- [ ] **P0** Contract, licentie, saldo na retour, fiscale en administratieve uitbetalingsvoorwaarden definitief bepalen; minimale uitbetaling €50 handhaven.
+- [ ] **P0** Uitbetalingsaanvragen, reserveringen, goedkeuring, echte bankbetaling en statusverwerking server-side realiseren en testen.
+- [ ] **P1** Legacy `maker_sales` reconciliëren met nieuw `maker_reward_units`-grootboek vóór livegang.
+- [ ] **P1** Mobiele kleuren, alle knoppen, links en dark-on-light contrast op echte toestellen controleren.
+- [ ] **P1** GitHub Pages CI/deployment en browserchecks met testaccounts daadwerkelijk bevestigen.
