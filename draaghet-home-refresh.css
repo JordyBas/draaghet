@@ -27,3 +27,35 @@
 .dh-contact-form .dh-form-note{font-size:11px;line-height:1.6;margin:2px 0 0;color:#777}
 @media(max-width:800px){.dh-home-presentation .hero{min-height:650px}.dh-home-presentation .hero-inner{padding-top:80px;padding-bottom:65px}.dh-home-presentation .hero h1{font-size:clamp(48px,12vw,77px)!important}.dh-home-presentation .hero:before{background:linear-gradient(0deg,rgba(9,9,9,.9) 0%,rgba(9,9,9,.32) 72%),url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80') center/cover}.dh-benefit-grid{grid-template-columns:1fr}.dh-benefit-grid article{min-height:0}.dh-about,.dh-proof-inner,.dh-contact{grid-template-columns:1fr;gap:20px}.dh-about,.dh-contact{padding-top:65px;padding-bottom:70px}.dh-benefits{padding-top:65px;padding-bottom:70px}.dh-about h2,.dh-proof h2,.dh-contact h2,.dh-benefits h2{font-size:clamp(34px,8vw,50px)!important}.dh-proof{padding:55px 0}}
 @media(max-width:480px){.dh-home-presentation .hero{min-height:650px}.dh-home-presentation .hero .actions{flex-direction:column;align-items:stretch}.dh-home-presentation .hero .button{width:100%}.dh-contact-form button{width:100%}}
+
+/* Fase 1 | Finale homepage-afwerking */
+.dh-home-presentation .hero:before{background:linear-gradient(90deg,rgba(9,9,9,.88) 0%,rgba(9,9,9,.62) 44%,rgba(9,9,9,.16) 100%),url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1800&q=82') center 42%/cover}
+.dh-home-presentation .hero-inner{z-index:1}
+.dh-home-presentation .hero .hero-copy{max-width:545px!important;font-weight:600}
+.dh-hero-subnote{font-size:12px!important;font-weight:600!important;opacity:.92;margin:20px 0 0;line-height:1.5!important}
+.dh-home-presentation #meest-gedragen:has(#bestseller-empty:not([hidden])){display:none}
+.dh-home-presentation .dh-benefits h2{max-width:850px}
+.dh-home-presentation .dh-benefits{padding-top:88px;padding-bottom:82px}
+.dh-home-presentation .dh-benefit-grid article{min-height:235px}
+.dh-home-presentation .dh-benefit-grid h3{font-size:19px!important;line-height:1.25!important}
+.dh-home-presentation .dh-about{border-top:1px solid #e1ded5}
+.dh-home-presentation .dh-final-cta{background:#181818;color:#fff;text-align:center;padding:clamp(62px,9vw,112px) 0}
+.dh-final-inner{display:flex;flex-direction:column;align-items:center}
+.dh-final-cta .dh-kicker{color:#f3e72b}
+.dh-final-cta h2{font:900 clamp(36px,6.5vw,76px)/1.04 Inter,Arial,sans-serif!important;letter-spacing:-.065em!important;margin:5px 0 16px}
+.dh-final-cta p{margin:0 0 27px;font-size:clamp(15px,2vw,19px);color:#e7e5df}
+.dh-final-cta .button{min-width:225px;min-height:54px}
+.dh-home-presentation .dh-contact-form textarea{resize:vertical}
+@media (max-width:1000px){.mobilemenu{display:block!important}#navlinks:not(.open){display:none!important}#navlinks.open{display:flex!important}}
+@media(max-width:800px){
+ .dh-home-presentation .hero:before{background:linear-gradient(0deg,rgba(9,9,9,.92) 0%,rgba(9,9,9,.64) 41%,rgba(9,9,9,.07) 100%),url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1100&q=80') 55% 35%/cover}
+ .dh-home-presentation .hero{min-height:min(790px,max(650px,85svh));align-items:end}
+ .dh-home-presentation .hero-inner{padding-top:110px;padding-bottom:52px}
+ .dh-home-presentation .hero h1{font-size:clamp(45px,11vw,76px)!important;max-width:100%!important}
+ .dh-home-presentation .hero .kicker{font-size:10px;letter-spacing:.1em}
+ .dh-home-presentation .hero .hero-copy{font-size:15px;line-height:1.55}
+ .dh-home-presentation .dh-benefits{padding-top:65px;padding-bottom:52px}
+ .dh-home-presentation .dh-benefit-grid article{min-height:0}
+ .dh-home-presentation .dh-about{gap:8px}
+}
+@media(max-width:390px){.dh-home-presentation .hero h1{font-size:clamp(41px,10.5vw,48px)!important}.dh-home-presentation .hero .button{min-height:48px}.dh-home-presentation .hero-inner{padding-bottom:36px}}
