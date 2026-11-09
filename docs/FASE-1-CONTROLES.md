@@ -37,3 +37,13 @@ Status: IN UITVOERING (9 november 2026). Dit document is de blijvende bron voor 
 2. OPEN -> GESLAAGD alleen na uitvoering; anders GEBLOKKEERD of MISLUKT.
 3. Nooit live persoonsgegevens of wachtwoorden in dit document opnemen.
 4. Geen Lovable-credits gebruiken.
+
+## Hero-afbeelding: verplicht responsief acceptatiecriterium
+- Gekozen beeld: lachende vriendengroep op terras, zonder prints op kleding.
+- Desktop asset: draaghet-hero-desktop.webp (1774 x 887). Mobiel asset: draaghet-hero-mobiel.webp (709 x 887). Assets zijn nog NIET in GitHub gepubliceerd.
+- [ ] Gebruik responsive picture/srcset en object-position per breakpoint; behoud beeldverhouding en voorkom vervorming.
+- [ ] Controleer op 320, 375, 390, 430, 768, 1024, 1280, 1440 en 1920 px; zowel staand als liggend waar relevant.
+- [ ] Geen afgesneden gezichten, geen tekst of knoppen over gezichten; CTA volledig zichtbaar.
+- [ ] Controleer laadsnelheid, bestandsgrootte, CLS en alt-tekst.
+- [ ] Bewaar screenshots per schermklasse, resultaat, datum en eventuele correcties.
+- [ ] Publiceer pas na akkoord op testomgeving; domein blijft ongekoppeld.
