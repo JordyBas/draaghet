@@ -42,3 +42,19 @@
 
 /* Respect hidden on action links and restricted forms */
 .community-shell [hidden]{display:none!important}
+
+/* Fase 2: makersprofiel is de enige plek met een trio per ontwerp. */
+.community-profile{max-width:1180px}
+.dh-maker-designs{margin-top:36px;padding-top:30px;border-top:1px solid #e6e2d8}
+.dh-maker-designs h2{font:900 clamp(24px,3vw,35px)/1.05 Inter,Arial,sans-serif;letter-spacing:-.05em;margin:0 0 10px}
+.dh-maker-desc{font-size:14px;line-height:1.7;color:#625e55;max-width:680px}
+.dh-maker-demo{margin-top:25px}
+.dh-maker-demo-label{display:block;font-size:10px;font-weight:900;letter-spacing:.055em;line-height:1.5;color:#635f55}
+.dh-maker-demo h3{font-size:clamp(21px,2.3vw,28px);line-height:1.2;font-weight:900;letter-spacing:-.04em;margin:12px 0 16px}
+.dh-maker-variant-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.dh-maker-variant{min-width:0}
+.dh-maker-variant .dh-capsule-media{width:100%}
+.dh-maker-variant-info{display:flex;gap:8px;justify-content:space-between;align-items:baseline;padding:12px 1px 0;font-size:14px}
+.dh-maker-variant-info span{font-weight:800;white-space:nowrap}
+.dh-maker-pricenote{font-size:12px;line-height:1.6;color:#69655c;margin:19px 0 0}
+@media(max-width:650px){.dh-maker-variant-grid{gap:8px}.dh-maker-variant-info{display:block;font-size:12px}.dh-maker-variant-info span{display:block;margin-top:4px}.dh-maker-variant .dh-capsule-label{font-size:8px;padding:4px 5px;top:7px;left:7px}}
