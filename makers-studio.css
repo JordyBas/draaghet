@@ -95,3 +95,52 @@
 .maker-onboarding-links{display:flex;gap:17px;flex-wrap:wrap;margin:17px 0 0 46px}
 .maker-onboarding-link{font-size:11px;font-weight:900;letter-spacing:.025em;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:620px){.maker-onboarding{padding:19px}.maker-onboarding-links{margin-left:0}}
+
+/* Fase 4: duidelijke zesdelige Makers Studio zonder losse concurrerende vlakken */
+.dh-maker-page .pagehero{padding-top:clamp(32px,5vw,56px)!important;padding-bottom:8px!important}
+.dh-maker-page .pagehero h1{font-size:clamp(36px,5vw,60px)!important;letter-spacing:-.055em!important;margin-bottom:11px!important}
+.dh-maker-page .pagehero p{max-width:650px;font-size:15px!important;color:#625d54;line-height:1.6}
+.dh-maker-page .pagebody{padding-top:12px!important;padding-bottom:86px!important}
+.dh-maker-page .idea-panel.studio{max-width:860px!important}
+.dh-maker-page .studio-grid{margin:0!important}
+.dh-maker-page .studio-form{max-width:860px!important;padding:clamp(22px,4vw,40px)!important;border-radius:12px!important;background:white!important;box-shadow:0 10px 44px #17171709!important}
+.dh-maker-page .studio-form:before{height:5px}
+.dh-maker-page .studio-form-top,.dh-maker-page .studio-form>h3,.dh-maker-page .studio-form>p{display:none!important}
+.dh-maker-page #maker-auth-gate{margin:0 0 22px!important;background:#faf9f3!important;border-radius:8px!important}
+.dh-maker-page .studio-intro{font-size:14px!important;max-width:700px!important;margin:0 0 18px!important;line-height:1.65!important}
+.dh-maker-page .dh-wizard-progress{display:flex;justify-content:space-between!important;gap:10px;margin-bottom:12px!important}
+.dh-maker-page .dh-progress-label{font-size:20px!important;letter-spacing:-.04em}
+.dh-maker-page .dh-progress-count{font-size:12px!important;color:#6e695f}
+.dh-maker-page .dh-wizard-track{height:5px!important;margin:0 0 19px!important;background:#eeece6!important}
+.dh-maker-page .dh-stage-nav{list-style:none!important;padding:0!important;margin:0 0 24px!important;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.dh-maker-page .dh-stage-nav-item{min-width:0;border-bottom:2px solid #e8e4db;padding:9px 2px;font-weight:800;font-size:11px;line-height:1.2;text-align:center;color:#908b80}
+.dh-maker-page .dh-stage-nav-item.active{color:#171717;border-color:#171717}
+.dh-maker-page .dh-stage-nav-item.finished{color:#4d493f;border-color:#b9a700}
+.dh-maker-page .dh-wizard-intro{font-size:13px;line-height:1.7;color:#787267;margin:0 0 26px!important}
+.dh-maker-page .dh-step{min-height:210px!important}
+.dh-maker-page .dh-step h4{font-size:clamp(23px,3vw,34px)!important;margin-bottom:9px!important}
+.dh-maker-page .dh-step .dh-help{margin-bottom:19px!important;font-size:13px!important}
+.dh-maker-page .dh-categories{gap:9px;margin:10px 0}
+.dh-maker-page .dh-category{min-height:83px;padding:14px 15px}
+.dh-maker-page .dh-category strong{font-size:14px}
+.dh-maker-page .dh-category span{font-size:11px}
+.dh-maker-page .dh-wizard-actions{margin-top:18px!important;padding-top:20px!important}
+.dh-maker-page .dh-wizard-actions button{min-height:47px!important}
+.dh-maker-page .dh-wizard-status{margin:0!important;font-size:12px}
+.dh-maker-page #maker-submit-form{margin-top:17px;scroll-margin-top:110px}
+.dh-maker-page .maker-onboarding{margin:0 0 24px;padding:20px 22px;border-radius:9px}
+.dh-maker-page .maker-onboarding-done{padding:14px 18px}
+.dh-maker-page .maker-onboarding-links{margin-top:10px}
+.dh-maker-page .dh-quick-links{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 20px}
+.dh-maker-page .dh-quick-links a{font-size:12px;font-weight:800;text-decoration:underline;text-underline-offset:3px}
+.dh-maker-page .dh-maker-release{max-width:860px;margin:0 auto 19px;border:1px solid #e5dfce;background:#fffbea;padding:13px 17px;border-radius:8px;color:#605639;font-size:13px;line-height:1.6}
+.dh-maker-page .dh-maker-release strong{display:block;color:#171717;font-size:12px}
+.dh-maker-page .dh-maker-facts{font-size:12px;color:#777267;line-height:1.65;margin:0 auto 16px;max-width:860px}
+@media(max-width:650px){
+ .dh-maker-page .studio-form{padding:22px 17px!important}
+ .dh-maker-page .dh-stage-nav{gap:3px}
+ .dh-maker-page .dh-stage-nav-item{font-size:9px;padding:9px 1px;letter-spacing:-.01em}
+ .dh-maker-page .dh-step{min-height:180px!important}
+ .dh-maker-page .dh-category{min-height:72px}
+ .dh-maker-page .dh-wizard-actions button{font-size:11px!important}
+}
