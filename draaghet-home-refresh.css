@@ -59,3 +59,38 @@
  .dh-home-presentation .dh-about{gap:8px}
 }
 @media(max-width:390px){.dh-home-presentation .hero h1{font-size:clamp(41px,10.5vw,48px)!important}.dh-home-presentation .hero .button{min-height:48px}.dh-home-presentation .hero-inner{padding-bottom:36px}}
+
+/* Definitieve fase 1: rustige verkoopgerichte homepage en responsive categoriekaarten */
+.dh-home-presentation .idea{background:#f7f5ee;color:#171717;border-top:1px solid #e4e0d7;border-bottom:1px solid #e4e0d7}
+.dh-home-presentation .idea-inner{padding-top:clamp(62px,8vw,100px);padding-bottom:clamp(62px,8vw,100px);grid-template-columns:minmax(0,1.05fr) minmax(260px,.95fr);gap:clamp(25px,6vw,80px)}
+.dh-home-presentation .idea h2{font-size:clamp(36px,5.6vw,65px)!important;letter-spacing:-.06em!important;line-height:1.05!important}
+.dh-home-presentation .idea p{font-weight:550;color:#59574f;font-size:clamp(14px,1.5vw,17px);line-height:1.75;max-width:530px}
+.dh-home-presentation .idea .button.black{background:#171717;color:#fff;padding:15px 24px}
+.dh-home-presentation .idea-quote{font-family:Inter,Arial,sans-serif;font-size:clamp(36px,5vw,65px);font-weight:900;letter-spacing:-.065em;line-height:1.03;transform:rotate(-3deg);border:3px solid #171717;padding:clamp(25px,4vw,60px);background:#f3e72b;box-shadow:12px 12px 0 #171717}
+.dh-home-presentation #favorieten .categoryrow{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.dh-home-presentation #favorieten .category{position:relative;overflow:hidden;min-height:clamp(150px,15vw,230px);padding:clamp(18px,2.6vw,32px);align-items:end;border:1px solid #454545;background:#292929;color:#f7f5ee;font-size:clamp(17px,2vw,25px)!important;line-height:1.2;font-weight:900;transition:transform .2s,border-color .2s,background .2s}
+.dh-home-presentation #favorieten .category:nth-child(2){background:#f3e72b;border-color:#f3e72b;color:#171717}
+.dh-home-presentation #favorieten .category:hover{transform:translateY(-4px);border-color:#f3e72b}
+.dh-home-presentation #favorieten .category:after{content:"↗";position:absolute;top:19px;right:20px;font-size:23px;opacity:.75}
+.dh-home-presentation #collectie .sectiontop{align-items:end}
+.dh-home-presentation #collectie .sectiontop p{max-width:420px}
+.dh-home-presentation #collectie .product>a{display:block;height:100%}
+.dh-home-presentation #collectie .productinfo{min-height:74px}
+.dh-home-presentation .footer a:focus-visible,.dh-home-presentation a:focus-visible{outline-offset:4px}
+.dh-home-presentation [hidden]{display:none!important}
+@media (max-width:1000px){
+ .dh-home-presentation #favorieten .categoryrow{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .dh-home-presentation #favorieten .category{min-height:150px}
+}
+@media(max-width:800px){
+ .dh-home-presentation .idea-inner{grid-template-columns:1fr}
+ .dh-home-presentation .idea-quote{display:none}
+ .dh-home-presentation .idea h2{font-size:clamp(37px,9vw,52px)!important}
+ .dh-home-presentation #collectie .sectiontop{align-items:start}
+}
+@media(max-width:420px){
+ .dh-home-presentation #favorieten .category{min-height:136px;font-size:18px!important;padding:18px 13px}
+ .dh-home-presentation #favorieten .category:after{top:12px;right:12px;font-size:18px}
+ .dh-home-presentation .productinfo strong{font-size:14px}
+}
+@media(prefers-reduced-motion:reduce){.dh-home-presentation #favorieten .category{transition:none}}
