@@ -86,3 +86,20 @@ Bij nieuwe belangrijke restpunten deze lijst uitbreiden. Afvinken alleen na cont
 - [ ] **P1** Na afronding van iedere fase een eerlijk rapport publiceren: gedaan, daadwerkelijk getest, openstaand en status.
 
 **Werkwijze vanaf nu:** werk altijd eerst deze actuele openstaande lijst bij wanneer een taak aantoonbaar gereed is. Bewaar alle nieuwe keuzes ook in `DRAAGHET-MASTERPLAN.md`; laat oudere tegenstrijdige fase-/looptijdnotities niet leidend worden.
+
+## Fase 4: bijgewerkt na technische uitvoering, 9 november 2026
+- [x] **P1** Makers Studio in zes rustige stappen ingericht met voortgang, duidelijke links, responsive vormgeving en behouden invoer bij teruggaan.
+- [x] **P1** Overzichtelijker Makers Dashboard; onnodige genummerde uitlegkaarten verwijderd, maker-aanvraagstatus zichtbaar.
+- [x] **P1** Eigen makerapplicatietabel en admin-beoordelingsscherm gebouwd: pending, approved, rejected, suspended.
+- [x] **P0** Backendblokkade tegen inzenden door niet-goedgekeurde makers ingebouwd in Edge Function én database-trigger.
+- [x] **P1** Gepubliceerde makersontwerpen veilig voorbereid in gecureerde maker_showcase; alleen zichtbare goedgekeurde ontwerpen bij openbaar makersprofiel.
+- [x] **P1** Reguliere DRAAGHET-merknaam zonder verdwaalde punt midden in doorlopende zinnen; grafische logopunt behouden en asset-cache vernieuwd.
+- [x] **P1** Autorisatietests in database met rollback: niet-admin blijft pending, zelfgoedkeuren onmogelijk, admin kan wel goedkeuren; geen testdata achtergelaten.
+- [ ] **P0** Definitieve auteurs-/licentievoorwaarden en 12 maanden-publicatieduur afstemmen met actieve database (oudere 6 maanden) en juridische controle.
+- [ ] **P0** Privacyverklaring en veilig scanproces voor ingezonden bestanden finaliseren vóór echte inzendingen.
+- [ ] **P1** Echte volledige praktijktest met drie gescheiden accounts plus browser-/mobieltest van onboarding, makersstudio en admin-goedkeuring.
+- [ ] **P1** Eerste daadwerkelijk geselecteerde ideeën als goedgekeurde maker_showcase-items publiceren, gekoppeld aan echt verkoopbare kledingvarianten; niet verwarren met de getoonde demo.
+- [ ] **P1** Onafhankelijk verifiëren dat de laatste GitHub Pages-build en live site de wijzigingen daadwerkelijk tonen.
+- [ ] **P0** De makers-releasevlag gesloten houden tot alle checks zijn afgerond; momenteel staat `submissions_enabled=false`.
+
+In het actuele plan is dit de **vierde fase**. Oude documenten waarin Makers Studio als "fase 3" wordt aangeduid zijn historisch en niet leidend.
