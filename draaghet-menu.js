@@ -71,6 +71,7 @@
   const links=[['Overzicht','mijn-overzicht.html'],['Bestellingen','mijn-bestellingen.html'],['Mijn gegevens','mijn-gegevens.html'],['Makers Dashboard','makers-dashboard.html']];
   for(const [label,href] of links){const a=elem('a','',label);a.href=href;dropdown.append(a)}
   const adminLink=elem('a','','Beheer DRAAGHET');adminLink.href='beheer.html';adminLink.hidden=true;dropdown.append(adminLink);
+  const applicationsLink=elem('a','','Maker-aanvragen');applicationsLink.href='makers-aanvragen.html';applicationsLink.hidden=true;dropdown.append(applicationsLink);
   const logout=elem('button','','UITLOGGEN');logout.type='button';logout.onclick=async()=>{await db.auth.signOut();location.href='account.html'};dropdown.append(logout);
   menu.append(trigger,dropdown);original.insertAdjacentElement('afterend',menu);
   trigger.onclick=()=>{const opened=dropdown.hidden;dropdown.hidden=!opened;trigger.setAttribute('aria-expanded',String(opened))};
@@ -87,6 +88,7 @@
    const {data,error}=await db.from('admin_users').select('user_id').eq('user_id',user.id).maybeSingle();
    if(version!==req)return;
    adminLink.hidden=!!error||!data;
+   applicationsLink.hidden=!!error||!data;
   }
   const {data}=await db.auth.getUser();
   void render(data?.user||null);
