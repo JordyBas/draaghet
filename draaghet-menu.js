@@ -40,7 +40,7 @@
   const inner=elem('div','dh-footer-inner'),top=elem('div','dh-footer-top');
   const brand=elem('div'),h=elem('h2');
   h.append(document.createTextNode('DRAAGHET'),elem('span','dh-footer-branddot','.'));brand.append(h);
-  brand.append(elem('p','dh-footer-lead','Kleding met humor, speciaal voor jou bedrukt. DRAAGHET. is een concept van CustomM8.'));
+  brand.append(elem('p','dh-footer-lead','Kleding met humor, speciaal voor jou bedrukt. DRAAGHET is een concept van CustomM8.'));
   top.append(brand);
   function column(heading,links){
    const col=elem('div');col.append(elem('h3','',heading));const list=elem('div','dh-footer-links');
