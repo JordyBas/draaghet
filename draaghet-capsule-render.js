@@ -143,7 +143,18 @@ function installDetail(){
   if(p)p.textContent='DRAAGHET '+item.type.toLowerCase()+' in '+item.colorNL+'. De stof, pasvorm en definitieve bedrukking worden vóór verkoop gecontroleerd.';
  }
 }
+function setupPreview(){
+ const button=document.getElementById('dh-add-preview');
+ if(!button)return;
+ const slug=new URLSearchParams(location.search).get('item');
+ button.disabled=!items.some(item=>item.slug===slug);
+ button.addEventListener('click',()=>{
+  const status=document.getElementById('dh-cart-status');
+  if(window.DRAAGHET_CART?.add(slug)){if(status)status.replaceChildren(document.createTextNode('Concept toegevoegd. '),(()=>{const a=make('a','','Bekijk de proefwinkelwagen');a.href='winkelwagen.html';return a})());}
+  else if(status)status.textContent='Het toevoegen van het concept is niet gelukt.';
+ });
+}
 window.DRAAGHET_MOCKUPS=Object.freeze({photo,examplePrice});
-function init(){installList();installDetail()}
+function init(){installList();installDetail();setupPreview()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
