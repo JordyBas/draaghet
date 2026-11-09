@@ -27,41 +27,46 @@
   root.className='community-grid';
   for(const m of r.data)root.append(card(m));
  }
- function showMakerDesigns(root,m){
-  // Alleen openbare en expliciet gepubliceerde ontwerpen mogen hier later
-  // aan een maker gekoppeld worden. De demo hieronder heeft geen maker-attributie.
+ async function showMakerDesigns(root,m){
+  // Approved public catalogue: RLS additionally requires an opt-in public profile.
   const section=el('section','dh-maker-designs');
-  section.setAttribute('aria-label','Ontwerpen op kleding');
-  section.append(el('h2','','ONTWERPEN OP DRIE MANIEREN.'));
-  section.append(el('p','dh-maker-desc','Per goedgekeurd ontwerp verschijnen hier straks drie kledingvarianten naast elkaar: een T-shirt, sweater en hoodie.'));
+  section.setAttribute('aria-label','Ontwerpen van deze maker');
+  section.append(el('h2','','ONTWERPEN VAN DEZE MAKER.'));
   const catalog=window.DRAAGHET_CAPSULE;
   const mockups=window.DRAAGHET_MOCKUPS;
-  if(!catalog||!mockups){root.append(section);return;}
-  const demoText='SOCIALE BATTERIJ';
-  const variants=[
-    ['T-shirt','Black'],
-    ['Sweater','Charcoal'],
-    ['Hoodie','Black']
+  if(!Array.isArray(catalog)||!mockups){section.append(el('p','dh-maker-desc','De ontwerpen kunnen nu niet worden getoond.'));root.append(section);return;}
+  const templates=[
+    catalog.find(item=>item.type==='T-shirt'&&item.color==='Black'),
+    catalog.find(item=>item.type==='Sweater'&&item.color==='Charcoal'),
+    catalog.find(item=>item.type==='Hoodie'&&item.color==='Black')
   ];
-  const template=variants.map(([type,color])=>catalog.find(item=>item.type===type&&item.color===color));
-  if(template.some(x=>!x)){root.append(section);return;}
-  const example=el('div','dh-maker-demo');
-  example.append(el('strong','dh-maker-demo-label','VOORBEELDWEERGAVE · GEEN ONTWERP VAN DEZE MAKER'));
-  example.append(el('h3','',demoText));
-  const grid=el('div','dh-maker-variant-grid');
-  for(const item of template){
-   // Zelfde tekst wordt exact op drie verschillende kledingtypes gerenderd.
-   const concept={...item,name:demoText,line1:'SOCIALE',line2:'BATTERIJ',small:''};
-   const card=el('article','dh-maker-variant');
-   card.append(mockups.photo(concept));
-   const info=el('div','dh-maker-variant-info');
-   info.append(el('strong','',item.type),el('span','',mockups.examplePrice(item.type)));
-   card.append(info);grid.append(card);
+  if(templates.some(item=>!item)){section.append(el('p','dh-maker-desc','De ontwerpen zijn tijdelijk niet beschikbaar.'));root.append(section);return;}
+  const result=await db.from('maker_showcase').select('id,title,print_line1,print_line2')
+    .eq('maker_id',m.user_id).eq('is_live',true).order('created_at',{ascending:false}).limit(12);
+  if(result.error){section.append(el('p','dh-maker-desc','De gepubliceerde ontwerpen konden niet worden geladen.'));root.append(section);return;}
+  const live=result.data||[];
+  const designs=live.length?live:[{title:'SOCIALE BATTERIJ',print_line1:'SOCIALE',print_line2:'BATTERIJ'}];
+  if(!live.length)section.append(el('p','dh-maker-desc','Er staan nog geen gepubliceerde ontwerpen op dit profiel. Zo kan een ontwerp er straks op drie kledingstukken uitzien:'));
+  for(const design of designs){
+    const demo=!live.length;
+    const block=el('div','dh-maker-demo');
+    if(demo)block.append(el('strong','dh-maker-demo-label','VOORBEELDWEERGAVE · NIET VAN DEZE MAKER'));
+    block.append(el('h3','',design.title));
+    const grid=el('div','dh-maker-variant-grid');
+    for(const item of templates){
+      const concept={...item,name:design.title,line1:design.print_line1,line2:design.print_line2};
+      const card=el('article','dh-maker-variant');
+      card.append(mockups.photo(concept));
+      const info=el('div','dh-maker-variant-info');
+      info.append(el('strong','',item.type),el('span','',mockups.examplePrice(item.type)));
+      card.append(info);grid.append(card);
+    }
+    block.append(grid);section.append(block);
   }
-  example.append(grid,el('p','dh-maker-pricenote','* Indicatieve voorbeeldprijzen. Geen aanbod of definitieve verkoopprijzen. De getoonde ontwerpen zijn uitsluitend een demonstratie van de weergave.'));
-  section.append(example);root.append(section);
- }
- async function view(){
+  section.append(el('p','dh-maker-pricenote','* Voorbeeldprijzen, nog niet definitief. De getoonde kleding is niet bestelbaar. Alleen geselecteerde en gepubliceerde makersontwerpen worden als eigen werk getoond.'));
+  root.append(section);
+}
+async function view(){
   const root=$('community-profile');if(!root)return;
   const id=new URLSearchParams(location.search).get('id');
   if(!id||!/^[a-f0-9-]{36}$/i.test(id)){root.textContent='Geen geldig makersprofiel gevonden.';return;}
@@ -73,7 +78,7 @@
   const head=el('div','community-profile-header');head.append(avatar(m.display_name));
   const h=el('div','');h.append(el('h1','',m.display_name),el('div','community-handle','@'+m.handle));head.append(h);root.append(head);
   root.append(el('p','community-profile-bio',m.bio||'Deze maker heeft nog geen verhaal toegevoegd.'));
-  showMakerDesigns(root,m);
+  await showMakerDesigns(root,m);
   const user=await signedIn();
   if(user?.id===m.user_id){
     const actions=el('div','community-profile-actions');
