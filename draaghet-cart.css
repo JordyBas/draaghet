@@ -1,0 +1,24 @@
+/* DRAAGHET cart preview, accessible and responsive. */
+.dh-cart-layout{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(270px,.8fr);gap:30px;padding-bottom:80px}
+.dh-cart-empty{grid-column:1/-1;padding:40px;background:#fff;border:1px solid #e5e0d8}
+.dh-cart-empty h2{font-size:clamp(24px,4vw,38px);line-height:1.1;margin:0 0 12px}
+.dh-cart-rows{display:grid;gap:16px}
+.dh-cart-item{display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;background:#fff;padding:15px;border:1px solid #e5e0d8}
+.dh-cart-thumb{width:110px;height:138px;object-fit:contain;background:#e8e6df}
+.dh-cart-description h3{font-weight:900;font-size:17px;margin:5px 0 6px}
+.dh-cart-description p{color:#726c64;font-size:13px;margin:0 0 8px}
+.dh-cart-item-price{font-size:17px}
+.dh-cart-controls{display:flex;align-items:center;gap:11px;margin-top:14px;flex-wrap:wrap}
+.dh-cart-controls button{border:1px solid #c9c3b9;min-width:36px;min-height:36px;background:#fff;border-radius:4px}
+.dh-cart-controls button:disabled{opacity:.4}
+.dh-cart-controls .dh-cart-delete{border:0;text-decoration:underline;font-size:12px;padding:0 4px}
+.dh-cart-summary{background:#fff;border:1px solid #e5e0d8;align-self:start;padding:24px}
+.dh-cart-summary h2{font-size:22px;margin:0 0 22px}
+.dh-cart-subtotal{font-size:20px;font-weight:900}
+.dh-cart-progress{height:9px;border-radius:12px;background:#e8e5da;overflow:hidden}
+.dh-cart-progress span{display:block;height:100%;background:#f3e72b}
+.dh-cart-warning{font-size:12px;color:#645f56;line-height:1.6}
+.dh-cart-mainlink{display:inline-flex;justify-content:center;align-items:center;padding:14px 18px;background:#171717;color:#fff!important;text-decoration:none;font-size:12px;font-weight:900;margin-top:15px;min-height:47px}
+.dh-cart-clear{display:block;border:0;background:none;text-decoration:underline;margin-top:14px;font-size:12px}
+.dh-cart-count{background:#f3e72b;color:#171717;border-radius:12px;font-size:10px;font-weight:900;padding:2px 6px}
+@media(max-width:720px){.dh-cart-layout{grid-template-columns:1fr}.dh-cart-item{grid-template-columns:90px minmax(0,1fr)}.dh-cart-thumb{width:90px;height:115px}}
