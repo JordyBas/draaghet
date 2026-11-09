@@ -7,13 +7,16 @@ const db=window.supabase.createClient('https://rjnogcommtnxalzqrsmx.supabase.co'
 const auth=await db.auth.getUser();
 if(auth.error||!auth.data?.user){status.hidden=true;loggedOut.hidden=false;return;}
 const user=auth.data.user;
-const [profile,ideas,settings]=await Promise.all([
+const [profile,ideas,settings,approval]=await Promise.all([
  db.from('maker_public_profiles').select('user_id,display_name,handle,is_public').eq('user_id',user.id).maybeSingle(),
  db.from('ideas').select('title,status,category,created_at').eq('user_id',user.id).order('created_at',{ascending:false}).limit(100),
- db.from('maker_studio_settings').select('submissions_enabled').eq('singleton',true).maybeSingle()
+ db.from('maker_studio_settings').select('submissions_enabled').eq('singleton',true).maybeSingle(),
+ db.from('maker_applications').select('status').eq('user_id',user.id).maybeSingle()
 ]);
 if(profile.error||ideas.error){status.textContent='Je dashboard kon niet volledig worden geladen. Probeer het later opnieuw.';return;}
 root.hidden=false;status.hidden=true;
+const approvalNode=document.getElementById('hub-approval');
+if(approvalNode&&profile.data){approvalNode.hidden=false;const state=approval.error?'niet beschikbaar':(approval.data?.status||'pending');approvalNode.textContent=({approved:'Je makeraccount is goedgekeurd.',pending:'Je makersaanvraag is ontvangen en wordt beoordeeld.',rejected:'Je makersaanvraag is niet goedgekeurd. Neem contact op als je vragen hebt.',suspended:'Je makeraccount is tijdelijk gepauzeerd.'}[state]||'De makerstatus kan momenteel niet worden geladen.');}
 const release=document.getElementById('hub-release');
 if(release&&(!settings.data?.submissions_enabled||settings.error)){
  release.hidden=false;
