@@ -42,7 +42,7 @@ function totals(){
  const subtotal=all.reduce((sum,x)=>sum+(prices[x.product.type]||0)*x.qty,0);
  return {subtotal,count:all.reduce((sum,x)=>sum+x.qty,0),remaining:Math.max(0,7500-subtotal)};
 }
-const api={add,quantity,remove,clear,lines,totals,money};
+const api={add,quantity,remove,clear,lines,totals,money,open:openDrawer};
 w.DRAAGHET_CART=Object.freeze(api);
 const el=(tag,className,text)=>{
  const e=document.createElement(tag);if(className)e.className=className;
@@ -81,6 +81,59 @@ function render(root){
  const a=el('a','dh-cart-mainlink','BEKIJK AFREKENPROCES');a.href='afrekenen.html';summary.append(a);
  const clearButton=el('button','dh-cart-clear','Proefwinkelwagen legen');clearButton.type='button';clearButton.onclick=clear;summary.append(clearButton);
  root.append(rows,summary);
+}
+let drawer=null,lastFocus=null;
+function openDrawer(){
+ if(!drawer)createDrawer();
+ lastFocus=document.activeElement;
+ updateDrawer();
+ drawer.panel.hidden=false;drawer.backdrop.hidden=false;
+ document.body.classList.add('dh-cart-dialog-open');
+ drawer.close.focus();
+}
+function closeDrawer(){
+ if(!drawer)return;
+ drawer.panel.hidden=true;drawer.backdrop.hidden=true;
+ document.body.classList.remove('dh-cart-dialog-open');
+ if(lastFocus&&typeof lastFocus.focus==='function')lastFocus.focus();
+}
+function updateDrawer(){
+ if(!drawer)return;
+ drawer.content.replaceChildren();
+ const all=lines(),t=totals();
+ if(!all.length){drawer.content.append(el('p','','Je proefwinkelwagen is leeg.'));return;}
+ for(const item of all){
+  const row=el('div','dh-drawer-item');
+  row.append(el('strong','',item.qty+'× '+item.product.name),el('span','',money(item.qty*(prices[item.product.type]||0))+' *'));
+  drawer.content.append(row);
+ }
+ drawer.content.append(el('p','dh-drawer-total','Voorbeeldtotaal: '+money(t.subtotal)+' *'));
+ const link=el('a','dh-cart-mainlink','BEKIJK WINKELWAGEN');link.href='winkelwagen.html';drawer.content.append(link);
+ drawer.content.append(el('p','dh-cart-warning','* Indicatieve prijzen. Betalen is nog niet mogelijk.'));
+}
+function createDrawer(){
+ if(drawer)return;
+ const backdrop=el('div','dh-drawer-backdrop');backdrop.hidden=true;
+ const panel=el('aside','dh-drawer');panel.hidden=true;panel.setAttribute('role','dialog');
+ panel.setAttribute('aria-modal','true');panel.setAttribute('aria-labelledby','dh-drawer-title');
+ const head=el('div','dh-drawer-heading');head.append(el('h2','','WINKELWAGEN'));
+ head.querySelector('h2').id='dh-drawer-title';
+ const close=el('button','dh-drawer-close','×');close.type='button';close.setAttribute('aria-label','Sluiten');
+ head.append(close);
+ const content=el('div','dh-drawer-content');panel.append(head,content);
+ backdrop.addEventListener('click',closeDrawer);close.addEventListener('click',closeDrawer);
+ panel.addEventListener('keydown',event=>{
+  if(event.key!=='Tab')return;
+  const selectable=[...panel.querySelectorAll('a[href],button:not([disabled])')];
+  if(!selectable.length)return;
+  const first=selectable[0],last=selectable[selectable.length-1];
+  if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+  else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+ });
+ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!panel.hidden)closeDrawer()});
+ document.body.append(backdrop,panel);
+ drawer={backdrop,panel,close,content};
+ w.addEventListener('draaghet:cart-change',()=>{if(!drawer.panel.hidden)updateDrawer()});
 }
 function init(){
  const main=document.getElementById('dh-cart-content');if(main){render(main);w.addEventListener('draaghet:cart-change',()=>render(main))}
