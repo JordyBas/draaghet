@@ -22,3 +22,17 @@
 .dh-cart-clear{display:block;border:0;background:none;text-decoration:underline;margin-top:14px;font-size:12px}
 .dh-cart-count{background:#f3e72b;color:#171717;border-radius:12px;font-size:10px;font-weight:900;padding:2px 6px}
 @media(max-width:720px){.dh-cart-layout{grid-template-columns:1fr}.dh-cart-item{grid-template-columns:90px minmax(0,1fr)}.dh-cart-thumb{width:90px;height:115px}}
+
+/* Slide-out cart, same layout on desktop and mobile */
+.dh-cart-dialog-open{overflow:hidden}
+.dh-drawer-backdrop{position:fixed;inset:0;background:#1118;z-index:2100}
+.dh-drawer{position:fixed;top:0;right:0;height:100dvh;max-height:100dvh;overflow:auto;width:min(440px,100vw);background:#f7f5ee;z-index:2101;box-shadow:-14px 0 40px #0003;padding:clamp(20px,4vw,30px);display:flex;flex-direction:column}
+.dh-drawer[hidden],.dh-drawer-backdrop[hidden]{display:none!important}
+.dh-drawer-heading{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #dad5cc;padding-bottom:19px;margin-bottom:15px}
+.dh-drawer-heading h2{margin:0;font-size:25px;letter-spacing:-.045em}
+.dh-drawer-close{border:0;background:transparent;font-size:30px;line-height:1;min-width:40px;min-height:40px}
+.dh-drawer-content{display:grid;align-content:start;gap:12px}
+.dh-drawer-item{display:flex;justify-content:space-between;gap:15px;padding:14px 0;border-bottom:1px solid #e2ddd4;font-size:13px;line-height:1.5}
+.dh-drawer-item strong{max-width:63%}
+.dh-drawer-item span{white-space:nowrap;font-weight:900}
+.dh-drawer-total{font-weight:900;font-size:17px}
