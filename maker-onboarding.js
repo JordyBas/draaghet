@@ -32,12 +32,17 @@ function init(){
   const r=await db.from('maker_public_profiles').select('user_id,handle,display_name,is_public').eq('user_id',user.id).maybeSingle();
   if(r.error){intro.append(make('p','maker-onboarding-error','Je makersprofiel kon niet worden geladen. Ververs de pagina.'));return;}
   if(r.data){
+    const approvalResult=await db.from('maker_applications').select('status').eq('user_id',user.id).maybeSingle();
+    const makerStatus=approvalResult.error?'pending':(approvalResult.data?.status||'pending');
+    const approved=makerStatus==='approved';
+    const stateText=makerStatus==='approved'?'GOEDGEKEURD MAKERSPROFIEL':makerStatus==='rejected'?'AANVRAAG NIET GOEDGEKEURD':makerStatus==='suspended'?'MAKERSPROFIEL GEPAUZEERD':'MAKERSPROFIEL IN BEOORDELING';
+    const stateHelp=approved?'Je makerstatus is goedgekeurd. Echte inzendingen openen pas als de veiligheids- en voorwaardencontrole is afgerond.':'Je makersprofiel is opgeslagen. Je kunt het formulier alvast bekijken, maar ideeën indienen kan pas na goedkeuring en openstelling.';
     intro.classList.add('maker-onboarding-done');
     intro.replaceChildren();
     const top=make('div','maker-onboarding-ready');
     top.append(make('span','maker-ready-icon','✓'));
     const details=make('div','maker-onboarding-ready-text');
-    details.append(make('strong','','JOUW MAKERSPROFIEL IS KLAAR'),make('p','','Je gaat verder als '+r.data.display_name+'. '+(r.data.is_public?'Je makersprofiel is openbaar.':'Je makersprofiel is privé. DRAAGHET kan geselecteerde kleding verkopen zonder jouw profiel openbaar te maken.')));
+    details.append(make('strong','',stateText),make('p','','Je makersnaam: '+r.data.display_name+'. '+stateHelp+' '+(r.data.is_public?'Je profiel is openbaar.':'Je profiel blijft privé.')));
     top.append(details);intro.append(top);
     const links=make('div','maker-onboarding-links');
     const dashboard=make('a','maker-onboarding-link','MIJN MAKERS DASHBOARD');dashboard.href='makers-dashboard.html';
