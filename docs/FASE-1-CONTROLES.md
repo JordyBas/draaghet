@@ -47,3 +47,16 @@ Status: IN UITVOERING (9 november 2026). Dit document is de blijvende bron voor 
 - [ ] Controleer laadsnelheid, bestandsgrootte, CLS en alt-tekst.
 - [ ] Bewaar screenshots per schermklasse, resultaat, datum en eventuele correcties.
 - [ ] Publiceer pas na akkoord op testomgeving; domein blijft ongekoppeld.
+
+## Homepage publicatiepoort (9 november 2026)
+- [x] Homepage teksten: nadruk op shop; makersmogelijkheden subtiel achter account.
+- [x] Homepage responsive CSS toegevoegd voor 390px, 700px, 1024px en ultrabreed (codecontrole, geen visuele test).
+- [x] Bestaan van interne doelpagina's bevestigd via GitHub: shirts, favorieten, verhaal, idee, account, winkelwagen, product, categorie.
+- [ ] Geselecteerde hero desktop- en mobiel-WebP bestanden naar repository uploaden. Beschikbaar als gesprekbestanden, maar connector ondersteunt geen lokale binaire bestandsupload.
+- [ ] Geselecteerde hero in HTML koppelen met picture/source of gelijkwaardige responsive techniek; huidige Unsplash-placeholder moet verdwijnen.
+- [ ] Visuele tests op 320/375/390/430/768/1024/1280/1440/1920px en liggend; screenshots en fixes vastleggen.
+- [ ] Productpresentatie: conceptmockups vervangen door definitieve productfoto's en productinformatie vóór livegang.
+- [ ] End-to-end kliktests: accountaanmaak, aanmelden, winkelwagen, productdetail en checkout.
+- [ ] Controle dat verkoopsuggesties, leveringsclaims en verzenddrempel kloppen met operationele inrichting.
+- [ ] Expliciete goedkeuring gebruiker vóór samenvoegen naar main, publicatie of domeinkoppeling.
+**Status:** NIET LIVEGEREED. Main en domein niet wijzigen.
