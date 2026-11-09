@@ -126,6 +126,7 @@ function installDetail(){
  document.title=item.name+' | DRAAGHET';
  name.textContent=item.name;
  const crumb=document.getElementById('crumb');if(crumb)crumb.textContent=item.name;
+ const price=document.getElementById('preview-price');if(price){price.replaceChildren(document.createTextNode(examplePrice(item.type)));const small=make('small','','Voorbeeldprijs, niet definitief · Nog niet te bestellen');price.append(small);}
  const desc=document.getElementById('desc');if(desc)desc.textContent='Een '+item.type.toLowerCase()+' met humor. Basis: '+item.model+'. Bekijk de digitale preview in '+item.colorNL+'.';
  const color=document.getElementById('colorLabel');if(color)color.textContent=item.colorNL;
  const choices=document.getElementById('colors');
