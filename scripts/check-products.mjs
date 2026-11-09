@@ -33,7 +33,7 @@ assert.match(css,/League\+Spartan/,'Webfont missing');
 assert.match(css,/aspect-ratio:4\/5/,'Studio proportions missing');
 assert.match(css,/@media\(max-width:850px\)/,'Responsive product grid missing');
 for(const html of pages){
- assert.match(html,/draaghet-capsule\.js\?v=2/);
+ assert.match(html,/draaghet-capsule\.js\?v=3/);
  assert.match(html,/draaghet-capsule-render\.js\?v=3/);
  assert.match(html,/draaghet-capsule\.css\?v=3/);
 }
