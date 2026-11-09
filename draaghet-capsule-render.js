@@ -21,29 +21,40 @@ function fitPrint(print,text){
  const canvas=document.createElement('canvas');
  const ctx=canvas.getContext('2d');
  const tokens=text.split(/\s+/).filter(Boolean);
- const measure=(t,size)=>{if(!ctx)return t.length*size*.6;ctx.font='900 '+size+'px "League Spartan",Spartan,Arial,sans-serif';return ctx.measureText(t).width};
- // Find a balanced natural line wrap. Scaling is proportional: never use textLength or transform scaleX.
+ const measure=(t,size)=>{
+  if(!ctx)return t.length*size*.6;
+  ctx.font='900 '+size+'px "League Spartan",Spartan,Arial,sans-serif';
+  return ctx.measureText(t).width;
+ };
+ const width=280,height=150;
  let best=null;
- for(let n=1;n<=Math.min(5,tokens.length);n++){
-  const limit=Math.max(1,Math.ceil(tokens.length/n));
-  const lines=[];let row=[];
-  for(const word of tokens){
-   if(row.length>=limit){lines.push(row.join(' '));row=[]}
-   row.push(word);
-  }
-  if(row.length)lines.push(row.join(' '));
-  let size=36;
-  const available=260;
-  while(size>12 && lines.some(line=>measure(line,size)>available))size--;
-  const totalH=lines.length*size*.98;
-  if(totalH>150)size=Math.max(12,Math.floor(150/(lines.length*.98)));
-  const score=size - Math.abs(lines.length-2)*1.5;
+ for(let targetLines=1;targetLines<=Math.min(5,tokens.length);targetLines++){
+  const limit=Math.ceil(tokens.length/targetLines);
+  const lines=[];
+  for(let i=0;i<tokens.length;i+=limit)lines.push(tokens.slice(i,i+limit).join(' '));
+  let size=50;
+  while(size>12 && (lines.some(line=>measure(line,size)>width)||lines.length*size*1.02>height))size--;
+  const score=size-1.8*Math.abs(lines.length-2);
   if(!best||score>best.score)best={lines,size,score};
  }
- const block=make('div','dh-capsule-print-text');
- block.style.fontSize=best.size+'px';
- for(const line of best.lines)block.append(make('span','',line));
- print.replaceChildren(block);
+ const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+ svg.setAttribute('viewBox','0 0 300 170');
+ svg.setAttribute('aria-hidden','true');
+ const step=best.size*1.02;
+ const first=85-((best.lines.length-1)*step)/2+best.size*.32;
+ best.lines.forEach((line,i)=>{
+  const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+  t.setAttribute('x','150');t.setAttribute('y',String(first+i*step));
+  t.setAttribute('text-anchor','middle');
+  t.setAttribute('font-size',String(best.size));
+  t.setAttribute('font-weight','900');
+  t.setAttribute('font-family','League Spartan, Spartan, Arial, sans-serif');
+  t.setAttribute('letter-spacing','-0.5');
+  t.setAttribute('fill','currentColor');
+  t.textContent=line;
+  svg.append(t);
+ });
+ print.replaceChildren(svg);
 }
 function photo(item,priority=false){
  const media=make('div','dh-capsule-media');
