@@ -25,3 +25,54 @@
 .maker-hub-warning{font-size:12px;line-height:1.7;color:#625e56;max-width:850px}
 @media(max-width:800px){.maker-hub-step-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:520px){.maker-hub-step-grid{grid-template-columns:1fr}.maker-hub-profile-row{align-items:flex-start;gap:14px}.maker-hub-profile .community-avatar{width:57px;height:57px;font-size:22px}.maker-hub-stats{grid-template-columns:1fr}.maker-hub-idea{flex-direction:column;align-items:flex-start}}
+
+/* Fase 4: afwisselende vlakken voor een duidelijk gescheiden Makers Dashboard.
+   Profiel donker, overzicht wit, recente ideeën donker, vervolgstappen wit. */
+.maker-hub-profile,.maker-hub-ideas{
+  background:#171717!important;
+  color:#f7f5ee!important;
+  border-color:#171717!important;
+}
+.maker-hub-profile{border-top:6px solid #f3e72b!important}
+.maker-hub-profile h2,.maker-hub-ideas h2,
+.maker-hub-profile .community-eyebrow,.maker-hub-ideas .maker-hub-ideas-title a{
+  color:#f7f5ee!important;
+}
+.maker-hub-profile .maker-hub-profile-details p,
+.maker-hub-ideas .maker-hub-idea span{color:#c7c1b7!important}
+.maker-hub-profile .community-avatar{
+  background:#f3e72b!important;color:#171717!important;
+  border-color:#f3e72b!important;
+}
+.maker-hub-profile .community-btn.light{
+  background:transparent!important;color:#fff!important;
+  border:1px solid #e8e4da!important;
+}
+.maker-hub-profile .community-btn.yellow{background:#f3e72b!important;color:#171717!important}
+.maker-hub-ideas .maker-hub-idea{border-color:#4c4b47!important}
+.maker-hub-ideas #hub-recent.community-empty{
+  color:#d7d1c7!important;
+  background:#262626!important;
+  border-color:#444!important;
+}
+.maker-hub-summary,.maker-hub-next{
+  background:#fff!important;
+  color:#171717!important;
+  border:1px solid #e5e0d7!important;
+  border-radius:16px;
+  padding:clamp(22px,3.4vw,35px);
+  margin:0 0 23px;
+}
+.maker-hub-next p{max-width:670px;font-size:14px;color:#666158;line-height:1.7}
+.maker-hub-profile,.maker-hub-summary,.maker-hub-ideas,.maker-hub-next{
+  box-shadow:0 8px 24px rgba(23,23,23,.035);
+}
+.maker-hub-ideas a:focus-visible,.maker-hub-profile a:focus-visible{
+  outline:3px solid #f3e72b!important;outline-offset:4px;
+}
+@media(max-width:520px){
+ .maker-hub-profile,.maker-hub-summary,.maker-hub-ideas,.maker-hub-next{
+   border-radius:12px;padding:21px 18px;margin-bottom:16px;
+ }
+ .maker-hub-profile .maker-hub-actions a{max-width:100%}
+}
