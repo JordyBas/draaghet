@@ -24,8 +24,8 @@ assert.match(studio,/submit-maker-idea/,'Must submit via secured Edge Function')
 assert.doesNotMatch(studio,/\.from\(['"]ideas['"]\)\.insert/,'Never insert ideas directly from browser');
 assert.match(onboarding,/maker_applications/,'Onboarding must display approval status');
 assert.match(makerHtml,/dh-maker-release/,'Missing clear pre-launch notice');
-assert.match(makerHtml,/makers-studio\.js\?v=4/,'Maker Studio cache not refreshed');
-assert.match(makerHtml,/maker-onboarding\.js\?v=2/,'Maker onboarding cache not refreshed');
+assert.match(makerHtml,/makers-studio\.js\?v=5/,'Maker Studio cache not refreshed');
+assert.match(makerHtml,/maker-onboarding\.js\?v=3/,'Maker onboarding cache not refreshed');
 assert.match(makerHtml,/makers-studio\.css\?v=4/,'Studio styles not refreshed');
 assert.match(makerCss,/dh-stage-nav-item/,'Step navigation styling missing');
 assert.match(dashboard,/hub-approval/,'Maker approval indicator missing');
@@ -33,7 +33,7 @@ assert.match(dashJs,/maker_applications/,'Maker dashboard must read own approval
 assert.match(admin,/admin_users/,'Admin access must be checked');
 assert.match(admin,/maker_applications/,'Maker applications must be reviewed');
 assert.match(adminHtml,/noindex,nofollow/,'Private admin page must not be indexed');
-assert.match(adminHtml,/maker-approval-admin\.js\?v=1/);
+assert.match(adminHtml,/maker-approval-admin\.js\?v=2/);
 const community=read('makers-community.js');
 const publicProfile=read('maker.html');
 new vm.Script(community,{filename:'makers-community.js'});
