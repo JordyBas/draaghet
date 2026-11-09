@@ -86,3 +86,37 @@ body{background:var(--dh-bg);color:var(--dh-black)}
 .dh-best-placeholder{font:900 36px/1 Inter,Arial,sans-serif;letter-spacing:-.085em;color:#171717;transform:rotate(-4deg)}
 .dh-best-card:hover .dh-best-art img{transform:scale(1.035);transition:transform .35s}
 .dh-best-single .dh-best-track{animation:none!important}
+
+/* DRAAGHET huisstijl: laat mobiele browserlinks en -knoppen nooit standaardblauw worden. */
+:root{--dh-bg:#f7f5ee;--dh-black:#171717;--dh-yellow:#f3e72b}
+html{-webkit-tap-highlight-color:rgba(243,231,43,.35)}
+body{accent-color:#171717}
+main a:not([class]):link,main a:not([class]):visited,
+main .dh-breadcrumb a:link,main .dh-breadcrumb a:visited,
+#navlinks.dh-navigation a:link,#navlinks.dh-navigation a:visited,
+.dh-account-dropdown a:link,.dh-account-dropdown a:visited{
+ color:#171717!important;
+}
+main a:not([class]):focus-visible,button:focus-visible{
+ outline:3px solid #a79900;outline-offset:3px;
+}
+#filters .choice,#filters .choice:link,#filters .choice:visited{
+ color:#171717!important;-webkit-text-fill-color:#171717!important;
+ appearance:none;-webkit-appearance:none;
+}
+#filters .choice.active,#filters .choice[aria-pressed="true"]{
+ background:#f3e72b!important;border-color:#171717!important;
+ color:#171717!important;-webkit-text-fill-color:#171717!important;
+}
+.dh-footer a:link,.dh-footer a:visited{color:#f2f0eb!important}
+.maker-hub-profile a:not(.yellow):link,.maker-hub-profile a:not(.yellow):visited,
+.maker-hub-ideas a:link,.maker-hub-ideas a:visited{color:#f7f5ee!important}
+@media(max-width:1000px){
+ #navlinks.dh-navigation,#navlinks.dh-navigation .dh-submenu{color:#171717!important}
+ #navlinks.dh-navigation a:link,#navlinks.dh-navigation a:visited{
+ color:#171717!important;-webkit-text-fill-color:#171717!important
+ }
+ #navlinks.dh-navigation .dh-navgroup>button{color:#171717!important}
+ #filters .choice{background:#fff!important;color:#171717!important;-webkit-text-fill-color:#171717!important}
+ #filters .choice.active{background:#f3e72b!important}
+}
