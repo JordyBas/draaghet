@@ -1,0 +1,26 @@
+/* DRAAGHET. | Visual first capsule on genuine supplier garment shots */
+.dh-capsule-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:clamp(16px,2vw,26px)!important}
+.dh-capsule-card{min-width:0;position:relative}
+.dh-capsule-card>a{display:block;text-decoration:none;color:inherit}
+.dh-capsule-media{display:grid;place-items:center;position:relative;aspect-ratio:4/4.65;background:#efede9;overflow:hidden}
+.dh-capsule-media>img{width:100%;height:100%;object-fit:contain;display:block;mix-blend-mode:multiply}
+.dh-capsule-print{position:absolute;left:29%;width:42%;top:31.5%;height:23%;z-index:2;display:grid;place-items:center;pointer-events:none;filter:drop-shadow(0 1px 1px #00000012)}
+.dh-capsule-print>svg{width:100%;height:100%;overflow:visible}
+.dh-capsule-media[data-garment="Hoodie"] .dh-capsule-print{top:36%;height:18%}
+.dh-capsule-media[data-garment="Sweater"] .dh-capsule-print{top:31%;height:20%}
+.dh-capsule-media:before{content:"";position:absolute;inset:0;background:#00000004;z-index:1;pointer-events:none}
+.dh-capsule-card:hover .dh-capsule-media>img{transform:scale(1.035);transition:transform .4s}
+.dh-capsule-label{position:absolute;z-index:4;top:14px;left:14px;background:#f3e72b;color:#151515;padding:8px 10px;font:900 10px/1 Inter,Arial,sans-serif;letter-spacing:.03em}
+.dh-capsule-meta{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:15px 0 4px}
+.dh-capsule-meta h3{font:900 17px/1.25 Inter,Arial,sans-serif!important;letter-spacing:-.035em;margin:0!important}
+.dh-capsule-meta p{font:500 12px/1.5 Inter,Arial,sans-serif;color:#777167;margin:5px 0 0}
+.dh-capsule-price{font:800 11px/1.3 Inter,Arial,sans-serif;color:#746f66;white-space:nowrap;padding-top:3px}
+.dh-capsule-footnote{font:500 12px/1.6 Inter,Arial,sans-serif;color:#756f66;margin:19px 0 0}
+.dh-capsule-detail .dh-capsule-media{aspect-ratio:4/4.9}
+.dh-capsule-detail .dh-capsule-print{top:31.5%}
+.dh-capsule-detail .dh-capsule-media[data-garment="Hoodie"] .dh-capsule-print{top:36%}
+.dh-capsule-detail .dh-capsule-print{width:44%;left:28%}
+.dh-capsule-detail .dh-capsule-label{top:15px}
+.dh-capsule-action{display:inline-flex;background:#171717;color:white;padding:14px 20px;font:800 12px Inter,Arial,sans-serif;text-decoration:none;margin-top:27px}
+@media(max-width:850px){.dh-capsule-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:530px){.dh-capsule-grid{gap:13px!important}.dh-capsule-meta{display:block}.dh-capsule-meta h3{font-size:14px!important}.dh-capsule-price{display:block;margin-top:5px}.dh-capsule-label{font-size:9px;padding:6px 8px}.dh-capsule-print{left:27%;width:46%}}
