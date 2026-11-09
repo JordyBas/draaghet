@@ -26,6 +26,8 @@ jobs:
     steps:
       - name: Checkout website
         uses: actions/checkout@v4
+      - name: Validate homepage before publishing
+        run: node scripts/check-homepage.mjs
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload website files
