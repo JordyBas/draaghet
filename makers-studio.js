@@ -113,7 +113,7 @@
     status.setAttribute('role','status');status.setAttribute('aria-live','polite');
     under.append(status);
     form.replaceChildren(header,progress,stepNavigator,intro,steps,error,actions,under);
-    let step=0,submitting=false,release={submissions_enabled:false,terms_version:'0.4'},user=null,used=0;
+    let step=0,submitting=false,release={submissions_enabled:false,terms_version:'0.4'},user=null,used=0,approved=false;
     const client=window.supabase?.createClient(SUPABASE_URL,PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
     let submissionKey=crypto.randomUUID();
     function describeFiles(){
@@ -155,10 +155,11 @@
       error.textContent='';
       if(step===5)reviewData();
       next.textContent=step===5?'IDEE INSTUREN':'VERDER';
-      next.disabled=submitting||(step===5&&(!release.submissions_enabled||!user||used>=6));
+      next.disabled=submitting||(step===5&&(!release.submissions_enabled||!user||!approved||used>=6));
       status.textContent=!release.submissions_enabled
         ?'We ronden de laatste veiligheids- en voorwaardencontroles af. Je kunt het formulier alvast bekijken.'
         :!user?'Log in met een bevestigd e-mailadres om je idee te versturen.'
+        :!approved?'Je makersaanvraag wordt eerst door ons beoordeeld. Insturen kan pas na goedkeuring.'
         :used>=6?'Je hebt deze maand de limiet van 6 inzendingen bereikt.'
         :'Je hebt deze maand '+Math.max(0,6-used)+' van je 6 inzendingen over.';
     }
@@ -184,7 +185,7 @@
       return false;
     }
     async function submitIdea(){
-      if(submitting||!release.submissions_enabled||!user||used>=6)return;
+      if(submitting||!release.submissions_enabled||!user||!approved||used>=6)return;
       if(!age.checked||!consent.checked||!selectedCategory||!title.value.trim()||!description.value.trim()){
         error.textContent='Controleer alle verplichte velden en verklaringen.';return;
       }
@@ -251,20 +252,23 @@
         const releaseNotice=document.querySelector('.dh-maker-release');
         if(releaseNotice)releaseNotice.hidden=!!release.submissions_enabled;
         user=authError?null:auth.user;
+        approved=false;
         if(user){
+          const application=await client.from('maker_applications').select('status').eq('user_id',user.id).maybeSingle();
+          approved=!application.error&&application.data?.status==='approved';
           const quota=await client.rpc('maker_monthly_usage');
           if(quota.error)throw quota.error;
           used=Number(quota.data)||0;
         }else used=0;
         gate.querySelector('strong').textContent=release.submissions_enabled?'JOUW MAKERS ACCOUNT':'MAKERS STUDIO IN ONTWIKKELING';
         gate.querySelector('p').textContent=release.submissions_enabled
-          ?user?'Je bent ingelogd. Vul hieronder je idee in.':'Log in met een bevestigd e-mailadres om in te sturen.'
+          ?user?(approved?'Je makersprofiel is goedgekeurd. Je kunt je idee insturen.':'Je makersaanvraag wordt eerst beoordeeld. Je kunt het formulier alvast bekijken.'):'Log in met een bevestigd e-mailadres om in te sturen.'
           :'Het volledige formulier staat klaar. Inzenden openen we pas na onze laatste veiligheids- en voorwaardencontroles.';
         const login=gate.querySelector('a');
         if(login)login.hidden=!!user;
         render();
       }catch(e){
-        release.submissions_enabled=false;
+        release.submissions_enabled=false;approved=false;
         gate.querySelector('strong').textContent='CONTROLE NOG NIET BESCHIKBAAR';
         gate.querySelector('p').textContent='De inzendstatus kan niet worden gecontroleerd. Verzenden is daarom tijdelijk uitgeschakeld.';
         render();
