@@ -68,7 +68,7 @@
   if(!db){root.textContent='De verbinding is niet beschikbaar.';return;}
   const r=await db.from('maker_public_profiles').select('user_id,display_name,handle,bio,is_public').eq('user_id',id).eq('is_public',true).maybeSingle();
   if(r.error||!r.data){root.className='community-empty';root.textContent='Dit profiel bestaat niet of is niet openbaar.';return;}
-  const m=r.data;document.title=m.display_name+' | Maker bij DRAAGHET.';
+  const m=r.data;document.title=m.display_name+' | Maker bij DRAAGHET';
   root.className='community-profile';root.replaceChildren();
   const head=el('div','community-profile-header');head.append(avatar(m.display_name));
   const h=el('div','');h.append(el('h1','',m.display_name),el('div','community-handle','@'+m.handle));head.append(h);root.append(head);
