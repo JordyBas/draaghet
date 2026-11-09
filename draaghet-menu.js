@@ -49,9 +49,9 @@
   }
   column('ONTDEKKEN',[['Shop','shirts.html'],['Bestsellers','categorie.html?lijst=bestsellers'],['Makers','makers.html'],['Ons verhaal','verhaal.html']]);
   column('HULP & INFORMATIE',[['Contact','contact.html'],['Veelgestelde vragen','veelgestelde-vragen.html'],['Verzending & verwerking','verzending.html'],['Inzendvoorwaarden','inzendvoorwaarden.html']]);
-  column('JOUW DRAAGHET.',[['Mijn account','account.html'],['Mijn bestellingen','mijn-bestellingen.html'],['Makers Studio','idee.html'],['Makers Dashboard','makers-dashboard.html']]);
+  column('JOUW DRAAGHET',[['Mijn account','account.html'],['Mijn bestellingen','mijn-bestellingen.html'],['Makers Studio','idee.html'],['Makers Dashboard','makers-dashboard.html']]);
   const bottom=elem('div','dh-footer-bottom');
-  bottom.append(elem('span','','© 2026 DRAAGHET. · Onderdeel van CustomM8 · Nederland'));
+  bottom.append(elem('span','','© 2026 DRAAGHET · Onderdeel van CustomM8 · Nederland'));
   const small=elem('div','dh-footer-smalllinks');
   const contact=elem('a','','info@custom-m8.com');contact.href='mailto:info@custom-m8.com';small.append(contact);
   const help=elem('a','','Contact');help.href='contact.html';small.append(help);
@@ -70,7 +70,7 @@
   const dropdown=elem('div','dh-account-dropdown');dropdown.hidden=true;
   const links=[['Overzicht','mijn-overzicht.html'],['Bestellingen','mijn-bestellingen.html'],['Mijn gegevens','mijn-gegevens.html'],['Makers Dashboard','makers-dashboard.html']];
   for(const [label,href] of links){const a=elem('a','',label);a.href=href;dropdown.append(a)}
-  const adminLink=elem('a','','Beheer DRAAGHET.');adminLink.href='beheer.html';adminLink.hidden=true;dropdown.append(adminLink);
+  const adminLink=elem('a','','Beheer DRAAGHET');adminLink.href='beheer.html';adminLink.hidden=true;dropdown.append(adminLink);
   const logout=elem('button','','UITLOGGEN');logout.type='button';logout.onclick=async()=>{await db.auth.signOut();location.href='account.html'};dropdown.append(logout);
   menu.append(trigger,dropdown);original.insertAdjacentElement('afterend',menu);
   trigger.onclick=()=>{const opened=dropdown.hidden;dropdown.hidden=!opened;trigger.setAttribute('aria-expanded',String(opened))};
