@@ -58,3 +58,8 @@
 .dh-maker-variant-info span{font-weight:800;white-space:nowrap}
 .dh-maker-pricenote{font-size:12px;line-height:1.6;color:#69655c;margin:19px 0 0}
 @media(max-width:650px){.dh-maker-variant-grid{gap:8px}.dh-maker-variant-info{display:block;font-size:12px}.dh-maker-variant-info span{display:block;margin-top:4px}.dh-maker-variant .dh-capsule-label{font-size:8px;padding:4px 5px;top:7px;left:7px}}
+
+/* Fase 4: multiple genuine public design sets on maker profiles */
+.dh-maker-designs .dh-maker-demo+.dh-maker-demo{border-top:1px solid #e4dfd7;padding-top:26px;margin-top:28px}
+.dh-maker-designs .dh-maker-desc{max-width:720px;line-height:1.65}
+.dh-maker-variant .dh-capsule-label{font-size:9px}
