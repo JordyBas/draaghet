@@ -12,7 +12,8 @@ const zones={
  'Sweater':{width:40,top:34,height:17},
  'Hoodie':{width:36,top:39,height:14}
 };
-const font='900 36px "League Spartan",Spartan,Arial,sans-serif';
+const PRICE_LABELS=Object.freeze({'T-shirt':'€24,95','Sweater':'€39,95','Hoodie':'€44,95'});
+const examplePrice=type=>(PRICE_LABELS[type]||'Prijs volgt')+' *';
 function wordsFor(item){
  const text=[item.line1,item.line2].filter(Boolean).join(' ').replace(/\s+/g,' ').trim();
  return text||item.name.toLocaleUpperCase('nl-NL');
@@ -93,7 +94,7 @@ function card(item){
  const info=make('div','dh-capsule-meta');
  const summary=make('div');
  summary.append(make('h3','',item.name),make('p','',item.type+' · '+item.colorNL));
- info.append(summary,make('span','dh-capsule-price','Binnenkort'));
+ info.append(summary,make('span','dh-capsule-price',examplePrice(item.type)));
  link.append(info);article.append(link);
  return article;
 }
@@ -103,7 +104,7 @@ function installList(){
   grid.classList.add('dh-capsule-grid');
   grid.replaceChildren(...items.map(card));
   const note=grid.closest('section')?.querySelector('.preview-note');
-  if(note)note.textContent='Digitale voorbeelden op productfoto’s van Untagged Movement. Prijzen, maten, bedrukking en beschikbaarheid worden vóór verkoop bevestigd.';
+  if(note)note.textContent='* Voorbeeldprijzen, niet definitief. Digitale kledingmockups. Bedrukking, maten, voorraad en prijzen worden vóór verkoop vastgesteld.';
   const filters=document.getElementById('filters');
   if(filters){
    let sweater=filters.querySelector('[data-filter="Sweater"]');
@@ -134,13 +135,14 @@ function installDetail(){
  const note=document.querySelector('.smallnote');
  if(note)note.textContent='Digitale conceptmockup. Printpositie, werkelijke kleur en exacte afmetingen worden vóór verkoop definitief gecontroleerd.';
  const unavailable=document.querySelector('.unavailable');
- if(unavailable)unavailable.textContent='Nog niet te bestellen. Verkoopprijs, exacte maten, varianten en definitieve bedrukking zijn nog niet vastgesteld.';
+ if(unavailable)unavailable.textContent='Voorbeeldprijs '+examplePrice(item.type)+'. Dit bedrag is indicatief en nog niet definitief. Nog niet te bestellen: maten, kleuren, prijs en bedrukking worden vóór verkoop vastgesteld.';
  const spec=document.querySelector('.spec');
  if(spec){
   const p=spec.querySelector('p');
   if(p)p.textContent='Basisartikel: '+item.model+' ('+item.article+'), kleur '+item.colorNL+'. Productfoto van de leverancier; bedrukking is een indicatieve digitale weergave.';
  }
 }
+window.DRAAGHET_MOCKUPS=Object.freeze({photo,examplePrice});
 function init(){installList();installDetail()}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
