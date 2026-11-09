@@ -20,7 +20,7 @@ const publicLink=document.getElementById('hub-public-link');
 if(p){
  name.textContent=p.display_name;
  document.getElementById('hub-avatar').textContent=p.display_name.slice(0,2).toUpperCase();
- visibility.textContent=p.is_public?'Openbaar makersprofiel. Bezoekers kunnen jouw verhaal en gepubliceerde ontwerpen bekijken.':'Je makersprofiel is privé. DRAAGHET. kan jouw geselecteerde ontwerpen verkopen zonder je openbare identiteit te tonen.';
+ visibility.textContent=p.is_public?'Openbaar makersprofiel. Bezoekers kunnen jouw verhaal en gepubliceerde ontwerpen bekijken.':'Je makersprofiel is privé. DRAAGHET kan jouw geselecteerde ontwerpen verkopen zonder je openbare identiteit te tonen.';
  if(p.is_public){publicLink.href='maker.html?id='+encodeURIComponent(user.id);publicLink.hidden=false;}
 }else{
  name.textContent='Maak jouw makersprofiel aan';
