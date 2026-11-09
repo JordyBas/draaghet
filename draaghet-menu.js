@@ -5,7 +5,7 @@
  function elem(tag,cls,value){const x=document.createElement(tag);if(cls)x.className=cls;if(value!==undefined)x.textContent=value;return x}
  function addStyle(){
   if(document.querySelector('link[data-dh-shell]'))return;
-  const link=elem('link');link.rel='stylesheet';link.href='draaghet-site.css?v=1';link.dataset.dhShell='1';document.head.append(link);
+  const link=elem('link');link.rel='stylesheet';link.href='draaghet-site.css?v=2';link.dataset.dhShell='1';document.head.append(link);
  }
  function buildNavigation(){
   const root=document.getElementById('navlinks');if(!root)return;
