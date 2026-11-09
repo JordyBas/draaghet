@@ -39,11 +39,11 @@
   if(!catalog||!mockups){root.append(section);return;}
   const demoText='SOCIALE BATTERIJ';
   const variants=[
-    ['T-shirt','3410020','Black'],
-    ['Sweater','3430020','Charcoal'],
-    ['Hoodie','3440020','Black']
+    ['T-shirt','Black'],
+    ['Sweater','Charcoal'],
+    ['Hoodie','Black']
   ];
-  const template=variants.map(([type,article,color])=>catalog.find(item=>item.type===type&&item.article===article&&item.color===color));
+  const template=variants.map(([type,color])=>catalog.find(item=>item.type===type&&item.color===color));
   if(template.some(x=>!x)){root.append(section);return;}
   const example=el('div','dh-maker-demo');
   example.append(el('strong','dh-maker-demo-label','VOORBEELDWEERGAVE · GEEN ONTWERP VAN DEZE MAKER'));
