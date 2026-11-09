@@ -28,3 +28,15 @@ Bij nieuwe belangrijke restpunten deze lijst uitbreiden. Afvinken alleen na cont
 - [ ] Controleer in een echte browser alle belangrijke routes: homepage, Maker worden, Makers Studio, Makers Dashboard, account, gegevens, bestellingen en openbare makerspagina, inclusief mobiele menu's en accountwissels.
 - [ ] Bevestig dat de openbare makerspagina uitsluitend gepubliceerde ontwerpen toont (bij privéprofiel geen persoonsgegevens); productkoppeling volgt fase 6.
 - [ ] Controleer alle bestaande accountsubpagina's op hetzelfde vereenvoudigde menu en doorverwijzing naar het centrale Makers Dashboard; verwijder oude dubbele navigatie pas nadat de nieuwe route is gecontroleerd.
+
+## Fase 3: webshop en betaling, huidige masterplanfase
+- [x] Werkende maar niet-betaalbare proefwinkelwagen met aantal, verwijderen, voorbeeldtotaal en 75-euro-grens.
+- [x] Uitschuifbaar winkelwagenpaneel en aparte overzichtspagina.
+- [x] Alleen leesbare checkoutdemo zonder persoonsgegevens of betaalgegevens.
+- [x] Supabase-shopbasistabellen en beveiligde RLS; checkout-gate staat bewust uit.
+- [ ] Definitieve producten/maatvarianten en echte prijzen incl. btw goedkeuren.
+- [ ] Betaalprovider kiezen, contract/credentials regelen en veilige server-side integratie uitvoeren.
+- [ ] Definitieve verzendtarieven, herroepingsregels en juridische voorwaarden afronden.
+- [ ] Betalingswebhooks, geverifieerde statusupdates, gastcheckout, orders en e-mailbevestigingen volledig testen.
+- [ ] Productielivegang expliciet vrijgeven; noindex van checkout/winkelwagen herzien waar relevant.
+- [ ] Test geprinte DRAAGHET-neklabels met correcte materiaalsamenstelling en zonder zichtbare leverancierstekst.
