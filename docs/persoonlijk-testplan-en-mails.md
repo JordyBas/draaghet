@@ -144,3 +144,43 @@ Gekozen: Shop, Bestsellers, Beste Makers, Over ons, Contact, gevolgd door winkel
 - [ ] [ACC-04] Open het Makers Dashboard vanuit Mijn account; ideeën, profiel en verdiensten blijven daar bereikbaar zonder als aparte accountcategorieën te verschijnen.
 - [ ] [ACC-05] Controleer dat de nog niet actieve loyaliteitspunten niet afleiden in Mijn overzicht.
 - [ ] [ACC-06] Controleer oude directe links naar Mijn inzendingen en Mijn verdiensten; deze moeten blijven functioneren en geen gegevens verliezen.
+
+
+## Bijgewerkt op 9 november 2026 | Persoonlijke acties en tests na de bouwfases
+**Afspraak:** Verzamel deze punten tijdens elke fase. Vraag ze pas als gezamenlijke eindtest uit wanneer alle bouwfases klaar zijn, behalve strikt noodzakelijke veiligheidscontroles vóór daadwerkelijke vrijgave. Een afgevinkt technisch onderdeel betekent niet dat Jordy het visueel of in productie heeft getest.
+
+### Huisstijl en mobiele pagina's
+- [ ] Op iPhone Safari, Android Chrome en desktop controleren dat geen standaardblauwe links, filterknoppen of accountnavigatie zichtbaar zijn. Actuele kleuren: gebroken wit **#F7F5EE**, zwart **#171717**, felgeel **#F3E72B**.
+- [ ] Shopfilter **Alles, T-shirts, Hoodies, Sweaters** aanraken: niet geselecteerd zwarte tekst; geselecteerd gele achtergrond met zwarte tekst. Selectie moet productoverzicht daadwerkelijk filteren.
+- [ ] Mobiele hoofdmenu, makersmenu, accountmenu, productpagina's, formulieren, knoppen, ankerlinks, links in footers, categorieën en FAQ controleren op standaardblauw, leesbaarheid en correcte focus/actieve status.
+- [ ] Op donkere dashboardsecties moeten links wit/licht zijn en knoppen voldoende contrast hebben, niet onleesbaar zwart.
+- [ ] Controleer dat de bestaande grafische logopunt blijft staan, maar de merknaam **DRAAGHET** in doorlopende zinnen geen foutieve punt heeft.
+- [ ] Werkelijke telefooncontrole van 320, 360, 390 en 430 px breed; geen horizontaal scrollen, afgebroken knoppen of slecht zichtbare kleuren. Controleer cache na het publiceren met harde verversing.
+
+### Makers Studio en aanvraagbeheer (fase 4)
+- [ ] Testaccount zonder makersprofiel: aanmelden als maker, optioneel privé/openbaar profiel, status **in beoordeling**.
+- [ ] Een gewone maker kan zichzelf niet goedkeuren, andermans persoonsgegevens inzien of ongepubliceerde ontwerpen publiek maken.
+- [ ] Via apart adminaccount naar **Maker-aanvragen**: aanvraag bekijken, beoordelen, afwijzen of pauzeren; status terugzien in makeraccount; rollen scheiden.
+- [ ] De zes stappen in de Makers Studio doorlopen; teruggaan bewaart invoer, foutmeldingen bij lege titel/categorie/omschrijving en verkeerde bestanden, overzicht klopt.
+- [ ] Inzenden blijft daadwerkelijk gesloten totdat licentie-/privacyvoorwaarden en antimalwarescan zijn goedgekeurd, ook als een maker al admin-goedgekeurd is.
+- [ ] Een gepubliceerd makersontwerp toont bij openbaar profiel de juiste drie kledingvarianten zonder privégegevens; privéprofielen lekken niets.
+- [ ] Test de zwarte en witte vlakken in Makers Dashboard, bijbehorende links, leesbaarheid, open/privé-omschakeling en mobiele weergave.
+
+### Fase 5: royalties en uitbetalingen
+- [ ] Bevestig per werkelijk betaald T-shirt, sweater en hoodie dat verkoop 1–25 respectievelijk €1, €1,50 en €2 oplevert.
+- [ ] Per **ontwerp**, inclusief gemengde kledingvarianten, verkoop 25 = normale bonus; **verkoop 26** = het dubbele tarief. Verkoop 1–25 mag nooit met terugwerkende kracht worden verdubbeld.
+- [ ] Twee gelijktijdige betalingen en dubbele webhook voor hetzelfde orderregelnummer simuleren: geen dubbel verdiende makersbeloning, geen dubbele teller.
+- [ ] Alle geldige verkopen van één maker over meerdere ontwerpen optellen: tot en met 24 maximaal 3 actieve ontwerpen; vanaf 25 maximaal 6, mits juridische regels definitief zijn.
+- [ ] Annulering of retour, gedeeltelijke retour en refund testen: saldo en geldige verkopen correct herberekend; een al uitbetaald bedrag mag niet stilzwijgend verdwijnen.
+- [ ] Maker A ziet geen verkopen, adressen, payoutbedragen of saldo van maker B. Adminrechten afzonderlijk testen.
+- [ ] Makerssaldo onderscheidt verdiend, gereserveerd, beschikbaar en uitbetaald; geen uitbetaling vóór **€50 beschikbaar saldo**, definitieve uitbetalingsfrequentie nog vaststellen.
+- [ ] Test of DRAAGHET daadwerkelijk de maker kan betalen, inclusief betaalgegevens, bewijs, administratie en fiscale behandeling. Geen automatische uitbetalingen zonder definitieve voorwaarden.
+- [ ] Controleer dat de nieuwste website van git naar GitHub Pages is gedeployed en dat alle gekoppelde account- en makerspagina's na nieuwe CSS-/JS-versies goed laden.
+
+### Producten, betalingen en livegang
+- [ ] Definitieve echte producten, prijzen incl. btw, maat-/kleurvarianten, eigen merklabels, materiaal, waslabels, drukproeven en productfoto's controleren.
+- [ ] Betaalprovider kiezen en zakelijke betaalrekening/credentials activeren; sandbox en echte testbestellingen testen met gast- en accountcheckout.
+- [ ] Verzendkosten, retourbeleid, herroepingsrecht, privacy-/licentievoorwaarden en orderbevestigingsmails juridisch en operationeel controleren.
+- [ ] GitHub Pages, domein, DNS, SEO en juiste indexeringsinstellingen controleren. Echt verkopen uitsluitend na expliciet groen licht.
+
+**Nog uit te werken met Jordy:** (1) exacte uitbetalingsfrequentie; (2) omgaan met resterend saldo bij stoppen, refunds en faillissement; (3) fiscale behandeling makersroyalties; (4) definitieve productprijzen, klanten- en inkoopmarges; (5) juridisch getoetste 12-maandenlicentie versus bestaande 6-maandenconfiguratie.
