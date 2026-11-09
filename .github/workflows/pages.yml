@@ -32,6 +32,7 @@ jobs:
           node scripts/check-products.mjs
           node scripts/check-checkout.mjs
           node scripts/check-makers.mjs
+          node scripts/check-rewards.mjs
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload website files
