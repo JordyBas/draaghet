@@ -1,5 +1,5 @@
-/* DRAAGHET. first original capsule, visual mockups on official Untagged Movement garment images.
- * Supplier photos are raw unprinted garments. Print overlays are indicative and not production artwork. */
+/* DRAAGHET private technical catalog. Supplier references for internal production only.
+ * Never reveal supplier brands, model names or source article numbers in customer-facing UI. */
 window.DRAAGHET_CAPSULE=[
  {slug:"sociale-batterij",name:"Sociale batterij",type:"T-shirt",model:"Untagged Movement Loose Fit",article:"3410020",color:"Black",colorNL:"Zwart",image:"https://images.nwgmedia.com/highres/707621/3410020-900_UMT-shirtLooseFit_front.jpg",label:"SOCIALE BATTERIJ",line1:"SOCIALE",line2:"BATTERIJ",mode:"light"},
  {slug:"aanwezig-is-genoeg",name:"Aanwezig is genoeg",type:"T-shirt",model:"Untagged Movement Loose Fit",article:"3410020",color:"Birch",colorNL:"Birch",image:"https://images.nwgmedia.com/highres/707664/3410020-170_UMT-shirtLooseFit_front.jpg",line1:"IK BEN ER.",line2:"DAT IS GENOEG.",mode:"dark"},
