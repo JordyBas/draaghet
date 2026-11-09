@@ -44,6 +44,7 @@ const makerCss=read('makers-community.css');
 new vm.Script(community,{filename:'makers-community.js'});
 assert.ok(makerPage.includes('makers-community.js?v=2'),'Maker profile community script stale');
 assert.ok(makerPage.includes('draaghet-capsule-render.js?v=3'),'Maker profile renderer missing');
+assert.ok(makerPage.includes('draaghet-capsule.js?v=3'),'Maker profile public catalog must be current');
 assert.ok(community.includes('dh-maker-variant-grid'),'Maker triptych presentation missing');
 assert.ok(community.includes('VOORBEELDWEERGAVE'),'Demo disclosure missing');
 assert.ok(makerCss.includes('grid-template-columns:repeat(3,minmax(0,1fr))'),'Maker triptych columns missing');
