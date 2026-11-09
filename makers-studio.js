@@ -69,13 +69,22 @@
       'Je behoudt eventuele rechten op je eigen werk. De definitieve gebruiksrechten en uitbetalingsafspraken worden vóór opening van inzendingen vrijgegeven.');
     const review=elem('div','dh-review');
     const stages=[
-      {name:'Jouw idee',heading:'Geef je idee een naam.',help:'De leukste ideeën beginnen met een goede zin.',fields:[titleLabel,title]},
-      {name:'Categorie',heading:'Welke humor past erbij?',help:'Kies één categorie. Wij controleren later of die goed past.',fields:[categoryChoice]},
-      {name:'Het verhaal',heading:'Vertel ons het idee.',help:'Wat komt op de kleding? Wat maakt dit ontwerp grappig?',fields:[descriptionLabel,description]},
-      {name:'Ontwerp',heading:'Heb je al een ontwerp?',help:'Bestanden zijn optioneel. PNG, JPG en PDF tot 10 MB, maximaal drie per inzending.',fields:[fileLabel,fileWrapper,fileInfo]},
-      {name:'Akkoord',heading:'Nog twee belangrijke checks.',help:'Je moet minimaal 18 zijn en de actuele voorwaarden accepteren.',fields:[...consentLabels,legal]},
-      {name:'Controleren',heading:'Check. Klaar. Draagbaar.',help:'Dit is het overzicht van je idee.',fields:[review]}
+      {name:'Idee',heading:'Hoe heet jouw idee?',help:'Geef je idee een korte, duidelijke titel.',fields:[titleLabel,title]},
+      {name:'Humor',heading:'Welke humor past erbij?',help:'Kies de categorie die het beste bij je idee past.',fields:[categoryChoice]},
+      {name:'Uitleg',heading:'Wat moet erop komen?',help:'Beschrijf de tekst of het ontwerp. Houd het lekker duidelijk.',fields:[descriptionLabel,description]},
+      {name:'Bestand',heading:'Wil je een bestand toevoegen?',help:'Niet verplicht. Je kunt later ook zonder bestand een idee insturen.',fields:[fileLabel,fileWrapper,fileInfo]},
+      {name:'Akkoord',heading:'Controleer de voorwaarden.',help:'Je moet minimaal 18 zijn en de voorwaarden accepteren.',fields:[...consentLabels,legal]},
+      {name:'Overzicht',heading:'Klopt alles?',help:'Controleer je idee voordat je het instuurt.',fields:[review]}
     ];
+    const intro=elem('p','dh-wizard-intro','Vul alleen in wat nodig is. Je kunt met Vorige stap teruggaan zonder je invoer kwijt te raken.');
+    const stepNavigator=elem('ol','dh-stage-nav');
+    stepNavigator.setAttribute('aria-label','Onderdelen van je idee');
+    const stageItems=stages.map((stage,i)=>{
+      const item=elem('li','dh-stage-nav-item',stage.name);
+      item.dataset.step=String(i);
+      stepNavigator.append(item);
+      return item;
+    });
     const header=elem('div','dh-wizard-progress');
     header.setAttribute('aria-live','polite');
     const progress=elem('div','dh-wizard-track');
@@ -96,14 +105,14 @@
     const error=elem('p','dh-form-error');
     error.setAttribute('role','alert');
     const actions=elem('div','dh-wizard-actions');
-    const back=elem('button','dh-back','VORIGE');
+    const back=elem('button','dh-back','VORIGE STAP');
     const next=elem('button','dh-next','VOLGENDE');
     back.type=next.type='button';actions.append(back,next);
     const under=elem('div','dh-under');
     const status=elem('p','dh-wizard-status','We controleren of inzenden al geopend is.');
     status.setAttribute('role','status');status.setAttribute('aria-live','polite');
     under.append(status);
-    form.replaceChildren(header,progress,steps,error,actions,under);
+    form.replaceChildren(header,progress,stepNavigator,intro,steps,error,actions,under);
     let step=0,submitting=false,release={submissions_enabled:false,terms_version:'0.4'},user=null,used=0;
     const client=window.supabase?.createClient(SUPABASE_URL,PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
     let submissionKey=crypto.randomUUID();
@@ -135,9 +144,17 @@
       progress.setAttribute('aria-valuenow',String(step+1));
       fill.style.width=((step+1)*100/6)+'%';
       stages.forEach((s,i)=>{s.section.hidden=i!==step;});
+      stageItems.forEach((item,i)=>{
+        item.classList.toggle('active',i===step);
+        item.classList.toggle('finished',i<step);
+        if(i===step)item.setAttribute('aria-current','step');
+        else item.removeAttribute('aria-current');
+      });
+      intro.textContent=step===5?'Bekijk of alles klopt. Je kunt altijd terug om iets aan te passen.':'Je vult dit stap voor stap in. Je invoer blijft staan als je teruggaat.';
       back.hidden=step===0||submitting;
+      error.textContent='';
       if(step===5)reviewData();
-      next.textContent=step===5?'IDEE INSTUREN':'VOLGENDE STAP';
+      next.textContent=step===5?'IDEE INSTUREN':'VERDER';
       next.disabled=submitting||(step===5&&(!release.submissions_enabled||!user||used>=6));
       status.textContent=!release.submissions_enabled
         ?'We ronden de laatste veiligheids- en voorwaardencontroles af. Je kunt het formulier alvast bekijken.'
@@ -209,12 +226,14 @@
     back.onclick=()=>{
       if(step<=0||submitting)return;
       step--;render();
+      document.getElementById('maker-submit-form')?.scrollIntoView({behavior:'auto',block:'start'});
     };
     next.onclick=()=>{
       if(submitting)return;
       if(step===5){void submitIdea();return;}
       if(invalid())return;
       step++;render();
+      document.getElementById('maker-submit-form')?.scrollIntoView({behavior:window.matchMedia?.('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
     };
     async function refreshAccess(){
       if(!client){
