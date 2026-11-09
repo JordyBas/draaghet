@@ -7,12 +7,20 @@ const db=window.supabase.createClient('https://rjnogcommtnxalzqrsmx.supabase.co'
 const auth=await db.auth.getUser();
 if(auth.error||!auth.data?.user){status.hidden=true;loggedOut.hidden=false;return;}
 const user=auth.data.user;
-const [profile,ideas]=await Promise.all([
+const [profile,ideas,settings]=await Promise.all([
  db.from('maker_public_profiles').select('user_id,display_name,handle,is_public').eq('user_id',user.id).maybeSingle(),
- db.from('ideas').select('title,status,category,created_at').eq('user_id',user.id).order('created_at',{ascending:false}).limit(100)
+ db.from('ideas').select('title,status,category,created_at').eq('user_id',user.id).order('created_at',{ascending:false}).limit(100),
+ db.from('maker_studio_settings').select('submissions_enabled').eq('singleton',true).maybeSingle()
 ]);
 if(profile.error||ideas.error){status.textContent='Je dashboard kon niet volledig worden geladen. Probeer het later opnieuw.';return;}
 root.hidden=false;status.hidden=true;
+const release=document.getElementById('hub-release');
+if(release&&(!settings.data?.submissions_enabled||settings.error)){
+ release.hidden=false;
+ release.textContent='Ideeën bekijken en je makersprofiel beheren kan al. Nieuwe inzendingen openen zodra de veiligheid en voorwaarden zijn goedgekeurd.';
+ const cta=document.querySelector('.maker-hub-summary a[href="idee.html"]');
+ if(cta)cta.textContent='BEKIJK IDEEËNFORMULIER';
+}
 const p=profile.data;
 const name=document.getElementById('hub-name');
 const visibility=document.getElementById('hub-visibility');
