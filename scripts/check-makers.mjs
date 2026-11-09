@@ -34,6 +34,16 @@ assert.match(admin,/admin_users/,'Admin access must be checked');
 assert.match(admin,/maker_applications/,'Maker applications must be reviewed');
 assert.match(adminHtml,/noindex,nofollow/,'Private admin page must not be indexed');
 assert.match(adminHtml,/maker-approval-admin\.js\?v=1/);
+const community=read('makers-community.js');
+const publicProfile=read('maker.html');
+new vm.Script(community,{filename:'makers-community.js'});
+assert.match(community,/maker_showcase/,'Public maker designs must come from approved showcase');
+assert.match(community,/\.eq\('is_live',true\)/,'Only live maker designs should render');
+assert.match(community,/VOORBEELDWEERGAVE/,'Non-maker demo must be identified');
+assert.match(publicProfile,/makers-community\.js\?v=3/,'Maker design renderer must be updated');
+assert.match(dashJs,/hub-approval/,'Maker dashboard must render approval status');
+assert.match(read('draaghet-menu.js'),/makers-aanvragen\.html/,'Admin maker-review link missing');
+
 assert.doesNotMatch(makerHtml,/DRAAGHET\.\s+regelt/,'Brand punctuation issue in Makers Studio');
 const sourceFiles=readdirSync('.').filter(p=>/\.(html|js)$/.test(p));
 const bad=[];
