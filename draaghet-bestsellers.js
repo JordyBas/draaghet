@@ -19,8 +19,8 @@
     art.append(box('span','dh-best-rank',String(index+1).padStart(2,'0')));
     if(typeof product.image==='string'&&/^https:\/\/[^ ]{1,350}$/.test(product.image)){
        const img=box('img');img.src=product.image;img.alt=product.title;img.loading='lazy';img.decoding='async';art.append(img);
-    }else{art.append(box('span','dh-best-placeholder','DRAAGHET.'))}
-    const info=box('div','dh-best-info');info.append(box('strong','',product.title),box('p','',product.type||'DRAAGHET.'));clickable.append(art,info);item.append(clickable);return item;
+    }else{art.append(box('span','dh-best-placeholder','DRAAGHET'))}
+    const info=box('div','dh-best-info');info.append(box('strong','',product.title),box('p','',product.type||'DRAAGHET'));clickable.append(art,info);item.append(clickable);return item;
   });
   for(let i=0;i<2;i++)for(const card of cards){const cloned=card.cloneNode(true);if(i===1){cloned.setAttribute('aria-hidden','true');for(const a of cloned.querySelectorAll('a'))a.tabIndex=-1;}root.append(cloned);}
   root.hidden=false;empty.hidden=true;if(section)section.hidden=false;
