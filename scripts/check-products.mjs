@@ -6,7 +6,7 @@ const read=(name)=>readFileSync(name,'utf8');
 const data=read('draaghet-capsule.js');
 const renderer=read('draaghet-capsule-render.js');
 const css=read('draaghet-capsule.css');
-const pages=['index.html','shirts.html','product.html'].map(read);
+const pages=['shirts.html','product.html','maker.html'].map(read);
 new vm.Script(data,{filename:'draaghet-capsule.js'});
 new vm.Script(renderer,{filename:'draaghet-capsule-render.js'});
 const sandbox={window:{}};
@@ -37,12 +37,12 @@ for(const html of pages){
  assert.match(html,/draaghet-capsule-render\.js\?v=3/);
  assert.match(html,/draaghet-capsule\.css\?v=3/);
 }
-assert.doesNotMatch(pages[2],/id="sizes"/,'Unverified size options visible');
+assert.doesNotMatch(pages[1],/id="sizes"/,'Unverified size options visible');
 const community=read('makers-community.js');
 const makerPage=read('maker.html');
 const makerCss=read('makers-community.css');
 new vm.Script(community,{filename:'makers-community.js'});
-assert.ok(makerPage.includes('makers-community.js?v=3'),'Maker profile community script stale');
+assert.ok(makerPage.includes('makers-community.js?v=4'),'Maker profile community script stale');
 assert.ok(makerPage.includes('draaghet-capsule-render.js?v=3'),'Maker profile renderer missing');
 assert.ok(makerPage.includes('draaghet-capsule.js?v=3'),'Maker profile public catalog must be current');
 assert.ok(community.includes('dh-maker-variant-grid'),'Maker triptych presentation missing');
@@ -51,5 +51,5 @@ assert.ok(makerCss.includes('grid-template-columns:repeat(3,minmax(0,1fr))'),'Ma
 for(const price of ['€24,95','€39,95','€44,95'])assert.ok(renderer.includes(price),'Missing preview price: '+price);
 assert.ok(renderer.includes('Voorbeeldprijs'),'Concept prices require disclaimer');
 assert.ok(!makerPage.includes('Verkoopprijs: €24,95'),'Do not publish actual prices');
-assert.match(pages[2],/NOG NIET TE KOOP/,'Unapproved concepts must not be sold');
+assert.match(pages[1],/NOG NIET TE KOOP/,'Unapproved concepts must not be sold');
 console.log('Phase 2 source checks passed: '+items.length+' concepts, unique slugs, fixed zones, responsive studio mockups.');
