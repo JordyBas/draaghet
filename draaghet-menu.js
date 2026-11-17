@@ -11,9 +11,8 @@
   const root=document.getElementById('navlinks');if(!root)return;
   root.replaceChildren();root.classList.add('dh-navigation');root.dataset.draaghetMenuReady='true';
   const groups=[
-   {label:'SHOP',href:'shirts.html',items:[['Alle kleding','shirts.html'],['Sarcasme','categorie.html?categorie=sarcasme'],['Flauwe humor','categorie.html?categorie=flauwe-humor'],['Woordgrappen','categorie.html?categorie=woordgrappen'],['Kerst','categorie.html?categorie=kerst']]},
-   {label:'BESTSELLERS',href:'categorie.html?lijst=bestsellers'},
-   {label:'MAKERS',href:'makers.html',items:[['Ontdek de makers','makers.html'],['Hoe werkt het?','maker-worden.html'],['Makers Studio','idee.html'],['Mijn Makers Dashboard','makers-dashboard.html']]},
+   {label:'MAKERSSHOPS',href:'makers.html'},
+   {label:'START JOUW KLEDINGLIJN',href:'maker-worden.html',items:[['Zo werkt het','maker-worden.html'],['Makers Studio','idee.html'],['Mijn Makersdashboard','makers-dashboard.html']]},
    {label:'OVER ONS',href:'verhaal.html'},
    {label:'CONTACT',href:'contact.html'}
   ];
@@ -40,14 +39,14 @@
   const inner=elem('div','dh-footer-inner'),top=elem('div','dh-footer-top');
   const brand=elem('div'),h=elem('h2');
   h.append(document.createTextNode('DRAAGHET'),elem('span','dh-footer-branddot','.'));brand.append(h);
-  brand.append(elem('p','dh-footer-lead','Kleding met humor, speciaal voor jou bedrukt. DRAAGHET is een concept van CustomM8.'));
+  brand.append(elem('p','dh-footer-lead','Eigen kledinglijnen voor makers en hun publiek. DRAAGHET is een concept van CustomM8.'));
   top.append(brand);
   function column(heading,links){
    const col=elem('div');col.append(elem('h3','',heading));const list=elem('div','dh-footer-links');
    for(const [label,href] of links){const a=elem('a','',label);a.href=href;list.append(a)}
    col.append(list);top.append(col);
   }
-  column('ONTDEKKEN',[['Shop','shirts.html'],['Bestsellers','categorie.html?lijst=bestsellers'],['Makers','makers.html'],['Ons verhaal','verhaal.html']]);
+  column('ONTDEKKEN',[['Makersshops','makers.html'],['Start jouw kledinglijn','maker-worden.html'],['DRAAGHET-collectie','shirts.html'],['Ons verhaal','verhaal.html']]);
   column('HULP & INFORMATIE',[['Contact','contact.html'],['Veelgestelde vragen','veelgestelde-vragen.html'],['Verzending & verwerking','verzending.html'],['Inzendvoorwaarden','inzendvoorwaarden.html']]);
   column('JOUW DRAAGHET',[['Mijn account','account.html'],['Mijn bestellingen','mijn-bestellingen.html'],['Makers Studio','idee.html'],['Makers Dashboard','makers-dashboard.html']]);
   const bottom=elem('div','dh-footer-bottom');
